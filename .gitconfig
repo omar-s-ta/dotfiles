@@ -23,6 +23,7 @@
 [rebase]
   autoStash = true
   autoSquash = true
+  updateRefs = true
 
 [merge]
   conflictstyle = zdiff3
