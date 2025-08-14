@@ -74,3 +74,6 @@
 
 [includeIf "gitdir:~/development/helm-charts/**"]
   path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/incidentio-catalog/**"]
+  path = ~/.gitconfig-work
