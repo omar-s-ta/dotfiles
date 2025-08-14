@@ -68,3 +68,9 @@
 
 [includeIf "gitdir:~/development/search-ops/**"]
   path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/k8s-gitops/**"]
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/helm-charts/**"]
+  path = ~/.gitconfig-work
