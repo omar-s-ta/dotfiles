@@ -77,3 +77,6 @@
 
 [includeIf "gitdir:~/development/incidentio-catalog/**"]
   path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/scala/search-services/**"]
+  path = ~/.gitconfig-work
