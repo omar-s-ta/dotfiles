@@ -1,6 +1,7 @@
 [user]
   name = Omar Saber Talaat Abdelrahman
   email = omar.abdelrahman.de@gmail.com
+  signingkey = ~/.ssh/id_ed25519.pub
 
 [gpg]
   format = ssh
