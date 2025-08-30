@@ -1,0 +1,26 @@
+*.class
+target/
+
+# IDE
+.vscode
+.idea
+.bloop
+.bsp
+.metals
+
+# JS
+node_modules
+
+# Updates
+package-lock.json
+
+# macOS
+.DS_Store
+
+# Scala metals
+metals.sbt
+
+# AI
+CLAUDE.md
+.cursorignore
+.cursor
