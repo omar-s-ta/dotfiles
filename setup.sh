@@ -5,5 +5,5 @@ set -o pipefail # fail if any command in a pipe fails
 set -o nounset  # set -u -> exit on use of uninitialized variable
 
 stow --dotfiles git
-stow tmux
-stow idea
+stow --dotfiles tmux
+stow --dotfiles idea
