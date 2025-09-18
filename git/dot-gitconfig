@@ -85,3 +85,6 @@
 [includeIf "gitdir:~/development/try-ai-thon-search/**"]
   path = ~/.gitconfig-work
 
+[includeIf "gitdir:~/development/rust/atlas-autoscaler/**"]
+  path = ~/.gitconfig-work
+
