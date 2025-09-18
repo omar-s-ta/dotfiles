@@ -81,3 +81,7 @@
 
 [includeIf "gitdir:~/development/scala/search-services/**"]
   path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/development/try-ai-thon-search/**"]
+  path = ~/.gitconfig-work
+
