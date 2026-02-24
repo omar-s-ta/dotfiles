@@ -24,3 +24,4 @@ metals.sbt
 CLAUDE.md
 .cursorignore
 .cursor
+**/.claude/settings.local.json
