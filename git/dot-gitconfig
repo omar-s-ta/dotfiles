@@ -88,3 +88,11 @@
 [includeIf "gitdir:~/development/rust/atlas-autoscaler/**"]
   path = ~/.gitconfig-work
 
+[includeIf "gitdir:~/development/rust/ct-cli/**"]
+  path = ~/.gitconfig-work
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
