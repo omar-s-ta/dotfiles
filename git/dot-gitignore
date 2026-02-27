@@ -22,6 +22,7 @@ metals.sbt
 
 # AI
 CLAUDE.md
+AGENTS.md
 .cursorignore
 .cursor
 **/.claude/settings.local.json
