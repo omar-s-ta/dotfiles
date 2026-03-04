@@ -27,3 +27,4 @@ AGENTS.md
 .cursor
 **/.claude/settings.local.json
 **/.docs/
+**/.claude
