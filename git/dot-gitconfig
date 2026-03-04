@@ -91,6 +91,9 @@
 [includeIf "gitdir:~/development/rust/ct-cli/**"]
   path = ~/.gitconfig-work
 
+[includeIf "gitdir:~/development/rust/mongodb-atlas-mcp/**"]
+  path = ~/.gitconfig-work
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
