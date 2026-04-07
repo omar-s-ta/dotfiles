@@ -94,6 +94,9 @@
 [includeIf "gitdir:~/development/rust/mongodb-atlas-mcp/**"]
   path = ~/.gitconfig-work
 
+[includeIf "gitdir:~/development/scala/sphere-scala-libs/**"]
+  path = ~/.gitconfig-work
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
