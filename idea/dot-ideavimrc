@@ -3,6 +3,9 @@ let mapleader = " "
 " :actionlist for all commands
 set surround
 set multiple-cursors
+set commentary
+set ideajoin
+set ideamarks
 set history=1000
 set visualbell
 set noerrorbells
@@ -15,16 +18,18 @@ set hlsearch
 
 " relative numbers
 set relativenumber
+set number
 set NERDTree
 set highlightedyank
 set argtextobj
 set ReplaceWithRegister
-
+set textobj-entire
+set textobj-indent
 
 set clipboard+=unnamed
 
-" Display at least 3 lines around you cursor
-set scrolloff=15
+" Display at least 10 lines around your cursor (matches nvim scrolloff)
+set scrolloff=10
 
 " Ignore case when searching
 set ignorecase
@@ -34,40 +39,54 @@ set smartcase
 
 " KEYMAP
 map <leader>n :NERDTreeToggle<CR>
-" map <c-n> <a-n>
-" map <c-x> <a-x>
-" map <c-p> <a-p>
-" map g<c-n> g<a-p>
 
+" Window navigation (matches nvim <C-hjkl>)
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Window resize (matches nvim keymaps.lua <C-S-arrows>)
+nnoremap <C-S-Up>    :action StretchSplitToTop<CR>
+nnoremap <C-S-Down>  :action StretchSplitToBottom<CR>
+nnoremap <C-S-Left>  :action StretchSplitToLeft<CR>
+nnoremap <C-S-Right> :action StretchSplitToRight<CR>
+
+" Disable arrow keys in normal mode (matches nvim keymaps.lua)
+nnoremap <left>  :echo "Use h to move!!"<CR>
+nnoremap <right> :echo "Use l to move!!"<CR>
+nnoremap <up>    :echo "Use k to move!!"<CR>
+nnoremap <down>  :echo "Use j to move!!"<CR>
+
+" Half-page scroll keeps cursor centered (matches nvim)
 nmap <C-d> <C-d>zz
 nmap <C-u> <C-u>zz
 
+" Start/end of file ops include line position (matches nvim)
 nmap gg gg0
 nmap G G$
+vmap gg gg0
+vmap G G$
 
-nnoremap <leader>sbt :action Activatesbt-shell-toolwindowToolWindow<CR>
-nnoremap <leader>stw :action ActivatesbtToolWindow<CR>
-
+" Hide tool windows
 nmap <S-q> :action HideActiveWindow<CR>
 
+" Clear search highlights
 noremap <leader>cl :<C-u>nohlsearch<CR><C-l>
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
-" Pasting from yank history
+" Pasting from yank history (matches nvim yanky)
+nnoremap <leader>p :action PasteMultiple<CR>
 nnoremap <leader>y :action PasteMultiple<CR>
 
-" Comment
-nnoremap <leader>gc :action CommentByLineComment<CR>
-vmap <leader>gc :action CommentByLineComment<CR>
-vmap <leader>gb :action CommentByBlockComment<CR>
+" Sbt tool windows (Scala)
+nnoremap <leader>sbt :action Activatesbt-shell-toolwindowToolWindow<CR>
+nnoremap <leader>stw :action ActivatesbtToolWindow<CR>
 
-" Menus
+" Menus / Project explorer (matches LazyVim <leader>e)
 nnoremap <leader>m :action ActivateProjectToolWindow<CR>
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+nnoremap \\ :action SelectInProjectView<CR>
 
 " Refactorings
 nnoremap <leader>oi :action OptimizeImports<CR>
@@ -77,6 +96,7 @@ nnoremap <leader>ri :action Inline<CR>
 nnoremap <leader>rv :action IntroduceVariable<CR>
 nnoremap <leader>rm :action ExtractMethod<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>rp :action IntroduceParameter<CR>
 
 vmap <leader>rp :action IntroduceParameter<CR>
 vmap <leader>rn :action RenameElement<CR>
@@ -85,15 +105,26 @@ vmap <leader>ri :action Inline<CR>
 vmap <leader>rv :action IntroduceVariable<CR>
 vmap <leader>rm :action ExtractMethod<CR>
 vmap <leader>rr :action Refactorings.QuickListPopupAction<CR>
-nnoremap <leader>rp :action IntroduceParameter<CR>
+
+" Code actions (LazyVim <leader>c*)
 nnoremap <leader>cm :action ImplementMethods<CR>
 nnoremap <leader>co :action OverrideMethods<CR>
 nnoremap <leader>ca :action ShowIntentionActions<CR>
-nnoremap <leader>F :action ReformatCode<CR>
+nnoremap <leader>cf :action ReformatCode<CR>
+nnoremap <leader>cr :action RenameElement<CR>
+nnoremap <leader>cd :action ShowErrorDescription<CR>
+nnoremap <leader>cs :action ActivateStructureToolWindow<CR>
+nnoremap <leader>F  :action ReformatCode<CR>
+vmap     <leader>cf :action ReformatCode<CR>
 
-" GoTo
-nnoremap <leader>gd :action GotoDeclaration<CR>
-nnoremap <leader>gr :action FindUsages<CR>
+" LSP-style goto (matches LazyVim defaults: gd/gr/gI/gy/K)
+nnoremap gd  :action GotoDeclaration<CR>
+nnoremap gr  :action FindUsages<CR>
+nnoremap gI  :action GotoImplementation<CR>
+nnoremap gy  :action GotoTypeDeclaration<CR>
+nnoremap gS  :action GotoSuperMethod<CR>
+
+" Leader-prefixed goto helpers
 nnoremap <leader>gi :action GotoImplementation<CR>
 nnoremap <leader>gs :action ActivateStructureToolWindow<CR>
 nnoremap <leader>uk :action ParameterInfo<CR>
@@ -101,50 +132,87 @@ nnoremap <leader>ui :action Scala.ShowImplicitArguments<CR>
 nnoremap <leader>ci :action QuickImplementations<CR>
 nnoremap <leader>uc :action EditorContextInfo<CR>
 
+" Git (matches LazyVim/diffview <leader>g*)
+nnoremap <leader>gg :action ActivateVersionControlToolWindow<CR>
+nnoremap <leader>gd :action Compare.LastVersion<CR>
+nnoremap <leader>gf :action Vcs.ShowTabbedFileHistory<CR>
+nnoremap <leader>gF :action Vcs.Show.Log<CR>
+nnoremap <leader>gb :action Annotate<CR>
+nnoremap <leader>gB :action Github.Open.In.Browser<CR>
+
+" Splits / Windows (LazyVim <leader>- <leader>| <leader>w*)
 nnoremap <leader>ss :action SplitVertically<CR>
 nnoremap <leader>sv :action SplitHorizontally<CR>
+nnoremap <leader>-  :action SplitHorizontally<CR>
+nnoremap <leader>\| :action SplitVertically<CR>
+nnoremap <leader>wd :action Unsplit<CR>
+nnoremap <leader>wm :action MaximizeEditorInSplit<CR>
+
+" Tabs / Buffers (LazyVim uses <S-h>/<S-l> for buffers; map to IDEA tabs)
 nnoremap <S-l> :action NextTab<CR>
 nnoremap <S-h> :action PreviousTab<CR>
 nnoremap <C-S-l> :action MoveTabRight<CR>
 nnoremap <C-S-h> :action MoveTabLeft<CR>
+nnoremap <leader>bd :action CloseContent<CR>
+nnoremap <leader>bo :action CloseAllEditorsButActive<CR>
+nnoremap <leader>bb :action RecentFiles<CR>
 
-" Types
+" Types / Hover (matches nvim K)
 nnoremap K :action Scala.TypeInfo<CR>
 vmap K :action Scala.TypeInfo<CR>
+nnoremap gh :action QuickJavaDoc<CR>
 
-" Search
-nnoremap <leader>fs :action GotoSymbol<CR>
+" Search / Telescope-style finders (LazyVim <leader>f*)
 nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
+nnoremap <leader>fb :action Switcher<CR>
+nnoremap <leader>fs :action GotoSymbol<CR>
 nnoremap <leader>fc :action GotoClass<CR>
 nnoremap <leader>fa :action GotoAction<CR>
+nnoremap <leader>fn :action NewFile<CR>
 nnoremap <leader>sg :action FindInPath<CR>
 nnoremap <leader>sr :action ReplaceInPath<CR>
 vmap <leader>sg :action FindInPath<CR>
 vmap <leader>sr :action ReplaceInPath<CR>
 vnoremap * y <Esc>/<C-r>0<CR>
 
-" Test and Run
+" Test and Run (LazyVim <leader>t*)
 nnoremap <leader>tt :action GotoTest<CR>
 nnoremap <leader>tn :action RunClass<CR>
 nnoremap <leader>tl :action Rerun<CR>
 nnoremap <leader>tf :action RerunFailedTests<CR>
+nnoremap <leader>tr :action RunClass<CR>
+" Metals-style test selection (matches nvim <leader>mt/mc)
+nnoremap <leader>mt :action ChooseRunConfiguration<CR>
+nnoremap <leader>mc :action RunClass<CR>
 
-" Undo
+" Quit (LazyVim <leader>q*)
+nnoremap <leader>qq :action Exit<CR>
+
+" Undo / Local history
 nnoremap <leader>uh :action LocalHistory.ShowHistory<CR>
 
 " Jumping
-" built-in navigation to navigated items works better
-" HANDLED with intellij shortcuts for now, this is not used
-nnoremap <c-o> :action Back<cr>
-nnoremap <c-i> :action Forward<cr>
+nnoremap <c-o> :action Back<CR>
+nnoremap <c-i> :action Forward<CR>
 
-" Navigation
-nnoremap ]c :action GotoNextError<cr>
-nnoremap [c :action GotoPreviousError<cr>
-nnoremap ]h :action VcsShowNextChangeMarker<cr>
-nnoremap [h :action VcsShowPrevChangeMarker<cr>
-nnoremap <leader>se :action ShowErrorDescription<cr>
+" Navigation between errors / diagnostics (LazyVim ]d/[d and traditional ]c/[c)
+nnoremap ]c :action GotoNextError<CR>
+nnoremap [c :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]e :action GotoNextError<CR>
+nnoremap [e :action GotoPreviousError<CR>
+nnoremap ]h :action VcsShowNextChangeMarker<CR>
+nnoremap [h :action VcsShowPrevChangeMarker<CR>
+nnoremap <leader>se :action ShowErrorDescription<CR>
+
+" Folding (matches nvim-ufo: zR open all, zM close all, zp peek)
+nnoremap zR :action ExpandAllRegions<CR>
+nnoremap zM :action CollapseAllRegions<CR>
+nnoremap zp :action ExpandRegionRecursively<CR>
+nnoremap za :action ExpandCollapseToggleAction<CR>
 
 " Misc
 nnoremap <leader>vr :source ~/.ideavimrc<CR>
-noremap <leader>vr :source ~/.ideavimrc<CR>
+noremap  <leader>vr :source ~/.ideavimrc<CR>
