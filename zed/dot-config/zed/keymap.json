@@ -1,0 +1,54 @@
+// Zed keymap mirroring nvim keymaps (lua/config/keymaps.lua + vim-tmux-navigator).
+// See https://zed.dev/docs/key-bindings
+[
+  // vim-tmux-navigator: ctrl-h/j/k/l to move between splits.
+  // NOTE: this navigates between *Zed* panes only. Seamless jumping into
+  // adjacent tmux panes (as christoomey/vim-tmux-navigator does) is not
+  // supported by Zed without an external wrapper.
+  {
+    "context": "Dock || Editor || Terminal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+
+  // LazyVim buffer/tab navigation: Shift-h / Shift-l for prev / next tab.
+  // (Overrides vim's default H/L screen-top/bottom motions, same as LazyVim.)
+  // LazyVim window splits: <leader>| vertical, <leader>- horizontal, <leader>wd close.
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "space |": "pane::SplitRight",
+      "space -": "pane::SplitDown",
+      "space b d": "pane::CloseActiveItem",
+      "space w d": "pane::CloseActiveItem",
+      "space u h": "editor::ToggleInlayHints",
+      "space g g": "git_panel::ToggleFocus",
+      "space c r": "editor::Rename"
+    }
+  },
+
+  // LazyVim terminal toggle: <C-/> opens/closes the terminal from anywhere.
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-/": "terminal_panel::Toggle"
+    }
+  },
+
+  // Disable arrow keys in normal mode ("Use h/j/k/l to move!!").
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "left": null,
+      "right": null,
+      "up": null,
+      "down": null
+    }
+  }
+]

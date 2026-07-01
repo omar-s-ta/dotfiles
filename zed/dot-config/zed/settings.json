@@ -1,0 +1,93 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "ui_font_family": ".ZedMono",
+  "buffer_font_family": "BerkeleyMono Nerd Font Mono Plus Font Awesome Plus Font Awesome Extension Plus Octicons Plus Power Symbols Plus Codicons Plus Pomicons Plus Font Logos Plus Material Design Icons Plus Weather Icons",
+  //"buffer_font_family": ".ZedMono",
+  "agent_ui_font_size": 15.0,
+  "agent_buffer_font_size": 14.0,
+  "vim_mode": true,
+  // Editor behavior mirroring nvim/LazyVim defaults + lua/config/options.lua
+  "relative_line_numbers": "enabled", // LazyVim default `relativenumber`
+  "vertical_scroll_margin": 10, // `scrolloff = 10`
+  "tab_size": 2, // `softtabstop`/`shiftwidth` = 2
+  "hard_tabs": false, // `expandtab`
+  "show_whitespaces": "trailing", // `list` + listchars (tab/trail/nbsp)
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "light",
+    "light": "Catppuccin Latte - No Italics",
+    "dark": "Nordfox - blurred",
+  },
+  // Syntax color overrides approximating lua/plugins/colorscheme.lua (Nord palette).
+  // NOTE: Zed applies these GLOBALLY (not per-language), and cannot remap the
+  // per-language LSP semantic tokens (@lsp.type.macro.rust, modifier.scala,
+  // the custom @scala.matcharm query, etc.) — those have no Zed equivalent.
+  "experimental.theme_overrides": {
+    "Nord Dark - No Italics": {
+      "syntax": {
+        "number": { "color": "#D08770" }, // numbers orange
+        "keyword": { "color": "#EBCB8B" }, // keywords yellow
+        "keyword.function": { "color": "#D08770" }, // def/fn orange (if grammar emits it)
+        "variant": { "color": "#B48EAD" }, // enum members purple
+        "hint": { "color": "#4C566A" }, // inlay hints gray
+      },
+    },
+  },
+  // Inlay hints: Zed needs them turned on globally, and Metals needs to know
+  // which kinds to emit (mirrors nvim-metals `inlayHints`).
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+    "show_background": false,
+    "edit_debounce_ms": 700,
+    "scroll_debounce_ms": 50,
+  },
+  "languages": {
+    // Match LazyVim's 2-space indentation for Scala.
+    "Scala": {
+      "tab_size": 2,
+      "format_on_save": "on",
+    },
+  },
+  "lsp": {
+    // Metals user configuration, mirroring lua/plugins/custom-configs.lua.
+    "metals": {
+      "settings": {
+        "excludedPackages": [
+          "akka.actor.typed.javadsl",
+          "com.github.swagger.akka.javadsl",
+        ],
+        "enableSemanticHighlighting": true,
+        // "testUserInterface": "Test Explorer",
+        "inlayHints": {
+          "inferredTypes": { "enable": true },
+          "implicitArguments": { "enable": true },
+          "typeParameters": { "enable": true },
+          "hintsInPatternMatch": { "enable": true },
+          "namedParameters": { "enable": true },
+          "byNameParameters": { "enable": true },
+        },
+      },
+    },
+  },
+}
