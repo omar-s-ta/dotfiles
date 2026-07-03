@@ -8,3 +8,4 @@ stow --dotfiles git
 stow --dotfiles tmux
 stow --dotfiles idea
 stow --dotfiles zed
+stow --dotfiles helix
