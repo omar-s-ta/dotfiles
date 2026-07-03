@@ -7,6 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "right"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "agent": {
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "right"
+  },
   "ui_font_family": ".ZedMono",
   "buffer_font_family": "BerkeleyMono Nerd Font Mono Plus Font Awesome Plus Font Awesome Extension Plus Octicons Plus Power Symbols Plus Codicons Plus Pomicons Plus Font Logos Plus Material Design Icons Plus Weather Icons",
   //"buffer_font_family": ".ZedMono",
@@ -73,6 +90,10 @@
     // Metals user configuration, mirroring lua/plugins/custom-configs.lua.
     "metals": {
       "settings": {
+        // Use sbt's own BSP server directly instead of Bloop. This repo has no
+        // Bloop sbt plugin, so bloopInstall produces no targets and Metals falls
+        // back to a single-file presentation compiler ("no build target found").
+        "defaultBspToBuildTool": true,
         "excludedPackages": [
           "akka.actor.typed.javadsl",
           "com.github.swagger.akka.javadsl",
