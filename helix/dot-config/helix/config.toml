@@ -78,6 +78,9 @@ enable = true
 "C-d" = ["half_page_down", "align_view_center"]
 "C-u" = ["half_page_up", "align_view_center"]
 
+# Mirror <C-o> (jump backward in the jumplist) onto <C-t> as well.
+"C-t" = "jump_backward"
+
 # nvim: G -> G$  (last line, end of line)
 "G" = ["goto_last_line", "goto_line_end"]
 
@@ -103,12 +106,18 @@ D = ":buffer-close!"          # force-close (discard changes), like <leader>bD
 b = "buffer_picker"          # preserve default `space b` picker
 o = ":buffer-close-others"   # bonus: <leader>bo close other buffers
 
-# nvim/LazyVim: <leader>gg opens git UI. Helix runs inside tmux, so a
-# `display-popup` gives gitui a real TTY in a floating window; on quit it
-# returns to Helix. `git rev-parse` runs inside the popup (cwd = current pane),
-# so gitui opens on the project root even when editing a file in a subdirectory.
+# nvim/LazyVim: <leader>gg opens lazygit; <leader>gu opens gitui. Helix
+# suspends its TUI during `:insert-output`, handing the git UI a real TTY; it
+# walks up from Helix's cwd to find the repo. `:new` gives a throwaway buffer
+# to capture the (empty) stdout, `:buffer-close!` discards it, `:redraw`
+# repaints Helix. No tmux and no nested shell quoting — which broke earlier tries.
 [keys.normal.space.g]
-g = ":sh tmux display-popup -w 80% -h 80% -E 'gitui -w \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\"'"
+g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# gitui renders to stdout, which `:insert-output` pipes away, so it can't draw
+# there. Instead give it a real TTY via a tmux popup (starts in the pane's cwd;
+# gitui walks up to find the repo). `%%` escapes the literal `%` from Helix's
+# command-line percent expansion.
+u = ":sh tmux display-popup -w 80%% -h 80%% -d '#{pane_current_path}' -E gitui"
 
 # nvim/LazyVim: <leader>uh toggles inlay hints
 [keys.normal.space.u]
@@ -119,6 +128,7 @@ h = ":toggle lsp.display-inlay-hints"
 g = ["goto_file_start", "goto_line_start"]
 
 [keys.select]
+"C-t" = "jump_backward"
 "G" = ["goto_last_line", "goto_line_end"]
 up = "no_op"
 down = "no_op"
