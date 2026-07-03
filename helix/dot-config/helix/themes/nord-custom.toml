@@ -1,0 +1,52 @@
+# Nord, tweaked to match my nvim (arcticicestudio/nord + custom highlights).
+# Inherits the built-in Helix `nord` and overrides only the scopes I changed in
+# lua/plugins/colorscheme.lua.  Palette names (nord12=orange, nord13=yellow,
+# nord15=purple, nord3=#4C566A) come from the base theme.
+inherits = "nord"
+
+# nvim: `Keyword` -> #EBCB8B (yellow).  General keywords (val/if/case/for/...)
+# go yellow; function-definition keywords (def/fn) go orange below.
+"keyword" = "nord13"
+"keyword.control" = "nord13"
+"keyword.control.conditional" = "nord13"
+"keyword.control.exception" = "nord13"
+"keyword.control.repeat" = "nord13"
+"keyword.control.return" = "nord13"
+"keyword.control.import" = "nord13"
+"keyword.directive" = "nord13"
+"keyword.operator" = "nord13"
+"keyword.return" = "nord13"
+"keyword.storage" = "nord13"
+"keyword.storage.type" = "nord13"
+# nvim: `@lsp.type.modifier.scala` -> yellow
+"keyword.storage.modifier" = "nord13"
+
+# nvim: `@keyword.function` -> #D08770 (orange), i.e. `def`/`fn`
+"keyword.function" = "nord12"
+
+# nvim: numbers orange (`@number.rust`, `@number.scala`, `@number.float.scala`).
+# Helix has one numeric scope, so this covers every language at once.
+"constant.numeric" = "nord12"
+"constant.numeric.integer" = "nord12"
+"constant.numeric.float" = "nord12"
+
+# nvim: `@lsp.type.enumMember` -> #B48EAD (purple).  Helix scopes enum members in
+# two ways: `constructor` (variants used in expr/patterns) and `type.enum.variant`
+# (variant definitions; `.builtin` = Some/None/Ok/Err).  Set all three purple.
+"constructor" = "nord15"
+"type.enum.variant" = "nord15"
+"type.enum.variant.builtin" = "nord15"
+
+# nvim: `@lsp.type.macro.rust` -> #BF616A (red).  Base Nord makes macros blue (nord9).
+# Covers `println!`, `vec!`, macro_rules! names, etc.
+"function.macro" = "nord11"
+"function.macro.rust" = "nord11"
+
+# nvim leaves function parameters plain foreground; base Helix Nord makes them
+# teal (nord8).  Restore white (nord4) so parameters match nvim.
+"variable.parameter" = "nord4"
+
+# nvim: LspInlayHint -> fg #4C566A (== nord3), NOT italic (base theme is italic).
+"ui.virtual.inlay-hint" = { fg = "nord3" }
+"ui.virtual.inlay-hint.parameter" = { fg = "nord3" }
+"ui.virtual.inlay-hint.type" = { fg = "nord3" }

@@ -1,0 +1,126 @@
+# Helix config aimed at matching my LazyVim/nvim setup as closely as Helix allows.
+# See languages.toml for LSP/formatter config.
+
+theme = "nord-custom"
+
+[editor]
+scrolloff = 10
+line-number = "relative"
+cursorline = true
+bufferline = "multiple"
+color-modes = true
+true-color = true
+popup-border = "all"
+rulers = []
+completion-trigger-len = 1
+auto-format = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+# nvim: inlay hints enabled (nvim-lsp-endhints / metals inlayHints)
+display-inlay-hints = true
+display-messages = true
+display-progress-messages = true
+snippets = true
+goto-reference-include-declaration = true
+
+[editor.indent-guides]
+render = true
+character = "│"
+skip-levels = 1
+
+[editor.gutters]
+# gitsigns-style diff column + diagnostics, line numbers, folds(none)
+layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+# nvim: opt.list + listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+[editor.whitespace]
+render = { tab = "all", nbsp = "all", trailing = "all" }
+
+[editor.whitespace.characters]
+tab = "»"
+tabpad = " "
+nbsp = "␣"
+trailing = "·"
+
+[editor.file-picker]
+# nvim/snacks searched hidden files (e.g. Sphere command); mirror that
+hidden = false
+git-ignore = true
+
+[editor.soft-wrap]
+enable = false
+
+[editor.smart-tab]
+enable = true
+
+#########################
+#  Keybindings
+#########################
+
+[keys.normal]
+# nvim: <C-d>/<C-u> then zz (center)
+"C-d" = ["half_page_down", "align_view_center"]
+"C-u" = ["half_page_up", "align_view_center"]
+
+# nvim: G -> G$  (last line, end of line)
+"G" = ["goto_last_line", "goto_line_end"]
+
+# Split navigation with Alt+h/j/k/l. Ctrl+h/j/k/l is left to tmux's
+# vim-tmux-navigator for PANE switching; Alt is free of tmux, so it drives
+# Helix SPLITS as a single chord without conflict.
+"A-h" = "jump_view_left"
+"A-j" = "jump_view_down"
+"A-k" = "jump_view_up"
+"A-l" = "jump_view_right"
+
+# nvim: disable arrow keys in normal mode
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+
+# nvim: <leader>bd -> close buffer.  Turning `space b` into a submenu shadows
+# Helix's default buffer picker, so it's kept at `space b b`.
+[keys.normal.space.b]
+d = ":buffer-close"
+D = ":buffer-close!"          # force-close (discard changes), like <leader>bD
+b = "buffer_picker"          # preserve default `space b` picker
+o = ":buffer-close-others"   # bonus: <leader>bo close other buffers
+
+# nvim/LazyVim: <leader>gg opens git UI. Helix runs inside tmux, so a
+# `display-popup` gives gitui a real TTY in a floating window; on quit it
+# returns to Helix. `git rev-parse` runs inside the popup (cwd = current pane),
+# so gitui opens on the project root even when editing a file in a subdirectory.
+[keys.normal.space.g]
+g = ":sh tmux display-popup -w 80% -h 80% -E 'gitui -w \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\"'"
+
+# nvim/LazyVim: <leader>uh toggles inlay hints
+[keys.normal.space.u]
+h = ":toggle lsp.display-inlay-hints"
+
+[keys.normal.g]
+# nvim: gg -> gg0  (file start, then column 0 / first char)
+g = ["goto_file_start", "goto_line_start"]
+
+[keys.select]
+"G" = ["goto_last_line", "goto_line_end"]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+
+[keys.select.g]
+g = ["goto_file_start", "goto_line_start"]

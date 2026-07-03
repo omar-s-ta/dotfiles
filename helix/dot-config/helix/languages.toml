@@ -1,0 +1,126 @@
+# LSP / formatter config mirroring my nvim (LazyVim) language setup.
+# NOTE: many of these servers are installed by Mason inside nvim and are NOT on
+# your PATH. Helix needs them globally. Installed & working today:
+#   clangd, rust-analyzer, metals, terraform-ls
+# The rest are configured but require installing the binary (see chat notes).
+
+########################  C / C++  ########################
+# nvim: clangd with -std=c++23
+[language-server.clangd]
+command = "clangd"
+args = ["--std=c++23", "--clang-tidy", "--header-insertion=iwyu"]
+
+[[language]]
+name = "cpp"
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "c"
+indent = { tab-width = 2, unit = "  " }
+
+########################  Scala (metals)  ########################
+# nvim: nvim-metals with inlay hints, implicit args, semantic highlighting
+[language-server.metals]
+command = "metals"
+
+[language-server.metals.config]
+"metals.defaultBspToBuildTool" = true
+"metals.inlayHints.inferredTypes.enable" = true
+"metals.inlayHints.typeParameters.enable" = true
+"metals.inlayHints.implicitArguments.enable" = true
+"metals.inlayHints.implicitConversions.enable" = true
+"metals.inlayHints.hintsInPatternMatch.enable" = true
+"metals.showImplicitArguments" = true
+"metals.enableSemanticHighlighting" = true
+"metals.testUserInterface" = "Test Explorer"
+"metals.excludedPackages" = ["akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl"]
+
+[[language]]
+name = "scala"
+language-servers = ["metals"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+########################  Rust  ########################
+[language-server.rust-analyzer.config.rust-analyzer]
+inlayHints.bindingModeHints.enable = true
+inlayHints.closureReturnTypeHints.enable = "always"
+check.command = "clippy"
+
+[[language]]
+name = "rust"
+auto-format = true
+
+########################  Python  ########################
+# nvim: pyright + ruff. Install with: pipx install pyright ruff  (or uv tool install)
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+formatter = { command = "ruff", args = ["format", "-"] }
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+
+########################  Bash / Zsh  ########################
+# nvim: bashls for sh + zsh.  Install: npm i -g bash-language-server
+[[language]]
+name = "bash"
+indent = { tab-width = 2, unit = "  " }
+
+########################  Go  ########################
+[[language]]
+name = "go"
+auto-format = true
+
+########################  TypeScript / JS (prettier)  ########################
+# Install prettier: npm i -g prettier ; typescript-language-server
+[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+########################  JSON / YAML / TOML  ########################
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+
+[[language]]
+name = "yaml"
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "toml"
+auto-format = true
+
+########################  Terraform  ########################
+[[language]]
+name = "hcl"
+auto-format = true
+
+########################  Markdown (prettier)  ########################
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
