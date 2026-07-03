@@ -14,6 +14,9 @@ popup-border = "all"
 rulers = []
 completion-trigger-len = 1
 auto-format = true
+# nvim: clipboard = "unnamedplus" — y/p use the system clipboard so you can
+# paste into any other app (and paste from it back into Helix).
+default-yank-register = "+"
 
 [editor.cursor-shape]
 insert = "bar"
