@@ -46,6 +46,13 @@ inherits = "nord"
 # teal (nord8).  Restore white (nord4) so parameters match nvim.
 "variable.parameter" = "nord4"
 
+# nvim: bufferline.nvim look. The strip sits on nord1; inactive tabs are dim
+# (nord3), the active tab is bright + bold on the editor bg with a teal (nord8)
+# underline to stand in for nvim's active-buffer accent indicator.
+"ui.bufferline.background" = { bg = "nord1" }
+"ui.bufferline" = { fg = "nord4", bg = "nord1" }
+"ui.bufferline.active" = { fg = "nord6", bg = "nord0", modifiers = ["bold"], underline = { color = "nord8", style = "line" } }
+
 # nvim: LspInlayHint -> fg #4C566A (== nord3), NOT italic (base theme is italic).
 "ui.virtual.inlay-hint" = { fg = "nord3" }
 "ui.virtual.inlay-hint.parameter" = { fg = "nord3" }
