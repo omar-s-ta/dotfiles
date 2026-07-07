@@ -1,0 +1,4 @@
+[mgr]
+prepend_keymap = [
+	{ on = "i", run = "create", desc = "Create a file (or directory ending with /)" },
+]

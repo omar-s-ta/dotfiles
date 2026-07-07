@@ -9,3 +9,4 @@ stow --dotfiles tmux
 stow --dotfiles idea
 stow --dotfiles zed
 stow --dotfiles helix
+stow --dotfiles yazi
