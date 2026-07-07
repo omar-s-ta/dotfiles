@@ -98,6 +98,21 @@ down = "no_op"
 left = "no_op"
 right = "no_op"
 
+# nvim/mini.files-style file explorer via yazi. `:insert-output` suspends Helix's
+# TUI and hands yazi a real TTY (same trick as `space g g` lazygit); yazi starts
+# on the current file (%{buffer_name}) and writes the picked path to a chooser
+# file rather than stdout, so nothing leaks into the current buffer. `:open
+# %sh{...}` (Helix 25.x command expansion) then opens the pick in this running
+# instance; the `-s` guard makes quitting yazi (q) a no-op that reopens the
+# current buffer instead of erroring on an empty path.
+[keys.normal.space]
+e = [
+  ":sh rm -f /tmp/hx-yazi-chooser",
+  ":insert-output yazi %{buffer_name} --chooser-file=/tmp/hx-yazi-chooser",
+  ":open %sh{ [ -s /tmp/hx-yazi-chooser ] && cat /tmp/hx-yazi-chooser || echo %{buffer_name} }",
+  ":redraw",
+]
+
 # nvim: <leader>bd -> close buffer.  Turning `space b` into a submenu shadows
 # Helix's default buffer picker, so it's kept at `space b b`.
 [keys.normal.space.b]

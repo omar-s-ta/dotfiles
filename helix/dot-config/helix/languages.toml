@@ -44,9 +44,35 @@ indent = { tab-width = 2, unit = "  " }
 
 ########################  Rust  ########################
 [language-server.rust-analyzer.config.rust-analyzer]
-inlayHints.bindingModeHints.enable = true
-inlayHints.closureReturnTypeHints.enable = "always"
 check.command = "clippy"
+check.features = "all"
+completion.fullFunctionSignatures.enable = true
+diagnostics.experimental.enable = true
+diagnostics.styleLints.enable = true
+hover.actions.references.enable = true
+hover.memoryLayout.niche = true
+inlayHints.bindingModeHints.enable = true
+inlayHints.closingBraceHints.minLines = 1
+inlayHints.closureCaptureHints.enable = true
+inlayHints.closureReturnTypeHints.enable = "always"           # with_block
+inlayHints.closureStyle = "rust_analyzer"                     # impl_fn | with_id
+inlayHints.discriminantHints.enable = "always"                # fieldless
+inlayHints.expressionAdjustmentHints.enable = "reborrow"
+inlayHints.genericParameterHints.lifetime.enable = true
+inlayHints.genericParameterHints.type.enable = true
+inlayHints.implicitDrops.enable = false
+inlayHints.lifetimeElisionHints.enable = "always"             # skip_trivial
+inlayHints.lifetimeElisionHints.useParameterNames = true
+inlayHints.rangeExclusiveHints.enable = true
+interpret.tests = true
+lens.references.adt.enable = true
+lens.references.enumVariant.enable = true
+lens.references.method.enable = true
+lens.references.trait.enable = true
+semanticHighlighting.operator.specialization.enable = true
+semanticHighlighting.punctuation.separate.macro.bang = true
+semanticHighlighting.punctuation.specialization.enable = true
+typing.autoClosingAngleBrackets.enable = true
 
 [[language]]
 name = "rust"
