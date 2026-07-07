@@ -7,6 +7,5 @@ set -o nounset  # set -u -> exit on use of uninitialized variable
 stow --dotfiles git
 stow --dotfiles tmux
 stow --dotfiles idea
-stow --dotfiles zed
 stow --dotfiles helix
 stow --dotfiles yazi
