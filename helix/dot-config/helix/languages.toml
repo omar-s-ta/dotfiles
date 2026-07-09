@@ -5,19 +5,64 @@
 # The rest are configured but require installing the binary (see chat notes).
 
 ########################  C / C++  ########################
-# nvim: clangd with -std=c++23
+# nvim: clangd with
 [language-server.clangd]
 command = "clangd"
-args = ["--std=c++23", "--clang-tidy", "--header-insertion=iwyu"]
+args = ["--clang-tidy", "--header-insertion=iwyu", "-j=5", "--malloc-trim"]
 
 [[language]]
 name = "cpp"
 auto-format = true
+language-servers = [
+  "clangd",
+  { name = "efm", only-features = [
+    "diagnostics",
+  ] }, # clang-analyzer and cppcheck lints
+]
+file-types = [
+  "cc",
+  "ccm",
+  "cxx",
+  "cxxm",
+  "c++",
+  "c++m",
+  "cpp",
+  "cppm",
+  "hxx",
+  "hpp",
+]
 indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "c"
+anguage-servers = [
+  "clangd",
+  { name = "efm", only-features = [
+    "diagnostics",
+  ] }, # gcc, clang-analyzer and cppcheck lints
+]
+file-types = ["c", "h"]
 indent = { tab-width = 2, unit = "  " }
+
+########################  Lua  ########################
+[[language]]
+name = "lua"
+language-servers = [
+  { name = "lua-language-server", except-features = ["format"] },
+  { name = "efm", only-features = ["diagnostics", "code-action"] }, # for selene
+]
+formatter = { command = "stylua", args = ["-"] }
+auto-format = true
+
+[language-server.lua-language-server.config.Lua]
+format.enable = false
+runtime.version = "LuaJIT"
+diagnostics.globals = ["vim"]
+workspace.library = [
+  "/usr/share/nvim/runtime/lua",
+  "/usr/share/nvim/runtime/lua/vim",
+  "/usr/share/nvim/runtime/lua/vim/lsp",
+]
 
 ########################  Scala (metals)  ########################
 # nvim: nvim-metals with inlay hints, implicit args, semantic highlighting
@@ -127,18 +172,40 @@ auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 ########################  JSON / YAML / TOML  ########################
-[[language]]
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language]]
 name = "json"
-auto-format = true
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
 formatter = { command = "prettier", args = ["--parser", "json"] }
+auto-format = true
+
+[[language]]
+name = "jsonc"
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+auto-format = true
 
 [[language]]
 name = "yaml"
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
+file-types = ["yml", "yaml", { glob = "phpstan.neon" }]
 
 [[language]]
 name = "toml"
+formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
 
 ########################  Terraform  ########################
@@ -149,4 +216,34 @@ auto-format = true
 ########################  Markdown (prettier)  ########################
 [[language]]
 name = "markdown"
+language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
+
+[language]]
+name = "git-config"
+file-types = [
+  { glob = "git/config" },
+  { glob = ".gitmodules" },
+  { glob = ".gitconfig" },
+  { glob = ".git/config" },
+  { glob = ".config/git/config" },
+]
+
+[[language]]
+name = "dockerfile"
+language-servers = [
+  "docker-langserver",
+  { name = "efm", only-features = [
+    "code-action",
+    "diagnostics",
+  ] }, # for hadolint
+]
+
+[[language]]
+name = "html"
+language-servers = [
+  "vscode-html-language-server",
+  "superhtml",
+  "tailwindcss-lsp",
+]
+
