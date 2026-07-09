@@ -35,7 +35,7 @@ indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "c"
-anguage-servers = [
+language-servers = [
   "clangd",
   { name = "efm", only-features = [
     "diagnostics",
@@ -176,7 +176,7 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }
 command = "biome"
 args = ["lsp-proxy"]
 
-[language]]
+[[language]]
 name = "json"
 language-servers = [
   { name = "vscode-json-language-server", except-features = [
@@ -219,7 +219,7 @@ name = "markdown"
 language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 
-[language]]
+[[language]]
 name = "git-config"
 file-types = [
   { glob = "git/config" },
