@@ -1,8 +1,13 @@
 # LSP / formatter config mirroring my nvim (LazyVim) language setup.
-# NOTE: many of these servers are installed by Mason inside nvim and are NOT on
-# your PATH. Helix needs them globally. Installed & working today:
-#   clangd, rust-analyzer, metals, terraform-ls
-# The rest are configured but require installing the binary (see chat notes).
+# Servers & CLI tools live on $PATH (installed via brew), not Mason. Everything
+# configured here is installed and working.
+# auto-format is on globally in config.toml, so it's not repeated per-language.
+
+########################  efm (linter multiplexer)  ########################
+# Wraps CLI linters that don't speak LSP (selene, cppcheck) and exposes them as
+# diagnostics. Reads ~/.config/efm-langserver/config.yaml (its own stow package).
+[language-server.efm]
+command = "efm-langserver"
 
 ########################  C / C++  ########################
 # nvim: clangd with
@@ -12,12 +17,11 @@ args = ["--clang-tidy", "--header-insertion=iwyu", "-j=5", "--malloc-trim"]
 
 [[language]]
 name = "cpp"
-auto-format = true
 language-servers = [
   "clangd",
   { name = "efm", only-features = [
     "diagnostics",
-  ] }, # clang-analyzer and cppcheck lints
+  ] }, # cppcheck lints
 ]
 file-types = [
   "cc",
@@ -39,7 +43,7 @@ language-servers = [
   "clangd",
   { name = "efm", only-features = [
     "diagnostics",
-  ] }, # gcc, clang-analyzer and cppcheck lints
+  ] }, # cppcheck lints
 ]
 file-types = ["c", "h"]
 indent = { tab-width = 2, unit = "  " }
@@ -52,7 +56,6 @@ language-servers = [
   { name = "efm", only-features = ["diagnostics", "code-action"] }, # for selene
 ]
 formatter = { command = "stylua", args = ["-"] }
-auto-format = true
 
 [language-server.lua-language-server.config.Lua]
 format.enable = false
@@ -79,15 +82,18 @@ command = "metals"
 "metals.showImplicitArguments" = true
 "metals.enableSemanticHighlighting" = true
 "metals.testUserInterface" = "Test Explorer"
-"metals.excludedPackages" = ["akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl"]
+"metals.excludedPackages" = [
+  "akka.actor.typed.javadsl",
+  "com.github.swagger.akka.javadsl",
+]
 
 [[language]]
 name = "scala"
 language-servers = ["metals"]
-auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
 ########################  Rust  ########################
+# rust-analyzer attaches to rust via Helix defaults; this only tunes its config.
 [language-server.rust-analyzer.config.rust-analyzer]
 check.command = "clippy"
 check.features = "all"
@@ -119,12 +125,8 @@ semanticHighlighting.punctuation.separate.macro.bang = true
 semanticHighlighting.punctuation.specialization.enable = true
 typing.autoClosingAngleBrackets.enable = true
 
-[[language]]
-name = "rust"
-auto-format = true
-
 ########################  Python  ########################
-# nvim: pyright + ruff. Install with: pipx install pyright ruff  (or uv tool install)
+# nvim: pyright + ruff (both installed via brew).
 [language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
@@ -140,35 +142,35 @@ args = ["server"]
 name = "python"
 language-servers = ["pyright", "ruff"]
 formatter = { command = "ruff", args = ["format", "-"] }
-auto-format = true
 indent = { tab-width = 4, unit = "    " }
 
 ########################  Bash / Zsh  ########################
-# nvim: bashls for sh + zsh.  Install: npm i -g bash-language-server
+# nvim: bashls for sh + zsh (installed). bash-language-server does completion/
+# diagnostics (shellcheck)/goto; efm owns hover so it shows the raw `man` page
+# for the command under the cursor.
 [[language]]
 name = "bash"
+language-servers = [
+  { name = "bash-language-server", except-features = ["hover"] },
+  { name = "efm", only-features = ["hover"] },
+]
 indent = { tab-width = 2, unit = "  " }
 
 ########################  Go  ########################
-[[language]]
-name = "go"
-auto-format = true
+# gopls + golangci-lint-lsp via Helix defaults; formatting handled globally.
 
 ########################  TypeScript / JS (prettier)  ########################
 # Install prettier: npm i -g prettier ; typescript-language-server
 [[language]]
 name = "typescript"
-auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
 name = "javascript"
-auto-format = true
 formatter = { command = "prettier", args = ["--parser", "babel"] }
 
 [[language]]
 name = "tsx"
-auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 ########################  JSON / YAML / TOML  ########################
@@ -185,7 +187,6 @@ language-servers = [
   "biome",
 ]
 formatter = { command = "prettier", args = ["--parser", "json"] }
-auto-format = true
 
 [[language]]
 name = "jsonc"
@@ -195,23 +196,20 @@ language-servers = [
   ] },
   "biome",
 ]
-auto-format = true
 
 [[language]]
 name = "yaml"
-auto-format = true
+language-servers = ["yaml-language-server"]
 indent = { tab-width = 2, unit = "  " }
 file-types = ["yml", "yaml", { glob = "phpstan.neon" }]
 
 [[language]]
 name = "toml"
+language-servers = ["taplo"]
 formatter = { command = "taplo", args = ["format", "-"] }
-auto-format = true
 
 ########################  Terraform  ########################
-[[language]]
-name = "hcl"
-auto-format = true
+# hcl uses terraform-ls via Helix defaults; formatting handled globally.
 
 ########################  Markdown (prettier)  ########################
 [[language]]
@@ -219,31 +217,20 @@ name = "markdown"
 language-servers = ["marksman"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 
-[[language]]
-name = "git-config"
-file-types = [
-  { glob = "git/config" },
-  { glob = ".gitmodules" },
-  { glob = ".gitconfig" },
-  { glob = ".git/config" },
-  { glob = ".config/git/config" },
-]
+# git-config: highlighting works from Helix's built-in defaults (file-type globs
+# and grammar are already bundled), so no [[language]] override is needed here.
+
+[language-server.docker-language-server]
+command = "docker-language-server"
+args = ["start", "--stdio"]
 
 [[language]]
 name = "dockerfile"
-language-servers = [
-  "docker-langserver",
-  { name = "efm", only-features = [
-    "code-action",
-    "diagnostics",
-  ] }, # for hadolint
-]
+language-servers = ["docker-language-server"]
 
 [[language]]
 name = "html"
 language-servers = [
   "vscode-html-language-server",
   "superhtml",
-  "tailwindcss-lsp",
 ]
-
