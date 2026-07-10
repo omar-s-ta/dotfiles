@@ -1,0 +1,7 @@
+[user]
+  email = omar.abdelrahman@commercetools.com
+  signingkey = ~/.ssh/id_ed25519_work_sign.pub
+
+[core]
+  editor = nvim
+

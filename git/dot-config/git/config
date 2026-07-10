@@ -84,3 +84,55 @@
   dcw = diff --cached --color-words='\\w+|[^[:space:]]'
   dds = "!f() { git diff --color=always \"$@\" | delta --side-by-side --line-numbers; }; f"
   dshow = "!f() { git show --color=always \"$@\" | delta --side-by-side --line-numbers; }; f"
+
+# ---- Work identity, scoped to work repos -----------------------------------
+# Applies ~/.config/git/config-work (work email + SSH signing key) only inside
+# the repos below. The included file is tracked in this dotfiles repo (XDG:
+# git/dot-config/git/config-work, stowed to ~/.config/git/config-work).
+[includeIf "gitdir:~/development/scala/sphere-backend/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/scala/pim-indexer/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/scala/fs2-queues/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/commercetools-docs/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/ops-terraform/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/search-ops/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/k8s-gitops/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/helm-charts/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/incidentio-catalog/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/scala/search-services/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/try-ai-thon-search/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/rust/atlas-autoscaler/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/rust/ct-cli/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/rust/mongodb-atlas-mcp/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/scala/sphere-scala-libs/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "gitdir:~/development/rust/internal-rust-crates/**"]
+  path = ~/.config/git/config-work
