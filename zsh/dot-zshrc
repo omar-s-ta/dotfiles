@@ -1,3 +1,5 @@
+# shellcheck shell=zsh   # zsh file: tells bash-language-server to skip shellcheck
+#                          (shellcheck supports only sh/bash/dash/ksh, not zsh).
 # ============================================================================
 # ~/.zshrc  —  tracked in ~/dotfiles/zsh/dot-zshrc (deploy: `stow --dotfiles zsh`)
 #
