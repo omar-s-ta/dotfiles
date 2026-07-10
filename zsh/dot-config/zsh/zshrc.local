@@ -1,0 +1,59 @@
+# shellcheck shell=zsh   # zsh file: skip shellcheck (unsupported dialect)
+# ============================================================================
+# zshrc.local  —  machine-specific zsh settings for THIS machine only.
+# Lives at $XDG_CONFIG_HOME/zsh/zshrc.local. NOT tracked in git.
+# Sourced by ~/.zshrc (see ~/dotfiles/zsh/dot-zshrc).
+# ============================================================================
+
+# ---- Compile/link flags for Homebrew libs ----
+export LDFLAGS="-L/opt/homebrew/opt/curl/lib -L/opt/homebrew/opt/node/lib -L/opt/homebrew/opt/postgresql@17/lib -L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/node/include -I/opt/homebrew/opt/postgresql@17/include -I/opt/homebrew/opt/llvm/include"
+
+# ---- Elasticsearch / Kibana (local usage) ----
+export ES_HOME="$HOME/elasticsearch-9.2.0"
+export ES_PASSWORD="yTYf1JNDAzMV_g25jMlS"
+export KIBANA_HOME="$HOME/kibana-9.2.0"
+# export ES_HOME="$HOME/es"
+
+# ---- PATH (order = precedence; each prepend beats the ones above it) ----
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"          # Windsurf
+export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/terraform-ls/bin:$PATH"
+export PATH="/opt/homebrew/opt/tflint/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# Coursier PATH is set in ~/.zprofile (login shells) — removed the duplicate here.
+export GOPATH="$HOME/go"                  # Go default; defined here beside its use
+export PATH="$PATH:$GOPATH/bin"
+
+# ---- Tool initialization ----
+# cargo is sourced in ~/.zshenv (all shells); coursier PATH in ~/.zprofile (login).
+
+# opam — init.zsh sets up PATH + completion.
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2>&1
+
+# ---- Work helpers + hooks (work-specific) ----
+source "$HOME/development/bash/work_utils.sh"
+
+# On entering a tracked repo: init git state and pull if on the default branch.
+chpwd() {
+  local -r dirs=(
+    "$__SPHERE_BACKEND_DIR"
+    "$__PIM_INDEXER_DIR"
+    "$__SEARCH_OPS_DIR"
+    "$__TERRAFORM_OPS_DIR"
+    "$__SEARCH_SERVICES_DIR"
+  )
+
+  for dir in "${dirs[@]}"; do
+    if [[ $PWD == "$dir" ]]; then
+      __init_git
+      if git_is_default_branch "$(git branch --show-current)"; then
+        git pull
+      fi
+
+      break
+    fi
+  done
+}
