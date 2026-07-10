@@ -10,3 +10,4 @@ stow --dotfiles idea
 stow --dotfiles helix
 stow --dotfiles yazi
 stow --dotfiles kitty
+stow --dotfiles efm-langserver

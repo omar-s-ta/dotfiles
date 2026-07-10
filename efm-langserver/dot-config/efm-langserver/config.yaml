@@ -1,0 +1,88 @@
+# efm-langserver config — wraps CLI linters that don't speak LSP and exposes
+# their output as diagnostics to Helix (see helix languages.toml -> language-server.efm).
+#
+# Helix attaches efm to c/cpp/lua alongside the real LSP (clangd, lua-language-server),
+# scoped to `diagnostics` (and `code-action` for lua) via only-features.
+#
+# Backing tools (install with brew): selene, cppcheck. clang-tidy is NOT here —
+# clangd already runs it via its --clang-tidy flag.
+version: 2
+
+tools:
+  # ---- Lua: selene -------------------------------------------------------
+  # efm pipes the buffer on stdin; selene prints `-:L:C: warning[code]: msg`.
+  # The trailing "Results:" summary lines simply don't match and are ignored.
+  selene: &selene
+    lint-command: "selene --display-style=quiet -"
+    lint-stdin: true
+    lint-source: "selene"
+    lint-ignore-exit-code: true
+    lint-after-open: true
+    # cppcheck reads the file path (${INPUT}), not stdin, so it lints the saved
+    # file — re-run on save to pick up edits.
+    lint-on-save: true
+    lint-formats:
+      - "%f:%l:%c: %trror%m"
+      - "%f:%l:%c: %tarning%m"
+
+  # ---- C / C++: cppcheck -------------------------------------------------
+  # cppcheck can't lint stdin, so efm writes the buffer to a temp file and
+  # substitutes ${INPUT}; efm maps that temp path back to the real buffer.
+  # The temp file has no extension, hence explicit --language per entry.
+  # Severity comes from %t (error->Error, warning->Warning). style/performance/
+  # portability have no %t char efm recognizes, so the catch-all format below
+  # surfaces them (efm renders them at Error severity — visible, if a bit loud).
+  cppcheck-c: &cppcheck-c
+    lint-command: 'cppcheck --quiet --language=c --enable=warning,style,performance,portability --inline-suppr --template="{file}:{line}:{column}: {severity}: {message}" ${INPUT}'
+    lint-stdin: false
+    lint-source: "cppcheck"
+    lint-ignore-exit-code: true
+    lint-after-open: true
+    # cppcheck reads the file path (${INPUT}), not stdin, so it lints the saved
+    # file — re-run on save to pick up edits.
+    lint-on-save: true
+    # error/warning get their severity from %t; style/performance/portability
+    # hit the catch-all (no %t) and fall back to lint-severity (2 = Warning).
+    lint-severity: 2
+    lint-formats:
+      - "%f:%l:%c: %trror: %m"
+      - "%f:%l:%c: %tarning: %m"
+      - "%f:%l:%c: %m"
+
+  cppcheck-cpp: &cppcheck-cpp
+    lint-command: 'cppcheck --quiet --language=c++ --enable=warning,style,performance,portability --inline-suppr --template="{file}:{line}:{column}: {severity}: {message}" ${INPUT}'
+    lint-stdin: false
+    lint-source: "cppcheck"
+    lint-ignore-exit-code: true
+    lint-after-open: true
+    # cppcheck reads the file path (${INPUT}), not stdin, so it lints the saved
+    # file — re-run on save to pick up edits.
+    lint-on-save: true
+    # error/warning get their severity from %t; style/performance/portability
+    # hit the catch-all (no %t) and fall back to lint-severity (2 = Warning).
+    lint-severity: 2
+    lint-formats:
+      - "%f:%l:%c: %trror: %m"
+      - "%f:%l:%c: %tarning: %m"
+      - "%f:%l:%c: %m"
+
+  # ---- Bash: man-page hover ---------------------------------------------
+  # Hover over a word -> its man page. efm substitutes ${INPUT} with the token
+  # under the cursor; `col -bx` strips man's backspace overstrike so the popup
+  # renders as clean text. Unknown words just yield an empty hover.
+  man-hover: &man-hover
+    hover-command: "man ${INPUT} 2>/dev/null | col -bx"
+    hover-stdin: false
+    hover-type: "plaintext"
+
+languages:
+  lua:
+    - <<: *selene
+  c:
+    - <<: *cppcheck-c
+  cpp:
+    - <<: *cppcheck-cpp
+  bash:
+    - <<: *man-hover
+  sh:
+    - <<: *man-hover
