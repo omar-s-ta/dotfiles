@@ -1,0 +1,5 @@
+# tmux plugins are managed by tpm (installed/updated by pde_init.sh), not
+# tracked here. Because ~/.config/tmux is a stow-folded symlink into this repo,
+# tpm clones the plugins into this directory — ignore them so they don't get
+# committed as (URL-less) gitlinks again.
+tmux/dot-config/tmux/plugins/
