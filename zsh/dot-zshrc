@@ -1,0 +1,58 @@
+# ============================================================================
+# ~/.zshrc  —  tracked in ~/dotfiles/zsh/dot-zshrc (deploy: `stow --dotfiles zsh`)
+#
+# PORTABLE, machine-agnostic config only — safe to commit.
+# Machine-specific settings live in ~/.zshrc.local (NOT tracked), sourced below.
+# Requires the ~/scripts repo (plugin list + shell helpers) to be cloned.
+# ============================================================================
+
+# ---- Powerlevel10k instant prompt — keep near the top ----------------------
+# Code that needs console input (passwords, [y/n]) must go ABOVE this block.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ---- Homebrew prefix (portable across Apple Silicon / Intel) ---------------
+if [[ -d /opt/homebrew ]]; then
+  BREW_PREFIX=/opt/homebrew
+elif [[ -d /usr/local/Homebrew ]]; then
+  BREW_PREFIX=/usr/local
+fi
+
+# ---- oh-my-zsh — configure BEFORE sourcing oh-my-zsh.sh --------------------
+export ZSH="$HOME/.oh-my-zsh"
+# ZSH_THEME left unset: powerlevel10k is sourced manually below.
+# (fzf and gcloud are enabled as plugins — see ~/scripts/zsh_plugins.sh.)
+
+# Plugin list, versioned in the ~/scripts repo.
+[[ -f "$HOME/scripts/zsh_plugins.sh" ]] && source "$HOME/scripts/zsh_plugins.sh"
+
+# Completions must be on fpath before oh-my-zsh runs compinit.
+FPATH="$BREW_PREFIX/share/zsh/site-functions:${FPATH}"
+FPATH="$BREW_PREFIX/share/zsh-completions:${FPATH}"
+
+source "$ZSH/oh-my-zsh.sh"
+
+# ---- Portable environment --------------------------------------------------
+export EDITOR='hx'
+export VISUAL='hx'
+
+# ---- Powerlevel10k prompt --------------------------------------------------
+[[ -r "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] &&
+  source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# ---- Machine-specific settings (NOT tracked; this machine only) ------------
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# ---- Shell helpers from the ~/scripts repo ---------------------------------
+[[ -f "$HOME/scripts/zshrc_init.sh" ]] && source "$HOME/scripts/zshrc_init.sh"
+
+# ---- Line-editor enhancements — MUST stay last, in this order --------------
+#   1) autosuggestions  2) syntax-highlighting  3) history-substring-search
+[[ -r "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
+  source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -r "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&
+  source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -r "$ZSH/plugins/history-substring-search/history-substring-search.zsh" ]] &&
+  source "$ZSH/plugins/history-substring-search/history-substring-search.zsh"
