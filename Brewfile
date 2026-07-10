@@ -9,6 +9,8 @@
 #     brew tap mongodb/brew && brew tap warrensbox/tap
 # The other taps are tapped but have no install line here, so they never prompt.
 
+# TODO clean up unneeded casks, taps, and formulas
+
 # ---- Third-party taps ----
 tap "anomalyco/tap"          # AnomalyCo tools (opencode AI agent, sst, torpedo)
 tap "argoproj/tap"           # Argo project CLIs (Argo Workflows / Argo CD)
