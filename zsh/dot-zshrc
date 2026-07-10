@@ -6,6 +6,12 @@
 # Requires the ~/scripts repo (plugin list + shell helpers) to be cloned.
 # ============================================================================
 
+# ---- XDG Base Directory spec — set before anything consumes these ----------
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 # ---- Powerlevel10k instant prompt — keep near the top ----------------------
 # Code that needs console input (passwords, [y/n]) must go ABOVE this block.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
