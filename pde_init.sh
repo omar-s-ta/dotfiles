@@ -38,6 +38,8 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 # Reusable shell code (plugin list + helpers) sourced by dot-zshrc.
 SCRIPTS_REPO="git@github.com:omar-s-ta/scripts.git"
 SCRIPTS_DIR="$XDG_DATA_HOME/scripts"
+# Convenience symlink so the repo is reachable from a short, familiar path.
+SCRIPTS_LINK="$HOME/scripts"
 
 # tmux plugin manager; the individual plugins are declared in tmux.conf.
 TPM_REPO="https://github.com/tmux-plugins/tpm"
@@ -93,11 +95,27 @@ setup_oh_my_zsh() {
 setup_scripts_repo() {
   if [[ -d "$SCRIPTS_DIR/.git" ]]; then
     log "scripts repo already present at $SCRIPTS_DIR"
+  else
+    log "cloning scripts repo -> $SCRIPTS_DIR"
+    # git clone creates the target and any missing parent dirs, so no mkdir needed.
+    git clone "$SCRIPTS_REPO" "$SCRIPTS_DIR"
+  fi
+  link_scripts_repo
+}
+
+# Symlink the scripts repo into $HOME. Idempotent: skip if the link already
+# points where we want, replace a stale link, and refuse to clobber a real file.
+link_scripts_repo() {
+  if [[ "$(readlink "$SCRIPTS_LINK" 2>/dev/null || true)" == "$SCRIPTS_DIR" ]]; then
+    log "scripts symlink already in place at $SCRIPTS_LINK"
     return
   fi
-  log "cloning scripts repo -> $SCRIPTS_DIR"
-  mkdir -p "$(dirname "$SCRIPTS_DIR")"
-  git clone "$SCRIPTS_REPO" "$SCRIPTS_DIR"
+  if [[ -e "$SCRIPTS_LINK" && ! -L "$SCRIPTS_LINK" ]]; then
+    warn "$SCRIPTS_LINK exists and is not a symlink; leaving it untouched"
+    return
+  fi
+  log "symlinking scripts repo -> $SCRIPTS_LINK"
+  ln -sfn "$SCRIPTS_DIR" "$SCRIPTS_LINK"
 }
 
 # ---- 4. stow configs --------------------------------------------------------
