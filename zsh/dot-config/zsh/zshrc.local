@@ -33,6 +33,36 @@ export PATH="$PATH:$GOPATH/bin"
 # opam — init.zsh sets up PATH + completion.
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2>&1
 
+# ---- XDG relocation of tool dotfiles (keeps $HOME clean) — wave 1 ----------
+# Each var moves a tool's state out of ~/.<tool> into the XDG dirs. Fallbacks
+# (${VAR:-default}) keep this file safe to source even if XDG_* are unset.
+# Existing data was migrated with `mv` when these were added.
+export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"               # was ~/.ipython
+export MPLCONFIGDIR="${XDG_CACHE_HOME:-$HOME/.cache}/matplotlib"            # was ~/.matplotlib
+export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"             # was ~/.docker (client cfg only; daemon unaffected)
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aws/config"       # was ~/.aws/config
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aws/credentials"
+export AZURE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/azure"           # was ~/.azure
+export ANSIBLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/ansible"         # was ~/.ansible
+export PIXI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pixi"               # was ~/.pixi (add $PIXI_HOME/bin to PATH if you install global tools)
+
+# Terraform: disable checkpoint telemetry (stops ~/.terraform.d/checkpoint_* regenerating)
+export CHECKPOINT_DISABLE=1
+export TF_CLI_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/terraform/terraformrc"
+export TF_PLUGIN_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/terraform/plugins"
+
+# History files -> XDG state
+export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/history"       # was ~/.lesshst
+export PSQL_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/psql/history"       # was ~/.psql_history
+export PYTHON_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/python/history"   # was ~/.python_history (Python >=3.13)
+# Note: ~/.vimrc + ~/.viminfo removed (plain vim unused; nvim uses ~/.config/nvim).
+# Backups in ~/.local/state/stray-log-backup/ if plain vim is ever needed again.
+export TFLINT_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tflint/tflint.hcl"  # was ~/.tflint.hcl
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"                    # wgetrc relocates HSTS db out of ~/.wget-hsts
+# ~/.vault-token intentionally left in place: live secret (0600), no clean XDG relocation.
+export BOTO_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/gsutil/boto"  # was ~/.boto (gsutil defaults; no live creds)
+# ~/.ocamlinit -> $XDG_CONFIG_HOME/ocaml/init.ml (OCaml >=4.08 finds it natively; no env needed).
+
 # ---- Work helpers + hooks (work-specific) ----
 source "$HOME/development/bash/work_utils.sh"
 
