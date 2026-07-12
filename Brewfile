@@ -56,7 +56,6 @@ brew "fzf"                                 # Command-line fuzzy finder written i
 brew "gawk"                                # GNU awk utility
 brew "gemini-cli"                          # Interact with Google Gemini AI models from the command-line
 brew "gh"                                  # GitHub command-line tool
-brew "git"                                 # Distributed revision control system
 brew "git-lfs"                             # Git extension for versioning large files
 brew "gitui"                               # Blazing fast terminal-ui for git written in rust
 brew "golangci-lint-langserver"            # Language server for `golangci-lint`
