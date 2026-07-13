@@ -123,6 +123,15 @@ install_brew_packages() {
   [[ -f "$BREWFILE" ]] || die "Brewfile not found at $BREWFILE"
   log "installing packages from Brewfile"
   brew bundle install --file="$BREWFILE"
+
+  # The *-full variants share files with the plain ffmpeg / imagemagick
+  # formulae (pulled in as dependencies), so brew won't link them by default.
+  # Force the -full builds to win so their extra codecs/formats are on PATH.
+  # Idempotent: a no-op once they're already linked. `brew bundle` cannot
+  # express this, which is why it lives here rather than in the Brewfile.
+  log "force-linking ffmpeg-full / imagemagick-full over the plain variants"
+  brew link --force --overwrite ffmpeg-full imagemagick-full \
+    || warn "could not force-link ffmpeg-full/imagemagick-full (already linked?)"
 }
 
 # ---- 4. oh-my-zsh -----------------------------------------------------------
