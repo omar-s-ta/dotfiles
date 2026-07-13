@@ -48,6 +48,16 @@ language-servers = [
 file-types = ["c", "h"]
 indent = { tab-width = 2, unit = "  " }
 
+########################  CMake  ########################
+# Helix defaults list both neocmakelsp and cmake-language-server (neocmakelsp
+# first); pin to cmake-language-server so only that one attaches.
+[language-server.cmake-language-server]
+command = "cmake-language-server"
+
+[[language]]
+name = "cmake"
+language-servers = ["cmake-language-server"]
+
 ########################  Lua  ########################
 [[language]]
 name = "lua"
@@ -227,6 +237,17 @@ args = ["start", "--stdio"]
 [[language]]
 name = "dockerfile"
 language-servers = ["docker-language-server"]
+
+# Compose files: dedicated docker-compose-langserver (--stdio, like its Helix
+# default). docker-language-server also parses Compose, but this is wired here
+# per preference.
+[language-server.docker-compose-langserver]
+command = "docker-compose-langserver"
+args = ["--stdio"]
+
+[[language]]
+name = "docker-compose"
+language-servers = ["docker-compose-langserver"]
 
 [[language]]
 name = "html"

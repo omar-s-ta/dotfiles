@@ -21,10 +21,11 @@
 #   1. Install Homebrew (if missing), then `brew install git` so we can clone.
 #   2. Clone the dotfiles repo to ~/dotfiles (skipped when run from a checkout).
 #   3. Install every package listed in the repo's Brewfile.
-#   4. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
-#   5. Clone the companion `scripts` repo and symlink it into $HOME.
-#   6. Symlink every config into place via stow (delegates to stow-packages.sh).
-#   7. Install tmux plugins through tpm.
+#   4. Install the Rust toolchain via the official rustup installer.
+#   5. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
+#   6. Clone the companion `scripts` repo and symlink it into $HOME.
+#   7. Symlink every config into place via stow (delegates to stow-packages.sh).
+#   8. Install tmux plugins through tpm.
 #
 # Note: the Homebrew and oh-my-zsh installers may prompt for input (e.g. sudo),
 # and `brew bundle` may prompt to trust third-party taps.
@@ -121,6 +122,14 @@ setup_dotfiles_repo() {
 # `brew bundle dump` — see the Brewfile header.
 install_brew_packages() {
   [[ -f "$BREWFILE" ]] || die "Brewfile not found at $BREWFILE"
+
+  # hashicorp/tap is a third-party tap (provides terraform-ls). With
+  # HOMEBREW_REQUIRE_TAP_TRUST set (as on this setup), brew refuses its formulae
+  # until the tap is trusted, so tap + trust it before bundling so `brew bundle`
+  # installs non-interactively. Both are idempotent / harmless if already done.
+  brew tap hashicorp/tap                || warn "could not tap hashicorp/tap"
+  brew trust --tap hashicorp/tap        || warn "could not trust hashicorp/tap"
+
   log "installing packages from Brewfile"
   brew bundle install --file="$BREWFILE"
 
@@ -134,7 +143,21 @@ install_brew_packages() {
     || warn "could not force-link ffmpeg-full/imagemagick-full (already linked?)"
 }
 
-# ---- 4. oh-my-zsh -----------------------------------------------------------
+# ---- 4. Rust toolchain (rustup) ---------------------------------------------
+# Rust is installed via the official rustup installer (NOT Homebrew). The `-y`
+# run installs the stable toolchain (rustc, cargo, clippy, rustfmt) with proxies
+# in ~/.cargo/bin, and lets the installer add the cargo env line to ~/.zshenv so
+# the toolchain is on PATH in new shells. (rust-analyzer comes from the Brewfile.)
+setup_rust() {
+  if [[ -x "$HOME/.cargo/bin/rustup" ]]; then
+    log "rustup already installed at ~/.cargo/bin"
+    return
+  fi
+  log "installing rustup + stable Rust toolchain"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+}
+
+# ---- 5. oh-my-zsh -----------------------------------------------------------
 setup_oh_my_zsh() {
   if [[ -d "$OMZ_DIR" ]]; then
     log "oh-my-zsh already installed"
@@ -147,7 +170,7 @@ setup_oh_my_zsh() {
     "" --unattended
 }
 
-# ---- 5. scripts repo --------------------------------------------------------
+# ---- 6. scripts repo --------------------------------------------------------
 setup_scripts_repo() {
   if [[ -d "$SCRIPTS_DIR/.git" ]]; then
     log "scripts repo already present at $SCRIPTS_DIR"
@@ -174,7 +197,7 @@ link_scripts_repo() {
   ln -sfn "$SCRIPTS_DIR" "$SCRIPTS_LINK"
 }
 
-# ---- 6. stow configs --------------------------------------------------------
+# ---- 7. stow configs --------------------------------------------------------
 # stow-packages.sh clears its own per-package conflicts, but one git problem is
 # invisible to stow: ~/.gitconfig is NEVER a stow target (we deploy to the XDG
 # ~/.config/git/config), yet it takes PRECEDENCE over the XDG file — so a stray
@@ -196,7 +219,7 @@ stow_configs() {
   "$DOTFILES_DIR/stow-packages.sh"
 }
 
-# ---- 7. tmux plugins --------------------------------------------------------
+# ---- 8. tmux plugins --------------------------------------------------------
 # tmux.conf declares plugins with `@plugin` and initializes tpm at its bottom;
 # tpm then fetches every declared plugin. The plugins live under the (stow-
 # folded) ~/.config/tmux/plugins and are intentionally gitignored, not tracked.
@@ -217,6 +240,7 @@ main() {
   setup_homebrew        # brew + git; nothing else can run until these exist
   setup_dotfiles_repo   # clone the repo (unless we're already inside a checkout)
   install_brew_packages # now that the Brewfile is on disk
+  setup_rust            # rustup via its official installer (not brew)
   setup_oh_my_zsh
   setup_scripts_repo
   stow_configs          # must run before tpm so ~/.config/tmux resolves
