@@ -9,12 +9,6 @@
 export LDFLAGS="-L/opt/homebrew/opt/curl/lib -L/opt/homebrew/opt/node/lib -L/opt/homebrew/opt/postgresql@17/lib -L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/node/include -I/opt/homebrew/opt/postgresql@17/include -I/opt/homebrew/opt/llvm/include"
 
-# ---- Elasticsearch / Kibana (local usage) ----
-export ES_HOME="$HOME/elasticsearch-9.2.0"
-export ES_PASSWORD="yTYf1JNDAzMV_g25jMlS"
-export KIBANA_HOME="$HOME/kibana-9.2.0"
-# export ES_HOME="$HOME/es"
-
 # ---- PATH (order = precedence; each prepend beats the ones above it) ----
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="$HOME/.codeium/windsurf/bin:$PATH"          # Windsurf
@@ -33,8 +27,6 @@ export PATH="$PATH:$GOPATH/bin"
 # opam — init.zsh sets up PATH + completion.
 [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2>&1
 
-# ---- XDG relocation of tool dotfiles (keeps $HOME clean) — wave 1 ----------
-# Each var moves a tool's state out of ~/.<tool> into the XDG dirs. Fallbacks
 # (${VAR:-default}) keep this file safe to source even if XDG_* are unset.
 # Existing data was migrated with `mv` when these were added.
 export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"               # was ~/.ipython
@@ -59,7 +51,6 @@ export PYTHON_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/python/history"   #
 # Backups in ~/.local/state/stray-log-backup/ if plain vim is ever needed again.
 export TFLINT_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tflint/tflint.hcl"  # was ~/.tflint.hcl
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"                    # wgetrc relocates HSTS db out of ~/.wget-hsts
-# ~/.vault-token intentionally left in place: live secret (0600), no clean XDG relocation.
 export BOTO_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/gsutil/boto"  # was ~/.boto (gsutil defaults; no live creds)
 # ~/.ocamlinit -> $XDG_CONFIG_HOME/ocaml/init.ml (OCaml >=4.08 finds it natively; no env needed).
 
