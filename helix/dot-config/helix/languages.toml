@@ -102,6 +102,17 @@ name = "scala"
 language-servers = ["metals"]
 indent = { tab-width = 2, unit = "  " }
 
+########################  OCaml  ########################
+# ocamllsp is installed via opam (`opam install ocaml-lsp-server`), not brew —
+# it lives under ~/.opam/.../bin. Formatting is left to the LSP (uses
+# ocamlformat if a .ocamlformat file is present).
+[language-server.ocaml-lsp]
+command = "ocamllsp"
+
+[[language]]
+name = "ocaml"
+language-servers = ["ocaml-lsp"]
+
 ########################  Rust  ########################
 # rust-analyzer attaches to rust via Helix defaults; this only tunes its config.
 #
