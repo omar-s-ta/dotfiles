@@ -58,7 +58,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 # ---- Companion repositories -------------------------------------------------
 # Reusable shell code (plugin list + helpers) sourced by dot-zshrc.
-SCRIPTS_REPO="git@github.com:omar-s-ta/scripts.git"
+SCRIPTS_REPO="https://github.com/omar-s-ta/scripts.git"
 SCRIPTS_DIR="$XDG_DATA_HOME/scripts"
 # Convenience symlink so the repo is reachable from a short, familiar path.
 SCRIPTS_LINK="$HOME/scripts"
