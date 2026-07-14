@@ -60,7 +60,7 @@ brew "wget"                                # Internet file retriever
 brew "helix"                               # Post-modern modal text editor
 
 # -- Git & version control
-# standalone (GitHub CLI)
+# standalone (GitHub CLI); also gh-dash → gh (gh-dash is a gh extension, installed by pde_init.sh)
 brew "gh"                                  # GitHub command-line tool
 # git → git-delta (diff/pager syntax highlighter)
 brew "git-delta"                            # Syntax-highlighting pager for git and diff output

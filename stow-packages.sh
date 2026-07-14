@@ -25,6 +25,7 @@ packages=(
   zsh            # ~/.zshrc + XDG zsh config
   git            # ~/.config/git/{config,ignore} (+ config-work on the work branch)
   gh             # ~/.config/gh/config.yml (hosts.yml with auth tokens is untracked)
+  gh-dash        # ~/.config/gh-dash/config.yml (gh extension; installed by pde_init.sh)
   tmux           # ~/.config/tmux/tmux.conf (+ tpm-managed plugins/)
   idea           # ~/.config/ideavim/ideavimrc
   helix          # ~/.config/helix/*

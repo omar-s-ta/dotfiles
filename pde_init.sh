@@ -21,11 +21,12 @@
 #   1. Install Homebrew (if missing), then `brew install git` so we can clone.
 #   2. Clone the dotfiles repo to ~/dotfiles (skipped when run from a checkout).
 #   3. Install every package listed in the repo's Brewfile.
-#   4. Install the Rust toolchain via the official rustup installer.
-#   5. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
-#   6. Clone the companion `scripts` repo and symlink it into $HOME.
-#   7. Symlink every config into place via stow (delegates to stow-packages.sh).
-#   8. Install tmux plugins through tpm.
+#   4. Install gh CLI extensions (e.g. gh-dash) — needs gh from the Brewfile.
+#   5. Install the Rust toolchain via the official rustup installer.
+#   6. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
+#   7. Clone the companion `scripts` repo and symlink it into $HOME.
+#   8. Symlink every config into place via stow (delegates to stow-packages.sh).
+#   9. Install tmux plugins through tpm.
 #
 # Note: the Homebrew and oh-my-zsh installers may prompt for input (e.g. sudo),
 # and `brew bundle` may prompt to trust third-party taps.
@@ -143,7 +144,34 @@ install_brew_packages() {
     || warn "could not force-link ffmpeg-full/imagemagick-full (already linked?)"
 }
 
-# ---- 4. Rust toolchain (rustup) ---------------------------------------------
+# ---- 4. gh CLI extensions ---------------------------------------------------
+# gh extensions aren't Homebrew formulae, so they can't live in the Brewfile;
+# they're installed through `gh extension install` and need the gh CLI (pulled
+# in by the Brewfile above) already on PATH. Each install is idempotent — gh
+# refuses to reinstall an extension that's already present — but we still skip
+# any that are installed so re-runs stay quiet. gh-dash reads the config stowed
+# into ~/.config/gh-dash by stow_configs below.
+setup_gh_extensions() {
+  have gh || { warn "gh not on PATH; skipping gh extension install"; return; }
+
+  # Extensions to install (owner/repo, as `gh extension install` expects).
+  local extensions=(
+    dlvhdr/gh-dash # PR/issue/notification dashboard TUI; config in ~/.config/gh-dash
+  )
+
+  local ext installed
+  installed="$(gh extension list 2>/dev/null || true)"
+  for ext in "${extensions[@]}"; do
+    if grep --quiet --fixed-strings "$ext" <<<"$installed"; then
+      log "gh extension already installed: $ext"
+      continue
+    fi
+    log "installing gh extension: $ext"
+    gh extension install "$ext" || warn "could not install gh extension: $ext"
+  done
+}
+
+# ---- 5. Rust toolchain (rustup) ---------------------------------------------
 # Rust is installed via the official rustup installer (NOT Homebrew). The `-y`
 # run installs the stable toolchain (rustc, cargo, clippy, rustfmt) with proxies
 # in ~/.cargo/bin, and lets the installer add the cargo env line to ~/.zshenv so
@@ -157,7 +185,7 @@ setup_rust() {
   curl --proto '=https' --tlsv1.2 --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y
 }
 
-# ---- 5. oh-my-zsh -----------------------------------------------------------
+# ---- 6. oh-my-zsh -----------------------------------------------------------
 setup_oh_my_zsh() {
   if [[ -d "$OMZ_DIR" ]]; then
     log "oh-my-zsh already installed"
@@ -170,7 +198,7 @@ setup_oh_my_zsh() {
     "" --unattended
 }
 
-# ---- 6. scripts repo --------------------------------------------------------
+# ---- 7. scripts repo --------------------------------------------------------
 setup_scripts_repo() {
   if [[ -d "$SCRIPTS_DIR/.git" ]]; then
     log "scripts repo already present at $SCRIPTS_DIR"
@@ -197,7 +225,7 @@ link_scripts_repo() {
   ln -sfn "$SCRIPTS_DIR" "$SCRIPTS_LINK"
 }
 
-# ---- 7. stow configs --------------------------------------------------------
+# ---- 8. stow configs --------------------------------------------------------
 # stow-packages.sh clears its own per-package conflicts, but one git problem is
 # invisible to stow: ~/.gitconfig is NEVER a stow target (we deploy to the XDG
 # ~/.config/git/config), yet it takes PRECEDENCE over the XDG file — so a stray
@@ -219,7 +247,7 @@ stow_configs() {
   "$DOTFILES_DIR/stow-packages.sh"
 }
 
-# ---- 8. tmux plugins --------------------------------------------------------
+# ---- 9. tmux plugins --------------------------------------------------------
 # tmux.conf declares plugins with `@plugin` and initializes tpm at its bottom;
 # tpm then fetches every declared plugin. The plugins live under the (stow-
 # folded) ~/.config/tmux/plugins and are intentionally gitignored, not tracked.
@@ -240,6 +268,7 @@ main() {
   setup_homebrew        # brew + git; nothing else can run until these exist
   setup_dotfiles_repo   # clone the repo (unless we're already inside a checkout)
   install_brew_packages # now that the Brewfile is on disk
+  setup_gh_extensions   # gh extensions (gh-dash); needs gh from the Brewfile
   setup_rust            # rustup via its official installer (not brew)
   setup_oh_my_zsh
   setup_scripts_repo
