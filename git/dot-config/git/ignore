@@ -21,6 +21,9 @@ package-lock.json
 # Scala metals
 metals.sbt
 
+# gh CLI auth tokens (never commit)
+.config/gh/hosts.yml
+
 # AI
 CLAUDE.md
 AGENTS.md

@@ -24,6 +24,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 packages=(
   zsh            # ~/.zshrc + XDG zsh config
   git            # ~/.config/git/{config,ignore} (+ config-work on the work branch)
+  gh             # ~/.config/gh/config.yml (hosts.yml with auth tokens is untracked)
   tmux           # ~/.config/tmux/tmux.conf (+ tpm-managed plugins/)
   idea           # ~/.config/ideavim/ideavimrc
   helix          # ~/.config/helix/*
@@ -41,7 +42,10 @@ packages=(
 # the stowed dotfiles win. Intended for deploying onto a fresh machine.
 clear_conflicts() {
   local pkg="$1" target
-  stow --simulate --dotfiles "$pkg" 2>&1 \
+  # `stow --simulate` exits non-zero when it reports conflicts, which is exactly
+  # the case we want to parse. Swallow that status so `pipefail` + `errexit`
+  # don't abort the whole run before we've cleared anything.
+  { stow --simulate --dotfiles "$pkg" 2>&1 || true; } \
     | sed -n \
         -e 's/.*existing target is not owned by stow: //p' \
         -e 's/.*existing target is neither a link nor a directory: //p' \

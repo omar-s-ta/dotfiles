@@ -62,6 +62,8 @@ brew "helix"                               # Post-modern modal text editor
 # -- Git & version control
 # standalone (GitHub CLI)
 brew "gh"                                  # GitHub command-line tool
+# git → git-delta (diff/pager syntax highlighter)
+brew "git-delta"                            # Syntax-highlighting pager for git and diff output
 # git → git-lfs
 brew "git-lfs"                             # Git extension for versioning large files
 # git → gitui (TUI)
