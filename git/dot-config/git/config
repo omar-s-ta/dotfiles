@@ -19,6 +19,12 @@
   pager = delta
   editor = hx
 
+[delta]
+  navigate = true
+
+[interactive]
+  diffFilter = delta --color-only
+
 [pull]
   rebase = true
 
