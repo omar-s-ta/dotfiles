@@ -84,7 +84,7 @@ setup_homebrew() {
   if ! have brew; then
     log "installing Homebrew"
     /bin/bash -c \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      "$(curl --fail --silent --show-error --location https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   # Load brew into this shell's PATH (Apple Silicon vs Intel prefix).
@@ -154,7 +154,7 @@ setup_rust() {
     return
   fi
   log "installing rustup + stable Rust toolchain"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  curl --proto '=https' --tlsv1.2 --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y
 }
 
 # ---- 5. oh-my-zsh -----------------------------------------------------------
@@ -166,7 +166,7 @@ setup_oh_my_zsh() {
   log "installing oh-my-zsh -> $OMZ_DIR"
   # Unattended: don't switch the shell, don't launch zsh, and keep our dot-zshrc.
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes ZSH="$OMZ_DIR" \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+    sh -c "$(curl --fail --silent --show-error --location https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     "" --unattended
 }
 

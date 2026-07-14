@@ -41,12 +41,12 @@ packages=(
 # the stowed dotfiles win. Intended for deploying onto a fresh machine.
 clear_conflicts() {
   local pkg="$1" target
-  stow -n --dotfiles "$pkg" 2>&1 \
+  stow --simulate --dotfiles "$pkg" 2>&1 \
     | sed -n \
         -e 's/.*existing target is not owned by stow: //p' \
         -e 's/.*existing target is neither a link nor a directory: //p' \
         -e 's/.*over existing target \(.*\) since.*/\1/p' \
-    | sort -u \
+    | sort --unique \
     | while IFS= read -r target; do
         [[ -n "$target" ]] || continue
         echo "  clearing conflict: ~/$target"
