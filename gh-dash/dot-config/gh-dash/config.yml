@@ -32,6 +32,16 @@ notificationsSections:
       filters: reason:subscribed
     - title: Team Mentioned
       filters: reason:team-mention
+keybindings:
+    prs:
+        # Watch CI checks live in a new tmux pane beside gh-dash. The pane
+        # closes itself once the checks finish; gh-dash stays in its own pane.
+        # 'f' (follow) — not bound by gh-dash defaults. Requires running in tmux.
+        - key: f
+          name: watch checks (tmux pane)
+          command: >-
+              tmux split-window -v
+              "gh pr checks {{.PrNumber}} --repo {{.RepoName}} --watch --interval 10"
 repo:
     branchesRefetchIntervalSeconds: 30
     prsRefetchIntervalSeconds: 60
@@ -84,17 +94,6 @@ defaults:
                 width: 20
                 hidden: true
     refetchIntervalMinutes: 30
-keybindings:
-    prs:
-        - key: O
-          builtin: checkout
-        - key: M
-          name: squash merge
-          command: gh pr merge --squash --repo {{.RepoName}} {{.PrNumber}}
-        - key: y
-          name: copy url
-          command: >
-            gh issue view {{.IssueNumber}} --repo {{.RepoName}} --json url --jq '.url' | pbcopy
 repoPaths:
     :owner/:repo: ~/development/:repo
 theme:

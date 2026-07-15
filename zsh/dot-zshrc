@@ -34,7 +34,7 @@ export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/oh-my-zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
-export ZSHZ_DATA="$XDG_STATE_HOME/z/database"   # `z` plugin frecency db (was ~/.z)
+# export ZSHZ_DATA="$XDG_STATE_HOME/z/database"   # old `z` plugin frecency db — replaced by zoxide
 mkdir -p "$ZSH_CACHE_DIR" "$XDG_CACHE_HOME/zsh" "$XDG_STATE_HOME/zsh" "$XDG_STATE_HOME/z"
 # ZSH_THEME left unset: powerlevel10k is sourced manually below.
 # (fzf and gcloud are enabled as plugins — see zsh_plugins.sh.)
@@ -48,6 +48,12 @@ FPATH="$BREW_PREFIX/share/zsh/site-functions:${FPATH}"
 FPATH="$BREW_PREFIX/share/zsh-completions:${FPATH}"
 
 source "$ZSH/oh-my-zsh.sh"
+
+# ---- zoxide — smarter `cd` (replaces the old `z` plugin) -------------------
+# Provides `z <frag>` (frecency jump) and `zi` (interactive pick via fzf).
+# Init after compinit (oh-my-zsh.sh) so its completions register. DB defaults
+# to $XDG_DATA_HOME/zoxide. History was imported once from the old `z` DB.
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # ---- Portable environment --------------------------------------------------
 export EDITOR='hx'
@@ -67,6 +73,24 @@ export POWERLEVEL9K_CONFIG_FILE="$XDG_CONFIG_HOME/zsh/p10k.zsh"
 
 # ---- Shell helpers from the scripts repo -----------------------------------
 [[ -f "$ZSH_SCRIPTS_DIR/zshrc_init.sh" ]] && source "$ZSH_SCRIPTS_DIR/zshrc_init.sh"
+
+# ---- fzf-tab — fzf-powered tab completion ----------------------------------
+# Must load AFTER compinit (oh-my-zsh.sh) and BEFORE the widget-wrapping plugins
+# below (autosuggestions / syntax-highlighting), so keep this block right here.
+if [[ -r "$BREW_PREFIX/share/fzf-tab/fzf-tab.zsh" ]]; then
+  # fzf-tab needs the completion menu off so it can grab the candidate list.
+  zstyle ':completion:*' menu no
+  # Group headers + colorized filenames in the fzf list.
+  zstyle ':completion:*:descriptions' format '[%d]'
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # Cycle between completion groups with < and >.
+  zstyle ':fzf-tab:*' switch-group '<' '>'
+  # Preview directory contents when completing `cd` (plain ls; no eza/bat here).
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1F --color=always $realpath'
+  # Don't fuzzy-sort branches for `git checkout` (keep git's own order).
+  zstyle ':completion:*:git-checkout:*' sort false
+  source "$BREW_PREFIX/share/fzf-tab/fzf-tab.zsh"
+fi
 
 # ---- Line-editor enhancements — MUST stay last, in this order --------------
 #   1) autosuggestions  2) syntax-highlighting  3) history-substring-search

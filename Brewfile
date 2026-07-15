@@ -18,6 +18,8 @@ tap "hashicorp/tap"          # HashiCorp tools — provides terraform-ls (Terraf
 # -- Shell, prompt & terminal
 # zsh, yazi → fzf
 brew "fzf"                                 # Command-line fuzzy finder written in Go
+# zsh → fzf-tab (fzf-powered tab completion; needs fzf)
+brew "fzf-tab"                             # Replace zsh's tab-completion menu with an fzf picker
 # zsh → powerlevel10k (prompt theme)
 brew "powerlevel10k"                       # Theme for zsh
 # (bootstrap) → stow — deploys every stow package
@@ -36,10 +38,14 @@ brew "zsh-completions"                     # Additional completion definitions f
 brew "zsh-syntax-highlighting"             # Fish shell like syntax highlighting for zsh
 
 # -- Core CLI utilities
+# zsh → bat (aliased to cat); yazi → bat (file preview)
+brew "bat"                                 # Cat clone with syntax highlighting and Git integration
 # standalone
 brew "coreutils"                           # GNU File, Shell, and Text utilities
 # standalone; also pde_init.sh → rustup installer
 brew "curl"                                # Get a file from an HTTP, HTTPS or FTP server
+# zsh → eza (aliased to ls; fzf-tab cd preview)
+brew "eza"                                 # Modern, maintained replacement for ls
 # yazi → fd (file search)
 brew "fd"                                  # Simple, fast and user-friendly alternative to find
 # standalone

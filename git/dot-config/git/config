@@ -21,6 +21,7 @@
 
 [delta]
   navigate = true
+  line-numbers = true
 
 [interactive]
   diffFilter = delta --color-only
@@ -59,3 +60,5 @@
     #http://stackoverflow.com/questions/8483041/git-color-words-excluding
   dw = diff --color-words='\\w+|[^[:space:]]'
   dcw = diff --cached --color-words='\\w+|[^[:space:]]'
+  dds = "!f() { git diff --color=always \"$@\" | delta --side-by-side --line-numbers; }; f"
+  dshow = "!f() { git show --color=always \"$@\" | delta --side-by-side --line-numbers; }; f"
