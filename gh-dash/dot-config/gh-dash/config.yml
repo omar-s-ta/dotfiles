@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://www.gh-dash.dev/schema.json
 prSections:
+    - title: Open
+      filters: is:open
     - title: My Pull Requests
       filters: is:open author:@me
     - title: Needs My Review
@@ -117,7 +119,7 @@ theme:
           secondary: "#434C5E"   # nord2
           faint: "#2E3440"       # nord0
 pager:
-    diff: delta
+    diff: delta --side-by-side --line-numbers
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
