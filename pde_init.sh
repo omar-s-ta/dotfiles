@@ -23,10 +23,11 @@
 #   3. Install every package listed in the repo's Brewfile.
 #   4. Install gh CLI extensions (e.g. gh-dash) — needs gh from the Brewfile.
 #   5. Install the Rust toolchain via the official rustup installer.
-#   6. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
-#   7. Clone the companion `scripts` repo and symlink it into $HOME.
-#   8. Symlink every config into place via stow (delegates to stow-packages.sh).
-#   9. Install tmux plugins through tpm.
+#   6. Install cargo tools (e.g. gh-review) — needs the toolchain from step 5.
+#   7. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
+#   8. Clone the companion `scripts` repo and symlink it into $HOME.
+#   9. Symlink every config into place via stow (delegates to stow-packages.sh).
+#  10. Install tmux plugins through tpm.
 #
 # Note: the Homebrew and oh-my-zsh installers may prompt for input (e.g. sudo),
 # and `brew bundle` may prompt to trust third-party taps.
@@ -185,7 +186,35 @@ setup_rust() {
   curl --proto '=https' --tlsv1.2 --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y
 }
 
-# ---- 6. oh-my-zsh -----------------------------------------------------------
+# ---- 6. Cargo-installed tools -----------------------------------------------
+# Some tools ship only via crates.io, not Homebrew, so they're built with
+# `cargo install` using the toolchain from setup_rust above. setup_rust lets
+# rustup add the cargo env to ~/.zshenv for future shells, but this one needs it
+# now — source ~/.cargo/env to put cargo (and its installed binaries) on PATH.
+# Each crate here installs a like-named binary, so we skip any whose binary is
+# already present to keep re-runs fast (cargo would otherwise rebuild it).
+setup_cargo_tools() {
+  # shellcheck source=/dev/null
+  [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+  have cargo || { warn "cargo not on PATH; skipping cargo tool install"; return; }
+
+  # Crates to install (crate name == installed binary name).
+  local crates=(
+    gh-review # TUI PR code review; launched by the gh-dash 'R' keybinding
+  )
+
+  local crate
+  for crate in "${crates[@]}"; do
+    if have "$crate"; then
+      log "cargo tool already installed: $crate"
+      continue
+    fi
+    log "installing cargo tool: $crate"
+    cargo install "$crate" || warn "could not install cargo tool: $crate"
+  done
+}
+
+# ---- 7. oh-my-zsh -----------------------------------------------------------
 setup_oh_my_zsh() {
   if [[ -d "$OMZ_DIR" ]]; then
     log "oh-my-zsh already installed"
@@ -198,7 +227,7 @@ setup_oh_my_zsh() {
     "" --unattended
 }
 
-# ---- 7. scripts repo --------------------------------------------------------
+# ---- 8. scripts repo --------------------------------------------------------
 setup_scripts_repo() {
   if [[ -d "$SCRIPTS_DIR/.git" ]]; then
     log "scripts repo already present at $SCRIPTS_DIR"
@@ -225,7 +254,7 @@ link_scripts_repo() {
   ln -sfn "$SCRIPTS_DIR" "$SCRIPTS_LINK"
 }
 
-# ---- 8. stow configs --------------------------------------------------------
+# ---- 9. stow configs --------------------------------------------------------
 # stow-packages.sh clears its own per-package conflicts, but one git problem is
 # invisible to stow: ~/.gitconfig is NEVER a stow target (we deploy to the XDG
 # ~/.config/git/config), yet it takes PRECEDENCE over the XDG file — so a stray
@@ -247,7 +276,7 @@ stow_configs() {
   "$DOTFILES_DIR/stow-packages.sh"
 }
 
-# ---- 9. tmux plugins --------------------------------------------------------
+# ---- 10. tmux plugins -------------------------------------------------------
 # tmux.conf declares plugins with `@plugin` and initializes tpm at its bottom;
 # tpm then fetches every declared plugin. The plugins live under the (stow-
 # folded) ~/.config/tmux/plugins and are intentionally gitignored, not tracked.
@@ -270,6 +299,7 @@ main() {
   install_brew_packages # now that the Brewfile is on disk
   setup_gh_extensions   # gh extensions (gh-dash); needs gh from the Brewfile
   setup_rust            # rustup via its official installer (not brew)
+  setup_cargo_tools     # cargo installs (gh-review); needs the toolchain above
   setup_oh_my_zsh
   setup_scripts_repo
   stow_configs          # must run before tpm so ~/.config/tmux resolves

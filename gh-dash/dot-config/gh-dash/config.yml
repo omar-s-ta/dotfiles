@@ -44,6 +44,18 @@ keybindings:
           command: >-
               tmux split-window -v
               "gh pr checks {{.PrNumber}} --repo {{.RepoName}} --watch --interval 10"
+        # Jump into gh-review for deep code review. gh-dash suspends while
+        # gh-review takes over the terminal; quit gh-review ('q') to return.
+        - key: R
+          name: review (gh-review)
+          command: gh-review {{.RepoName}} {{.PrNumber}}
+        # Side-by-side diff. The built-in 'd' key uses pager.diff (unified);
+        # 'D' pipes the PR diff through delta in side-by-side mode.
+        - key: D
+          name: side-by-side diff
+          command: >-
+              gh pr diff {{.PrNumber}} --repo {{.RepoName}}
+              | delta --side-by-side --line-numbers
 repo:
     branchesRefetchIntervalSeconds: 30
     prsRefetchIntervalSeconds: 60
@@ -119,7 +131,7 @@ theme:
           secondary: "#434C5E"   # nord2
           faint: "#2E3440"       # nord0
 pager:
-    diff: delta --side-by-side --line-numbers
+    diff: delta --line-numbers
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
