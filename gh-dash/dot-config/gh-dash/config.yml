@@ -55,7 +55,7 @@ keybindings:
           name: side-by-side diff
           command: >-
               gh pr diff {{.PrNumber}} --repo {{.RepoName}}
-              | delta --side-by-side --line-numbers
+              | delta --side-by-side --line-numbers --paging=always
 repo:
     branchesRefetchIntervalSeconds: 30
     prsRefetchIntervalSeconds: 60
@@ -131,7 +131,7 @@ theme:
           secondary: "#434C5E"   # nord2
           faint: "#2E3440"       # nord0
 pager:
-    diff: delta --line-numbers
+    diff: delta --line-numbers --paging=always
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
