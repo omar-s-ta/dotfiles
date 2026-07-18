@@ -98,7 +98,8 @@ brew "yarn"                                # JavaScript package manager
 # -- Build tools & compilers
 # standalone (build tool; also aids cmake-language-server)
 brew "cmake"                               # Cross-platform make
-# helix → clangd → llvm
+# helix → clangd → llvm; also provides lldb-dap, the Rust debug adapter used by
+# both nvim (rustaceanvim) and helix's bundled rust debugger.
 brew "llvm"                                # Next-gen compiler infrastructure
 
 # -- Language servers (LSP)
@@ -164,6 +165,8 @@ brew "ruff"                                # Extremely fast Python linter, writt
 brew "selene"                              # Blazing-fast modern Lua linter
 # helix → bash-language-server → shellcheck
 brew "shellcheck"                          # Static analysis and lint tool, for (ba)sh scripts
+# helix → shfmt (shell formatter)
+brew "shfmt"                               # Autoformat shell script source code
 # helix → stylua (Lua formatter)
 brew "stylua"                              # Opinionated Lua code formatter
 

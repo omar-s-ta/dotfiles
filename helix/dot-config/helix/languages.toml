@@ -104,6 +104,12 @@ indent = { tab-width = 2, unit = "  " }
 
 ########################  Rust  ########################
 # rust-analyzer attaches to rust via Helix defaults; this only tunes its config.
+#
+# Debugging: Helix's bundled rust debugger uses `lldb-dap` (from the llvm brew
+# package, on $PATH) - no config needed here. Start it with `:debug-start` /
+# space-g... DAP keys. nvim mirrors this via rustaceanvim -> lldb-dap.
+# (Scala has no Helix debugger: Metals brokers DAP through the LSP, which Helix
+# doesn't support - Scala debugging stays nvim-only.)
 [language-server.rust-analyzer.config.rust-analyzer]
 check.command = "clippy"
 check.features = "all"
@@ -164,6 +170,9 @@ language-servers = [
   { name = "bash-language-server", except-features = ["hover"] },
   { name = "efm", only-features = ["hover"] },
 ]
+# nvim: shfmt via conform. `-i 2` matches the 2-space indent below; shfmt reads
+# stdin and writes to stdout, which is how Helix feeds the formatter.
+formatter = { command = "shfmt", args = ["-i", "2"] }
 indent = { tab-width = 2, unit = "  " }
 
 ########################  Go  ########################

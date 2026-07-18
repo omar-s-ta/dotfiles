@@ -40,10 +40,16 @@
 [merge]
   conflictstyle = zdiff3
 
+[filter "lfs"]
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+
 [alias]
   smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
   sl = !git smartlog
-  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d"
+  cleanup = "!git branch --format='%(if)%(HEAD)%(then)%(else)%(refname:short)%(end)' --merged | grep -v -x -e '' -e main -e master -e develop | xargs -n 1 -r git branch -d"
   lg = lg1
   parent = log -1 HEAD
   ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
