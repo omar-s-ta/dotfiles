@@ -78,3 +78,9 @@ chpwd() {
     fi
   done
 }
+
+# ---- Aliases ----
+# `lvim` runs the old LazyVim config (kept at ~/.config/nvim-lazyvim) alongside
+# the bare Neovim config, which is the default `nvim`. NVIM_APPNAME isolates its
+# plugin/data/state dirs (~/.local/{share,state}/nvim-lazyvim, ~/.cache/nvim-lazyvim).
+alias lvim='NVIM_APPNAME=nvim-lazyvim nvim'
