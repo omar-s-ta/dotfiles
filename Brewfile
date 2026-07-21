@@ -64,6 +64,8 @@ brew "wget"                                # Internet file retriever
 # -- Editors
 # helix → helix (the editor)
 brew "helix"                               # Post-modern modal text editor
+# standalone (the other editor); config stowed to ~/.config/nvim
+brew "neovim"                              # Ambitious Vim-fork focused on extensibility and usability
 
 # -- Git & version control
 # standalone (GitHub CLI); also gh-dash → gh (gh-dash is a gh extension, installed by pde_init.sh)

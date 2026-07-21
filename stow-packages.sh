@@ -29,8 +29,10 @@ packages=(
   tmux           # ~/.config/tmux/tmux.conf (+ tpm-managed plugins/)
   idea           # ~/.config/ideavim/ideavimrc
   helix          # ~/.config/helix/*
+  nvim           # ~/.config/nvim/* (absorbed from the old standalone repo)
   yazi           # ~/.config/yazi/*
   kitty          # ~/.config/kitty/*
+  lazygit        # ~/.config/lazygit/config.yml
   efm-langserver # ~/.config/efm-langserver/config.yaml
 )
 

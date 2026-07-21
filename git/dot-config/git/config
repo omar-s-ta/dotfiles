@@ -23,6 +23,22 @@
   navigate = true
   line-numbers = true
 
+  # Nord theme. `Nord` is a bundled delta syntax theme; the rest are Nord
+  # palette accents (frost for decorations, aurora red/green for -/+ lines).
+  dark = true
+  syntax-theme = Nord
+  file-style = "#88C0D0" bold
+  file-decoration-style = "#4C566A" ul
+  hunk-header-style = "#81A1C1"
+  hunk-header-decoration-style = "#4C566A" box
+  line-numbers-minus-style = "#BF616A"
+  line-numbers-plus-style = "#A3BE8C"
+  line-numbers-zero-style = "#4C566A"
+  minus-style = syntax "#432c33"
+  minus-emph-style = syntax "#6d3d47"
+  plus-style = syntax "#2e4034"
+  plus-emph-style = syntax "#3f5a49"
+
 [interactive]
   diffFilter = delta --color-only
 

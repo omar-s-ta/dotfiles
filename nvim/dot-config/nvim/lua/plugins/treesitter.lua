@@ -1,0 +1,46 @@
+-- Treesitter: highlighting, indentation, and sticky context.
+-- Parsers are compiled on first launch (needs a C compiler, which is on $PATH).
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "bash",
+    "c",
+    "cpp",
+    "lua",
+    "luadoc",
+    "vim",
+    "vimdoc",
+    "query",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "rust",
+    "scala",
+    "ocaml",
+    "ocaml_interface",
+    "ocamllex",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "go",
+    "gomod",
+    "javascript",
+    "typescript",
+    "tsx",
+    "html",
+    "css",
+    "dockerfile",
+    "git_config",
+    "gitcommit",
+    "gitignore",
+    "diff",
+    "regex",
+  },
+  highlight = { enable = true },
+  indent = { enable = true },
+})
+
+require("treesitter-context").setup({
+  mode = "cursor",
+  max_lines = 3,
+})

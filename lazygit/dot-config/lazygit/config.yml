@@ -1,0 +1,36 @@
+# lazygit config — Nord theme.
+# Palette: https://www.nordtheme.com/docs/colors-and-palette
+#   Polar Night  nord0 #2E3440  nord1 #3B4252  nord2 #434C5E  nord3 #4C566A
+#   Snow Storm   nord4 #D8DEE9  nord5 #E5E9F0  nord6 #ECEFF4
+#   Frost        nord7 #8FBCBB  nord8 #88C0D0  nord9 #81A1C1  nord10 #5E81AC
+#   Aurora       nord11 #BF616A nord12 #D08770 nord13 #EBCB8B nord14 #A3BE8C nord15 #B48EAD
+gui:
+  theme:
+    activeBorderColor:
+      - '#88C0D0' # nord8 (frost, bright)
+      - bold
+    inactiveBorderColor:
+      - '#4C566A' # nord3
+    searchingActiveBorderColor:
+      - '#EBCB8B' # nord13 (yellow)
+      - bold
+    optionsTextColor:
+      - '#81A1C1' # nord9
+    selectedLineBgColor:
+      - '#3B4252' # nord1
+    inactiveViewSelectedLineBgColor:
+      - '#434C5E' # nord2
+    defaultFgColor:
+      - '#D8DEE9' # nord4
+    cherryPickedCommitBgColor:
+      - '#434C5E' # nord2
+    cherryPickedCommitFgColor:
+      - '#88C0D0' # nord8
+    markedBaseCommitBgColor:
+      - '#434C5E' # nord2
+    markedBaseCommitFgColor:
+      - '#EBCB8B' # nord13
+    unstagedChangesColor:
+      - '#BF616A' # nord11 (red)
+  authorColors:
+    '*': '#B48EAD' # nord15 (purple)
