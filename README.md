@@ -60,12 +60,16 @@ dotfiles win — see the comments in the script.
 | Package          | What it configures                                        |
 | ---------------- | --------------------------------------------------------- |
 | `zsh`            | `~/.zshrc` + XDG zsh setup (oh-my-zsh, powerlevel10k)     |
-| `git`            | `~/.config/git/{config,ignore}`                           |
+| `git`            | `~/.config/git/{config,ignore}` (delta with a Nord theme) |
+| `gh`             | `~/.config/gh/config.yml`                                 |
+| `gh-dash`        | `~/.config/gh-dash/config.yml`                            |
 | `tmux`           | `~/.config/tmux/tmux.conf` (+ tpm-managed plugins)        |
 | `idea`           | `~/.config/ideavim/ideavimrc`                             |
 | `helix`          | `~/.config/helix/*`                                       |
+| `nvim`           | `~/.config/nvim/*` (Neovim 0.12, native `vim.pack`/LSP)   |
 | `yazi`           | `~/.config/yazi/*`                                        |
 | `kitty`          | `~/.config/kitty/*`                                       |
+| `lazygit`        | `~/.config/lazygit/config.yml` (Nord theme)               |
 | `efm-langserver` | `~/.config/efm-langserver/config.yaml`                    |
 
 Other top-level files:
