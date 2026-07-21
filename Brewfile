@@ -220,6 +220,8 @@ brew "resvg"                               # SVG rendering tool and library
 # -- Misc
 # standalone (Jira TUI)
 brew "jiratui"                             # Textual User Interface for interacting with Atlassian Jira from your shell
+# standalone (LLM token-saving proxy); run `rtk init -g` once after install
+brew "rtk"                                 # CLI proxy to minimize LLM token consumption
 
 # ---- Casks (GUI apps & fonts), grouped by purpose ----
 # -- AI agents
