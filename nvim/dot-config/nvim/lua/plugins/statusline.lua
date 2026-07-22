@@ -33,7 +33,18 @@ require("lualine").setup({
         "diagnostics",
         symbols = { error = " ", warn = " ", info = " ", hint = " " },
       },
-      { "filename", path = 1 }, -- relative path
+      {
+        -- Relative path as opened, not the symlink target. lualine's built-in
+        -- `path = 1` runs `expand('%:~:.')`, whose modifiers resolve symlinks;
+        -- plain `expand('%')` keeps the logical name and is already cwd-relative.
+        function()
+          local name = vim.fn.expand("%")
+          if name == "" then
+            return "[No Name]"
+          end
+          return name .. (vim.bo.modified and " [+]" or vim.bo.readonly and " [-]" or "")
+        end,
+      },
     },
     lualine_x = {
       -- attached LSP clients
