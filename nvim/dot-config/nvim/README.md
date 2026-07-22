@@ -17,7 +17,7 @@ native features where they exist and a small set of plugins where they don't.
   (treesitter parsers), plus the language servers/formatters you use
   (`lua-language-server`, `typescript-language-server`, `pyright`, `ruff`,
   `clangd`, `bash-language-server`, `ocamllsp`, `quint-language-server`,
-  `stylua`, `prettier`, `shfmt`, `lldb-dap`, `metals`, …).
+  `helm_ls`, `stylua`, `prettier`, `shfmt`, `lldb-dap`, `metals`, …).
 
 ## Layout
 

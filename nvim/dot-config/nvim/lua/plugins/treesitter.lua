@@ -30,6 +30,7 @@ require("nvim-treesitter.configs").setup({
     "html",
     "css",
     "dockerfile",
+    "helm",
     "git_config",
     "gitcommit",
     "gitignore",

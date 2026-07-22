@@ -119,7 +119,7 @@ brew "efm-langserver"                      # General purpose Language Server
 brew "golangci-lint-langserver"            # Language server for `golangci-lint`
 # helix → gopls
 brew "gopls"                               # Language server for the Go language
-# helix → helm-ls
+# helix/nvim → helm-ls
 brew "helm-ls"                             # Language server for Helm
 # helix → jdtls
 brew "jdtls"                               # Java language specific implementation of the Language Server Protocol

@@ -54,6 +54,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- .qnt files are Quint (highlighting from syntax/quint.vim).
 vim.filetype.add({ extension = { qnt = "quint" } })
 
+-- Helm charts: the go-templated files (under templates/, *.gotmpl, helmfile)
+-- get the `helm` filetype so helm_ls attaches. Chart.yaml/values.yaml stay yaml.
+vim.filetype.add({
+  extension = { gotmpl = "helm" },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    [".*/templates/.*%.txt"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
+
 -- Enable servers (rust/scala are handled by their own plugins).
 vim.lsp.enable({
   "clangd",
@@ -68,4 +80,5 @@ vim.lsp.enable({
   "gopls",
   "jsonls",
   "yamlls",
+  "helm_ls",
 })
