@@ -6,7 +6,7 @@
 #
 # Interactive-shell config. Loaded from $ZDOTDIR (set in ~/.zshenv), NOT $HOME.
 # PORTABLE, machine-agnostic config only — safe to commit.
-# Machine-specific settings live in ~/.config/zsh/zshrc.local (NOT tracked), sourced below.
+# Personal/machine overrides live in ~/.config/zsh/zshrc.local (its own tracked file), sourced below.
 # Requires the scripts repo cloned to $XDG_DATA_HOME/scripts (~/.local/share/scripts).
 # ============================================================================
 
@@ -66,8 +66,9 @@ export POWERLEVEL9K_CONFIG_FILE="$XDG_CONFIG_HOME/zsh/p10k.zsh"
   source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
 [[ -f "$POWERLEVEL9K_CONFIG_FILE" ]] && source "$POWERLEVEL9K_CONFIG_FILE"
 
-# ---- Machine-specific settings (NOT tracked; this machine only) ------------
-# Lives at $XDG_CONFIG_HOME/zsh/zshrc.local (config, alongside p10k.zsh).
+# ---- Personal/machine overrides -------------------------------------------
+# Own tracked file, kept out of this portable core; lives at
+# $XDG_CONFIG_HOME/zsh/zshrc.local (config, alongside p10k.zsh).
 [[ -f "$XDG_CONFIG_HOME/zsh/zshrc.local" ]] && source "$XDG_CONFIG_HOME/zsh/zshrc.local"
 
 # ---- Shell helpers from the scripts repo -----------------------------------
