@@ -1,0 +1,20 @@
+# shellcheck shell=zsh   # zsh file: tells bash-language-server to skip shellcheck
+# ============================================================================
+# ~/.config/zsh/.zprofile  —  tracked in ~/dotfiles/zsh/dot-config/zsh/dot-zprofile
+#                             (deploy: `stow --dotfiles zsh`)
+#
+# Login-shell startup. Loaded from $ZDOTDIR (set in ~/.zshenv), NOT from $HOME.
+# PORTABLE, machine-agnostic config only. Machine-specific PATH entries live in
+# the untracked zprofile.local sourced at the end.
+# ============================================================================
+
+# ---- Homebrew prefix (portable across Apple Silicon / Intel) ---------------
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# ---- Machine-specific login settings (NOT tracked; this machine only) ------
+# e.g. Coursier / JetBrains Toolbox bin dirs that hardcode absolute $HOME paths.
+[[ -f "$ZDOTDIR/zprofile.local" ]] && source "$ZDOTDIR/zprofile.local"

@@ -1,0 +1,32 @@
+# shellcheck shell=zsh   # zsh file: tells bash-language-server to skip shellcheck
+# ============================================================================
+# ~/.zshenv  —  tracked in ~/dotfiles/zsh/dot-zshenv (deploy: `stow --dotfiles zsh`)
+#
+# The FIRST file zsh reads, for EVERY shell (interactive or not), before
+# /etc/zprofile and /etc/zshrc. It is the only per-user startup file zsh always
+# reads from $HOME — so it is the right place for environment that must exist
+# everywhere (XDG dirs) and for ZDOTDIR, which relocates the other startup
+# files. Keep this minimal; heavy interactive config belongs in .zshrc.
+# ============================================================================
+
+# ---- XDG Base Directory spec — set before anything consumes these ----------
+# Defined in this earliest file so every shell (and ZDOTDIR, just below) can
+# rely on them, not only interactive shells that source .zshrc.
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# ---- Relocate the remaining zsh startup files under XDG config -------------
+# .zprofile/.zshrc/.zlogin then load from $ZDOTDIR (~/.config/zsh) instead of
+# $HOME. XDG_CONFIG_HOME is guaranteed set above.
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# ---- Disable macOS Terminal.app shell-session save/restore (~/.zsh_sessions).
+# Must be set before /etc/zshrc runs, so it belongs here (the earliest file).
+export SHELL_SESSIONS_DISABLE=1
+
+# ---- Rust toolchain --------------------------------------------------------
+# rustup drops this line into .zshenv; guarded so the file stays portable to
+# machines without a Rust install.
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

@@ -1,18 +1,17 @@
 # shellcheck shell=zsh   # zsh file: tells bash-language-server to skip shellcheck
 #                          (shellcheck supports only sh/bash/dash/ksh, not zsh).
 # ============================================================================
-# ~/.zshrc  —  tracked in ~/dotfiles/zsh/dot-zshrc (deploy: `stow --dotfiles zsh`)
+# ~/.config/zsh/.zshrc  —  tracked in ~/dotfiles/zsh/dot-config/zsh/dot-zshrc
+#                          (deploy: `stow --dotfiles zsh`)
 #
+# Interactive-shell config. Loaded from $ZDOTDIR (set in ~/.zshenv), NOT $HOME.
 # PORTABLE, machine-agnostic config only — safe to commit.
-# Machine-specific settings live in ~/.zshrc.local (NOT tracked), sourced below.
+# Machine-specific settings live in ~/.config/zsh/zshrc.local (NOT tracked), sourced below.
 # Requires the scripts repo cloned to $XDG_DATA_HOME/scripts (~/.local/share/scripts).
 # ============================================================================
 
-# ---- XDG Base Directory spec — set before anything consumes these ----------
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
+# ---- XDG Base Directory spec ------------------------------------------------
+# Exported in ~/.zshenv (read before this file) so all shells get them.
 
 # ---- Powerlevel10k instant prompt — keep near the top ----------------------
 # Code that needs console input (passwords, [y/n]) must go ABOVE this block.
