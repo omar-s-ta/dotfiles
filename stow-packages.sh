@@ -4,7 +4,7 @@
 #
 # Each top-level directory here is a stow "package" laid out with the `dot-`
 # prefix convention, e.g.:
-#     zsh/dot-zshrc                 -> ~/.zshrc
+#     zsh/dot-zshenv                -> ~/.zshenv
 #     git/dot-config/git/config     -> ~/.config/git/config
 # The --dotfiles flag tells stow to translate that leading `dot-` into a ".".
 #
@@ -22,7 +22,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Packages to link. Order does not matter.
 packages=(
-  zsh            # ~/.zshrc + XDG zsh config
+  zsh            # ~/.zshenv (ZDOTDIR) + ~/.config/zsh/{.zshrc,.zprofile}
   git            # ~/.config/git/{config,ignore} (+ config-work on the work branch)
   gh             # ~/.config/gh/config.yml (hosts.yml with auth tokens is untracked)
   gh-dash        # ~/.config/gh-dash/config.yml (gh extension; installed by pde_init.sh)

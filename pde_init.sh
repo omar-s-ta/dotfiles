@@ -54,7 +54,7 @@ else
 fi
 BREWFILE="$DOTFILES_DIR/Brewfile"
 
-# XDG base dirs — mirror dot-zshrc so paths line up before the shell is configured.
+# XDG base dirs — mirror dot-zshenv so paths line up before the shell is configured.
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 

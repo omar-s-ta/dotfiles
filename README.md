@@ -59,7 +59,7 @@ dotfiles win — see the comments in the script.
 
 | Package          | What it configures                                        |
 | ---------------- | --------------------------------------------------------- |
-| `zsh`            | `~/.zshrc` + XDG zsh setup (oh-my-zsh, powerlevel10k)     |
+| `zsh`            | `~/.zshenv` (sets `ZDOTDIR`) + `~/.config/zsh/*` (`.zshrc`, `.zprofile`; oh-my-zsh, powerlevel10k) |
 | `git`            | `~/.config/git/{config,ignore}` (delta with a Nord theme) |
 | `gh`             | `~/.config/gh/config.yml`                                 |
 | `gh-dash`        | `~/.config/gh-dash/config.yml`                            |
