@@ -1,8 +1,9 @@
 # shellcheck shell=zsh   # zsh file: skip shellcheck (unsupported dialect)
 # ============================================================================
-# zshrc.local  —  machine-specific zsh settings for THIS machine only.
-# Lives at $XDG_CONFIG_HOME/zsh/zshrc.local. NOT tracked in git.
-# Sourced by ~/.zshrc (see ~/dotfiles/zsh/dot-zshrc).
+# zshrc.local  —  personal/machine environment layer, kept out of the portable
+# core .zshrc. Tracked in git (~/dotfiles/zsh/dot-config/zsh/zshrc.local) and
+# stowed to $XDG_CONFIG_HOME/zsh/zshrc.local. Sourced near the end of
+# ~/.config/zsh/.zshrc (see ~/dotfiles/zsh/dot-config/zsh/dot-zshrc).
 # ============================================================================
 
 # ---- Compile/link flags for Homebrew libs ----
