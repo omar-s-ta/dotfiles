@@ -38,13 +38,13 @@ vim.pack.add({
   -- diagnostics / quickfix / symbols panel
   { src = "https://github.com/folke/trouble.nvim" },
 
+  -- inline end-of-line inlay hints (disabled; native renders inline like Helix)
+  -- { src = "https://github.com/chrisgrieser/nvim-lsp-endhints" },
+
   -- test runner UI (rust adapter ships with rustaceanvim)
   { src = "https://github.com/nvim-neotest/neotest" },
   { src = "https://github.com/nvim-neotest/neotest-python" },
   { src = "https://github.com/stevanmilic/neotest-scala" },
-
-  -- inline end-of-line inlay hints
-  { src = "https://github.com/chrisgrieser/nvim-lsp-endhints" },
 
   -- in-buffer markdown rendering
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
