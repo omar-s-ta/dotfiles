@@ -41,7 +41,12 @@ local menu = {
   { icon = "", name = "Find File", key = "f", action = "lua require('fzf-lua').files()" },
   { icon = "", name = "New File", key = "n", action = "enew" },
   { icon = "", name = "Grep Text", key = "g", action = "lua require('fzf-lua').live_grep()" },
-  { icon = "", name = "Config", key = "c", action = "lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })" },
+  {
+    icon = "",
+    name = "Config",
+    key = "c",
+    action = "lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })",
+  },
   { icon = "", name = "Lazygit", key = "l", action = "Lazygit" },
   { icon = "", name = "Quit", key = "q", action = "qa" },
 }
