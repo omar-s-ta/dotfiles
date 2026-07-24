@@ -2,6 +2,7 @@
 --   * Rust   -> shipped by rustaceanvim
 --   * Python -> neotest-python (auto-detects pytest / unittest)
 --   * Scala  -> neotest-scala (drives Metals/Bloop; framework auto-detected)
+--   * Go     -> neotest-golang (wraps `go test`)
 require("neotest").setup({
   adapters = {
     require("rustaceanvim.neotest"),
@@ -10,6 +11,9 @@ require("neotest").setup({
     }),
     require("neotest-scala")({
       runner = "sbt",
+    }),
+    require("neotest-golang")({
+      dap_go_enabled = true,
     }),
   },
 })
@@ -27,6 +31,7 @@ local pkg_markers = {
   rust = "Cargo.toml",
   python = { "pyproject.toml", "setup.py", "setup.cfg", "tox.ini" },
   scala = "build.sbt",
+  go = "go.mod",
 }
 
 -- Enclosing package for the current buffer; falls back to the file's directory.

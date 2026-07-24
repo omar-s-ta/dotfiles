@@ -1,11 +1,13 @@
 -- Debugging (DAP). Adapters come from $PATH / language plugins:
 --   * Rust  -> lldb-dap, configured in plugins/rust.lua
 --   * Scala -> Metals itself, wired via setup_dap() in plugins/scala.lua
+--   * Go    -> dlv via nvim-dap-go (also drives neotest-golang's debug tests)
 local dap = require("dap")
 local dapui = require("dapui")
 
 dapui.setup()
 require("nvim-dap-virtual-text").setup()
+require("dap-go").setup()
 
 -- Open/close the DAP UI automatically with a session.
 dap.listeners.after.event_initialized["dapui_config"] = function()

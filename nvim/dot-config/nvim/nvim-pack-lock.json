@@ -49,6 +49,10 @@
       "rev": "4e2cd42c4252ee9d2435571d9adcdbc1d47931fe",
       "src": "https://github.com/nvim-neotest/neotest"
     },
+    "neotest-golang": {
+      "rev": "61726ad54b6b94c73d130b65c33575d13a61fc11",
+      "src": "https://github.com/fredrikaverpil/neotest-golang"
+    },
     "neotest-python": {
       "rev": "1b56ca4ba51c6014f986d6548ee629bdc95589d1",
       "src": "https://github.com/nvim-neotest/neotest-python"
@@ -68,6 +72,10 @@
     "nvim-dap": {
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-dap-go": {
+      "rev": "b4421153ead5d726603b02743ea40cf26a51ed5f",
+      "src": "https://github.com/leoluz/nvim-dap-go"
     },
     "nvim-dap-ui": {
       "rev": "cc9dd33aade7f20bae414d0cba163bc60d4d4b43",
