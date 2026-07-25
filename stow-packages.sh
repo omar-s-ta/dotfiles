@@ -16,8 +16,11 @@ set -o errexit  # exit on first failure
 set -o pipefail # a failure anywhere in a pipe fails the whole pipe
 set -o nounset  # referencing an unset variable is an error
 
-# Operate from the repo root so stow finds the packages and defaults its target
-# to $HOME (the parent dir), regardless of where this script was invoked from.
+# Operate from the repo root so stow finds the packages, regardless of where
+# this script was invoked from. The target is always $HOME, passed explicitly
+# via -t so the repo does NOT have to live directly under $HOME (DOTFILES_DIR
+# is overridable in pde_init.sh); without it stow would target the repo's
+# parent directory.
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Packages to link. Order does not matter.
@@ -48,7 +51,7 @@ clear_conflicts() {
   # `stow --simulate` exits non-zero when it reports conflicts, which is exactly
   # the case we want to parse. Swallow that status so `pipefail` + `errexit`
   # don't abort the whole run before we've cleared anything.
-  { stow --simulate --dotfiles "$pkg" 2>&1 || true; } \
+  { stow --simulate --dotfiles --target="$HOME" "$pkg" 2>&1 || true; } \
     | sed -n \
         -e 's/.*existing target is not owned by stow: //p' \
         -e 's/.*existing target is neither a link nor a directory: //p' \
@@ -64,5 +67,5 @@ clear_conflicts() {
 for pkg in "${packages[@]}"; do
   echo "stowing: $pkg"
   clear_conflicts "$pkg"
-  stow --dotfiles "$pkg"
+  stow --dotfiles --target="$HOME" "$pkg"
 done

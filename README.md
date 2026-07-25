@@ -31,11 +31,16 @@ configs. It performs, in order:
    the repo can be cloned.
 2. Clone this repo to `~/dotfiles` (skipped when run from an existing checkout).
 3. Install every package in `Brewfile`.
-4. Install [oh-my-zsh](https://ohmyz.sh) under `$XDG_DATA_HOME`.
-5. Clone the companion [`scripts`](https://github.com/omar-s-ta/scripts) repo that
+4. Install [gh](https://cli.github.com) CLI extensions (e.g.
+   [gh-dash](https://github.com/dlvhdr/gh-dash)).
+5. Install the Rust toolchain via the official [rustup](https://rustup.rs)
+   installer (not Homebrew).
+6. Install cargo tools (e.g. [gh-review](https://crates.io/crates/gh-review)).
+7. Install [oh-my-zsh](https://ohmyz.sh) under `$XDG_DATA_HOME`.
+8. Clone the companion [`scripts`](https://github.com/omar-s-ta/scripts) repo that
    `dot-zshrc` sources at startup, and symlink it into `$HOME`.
-6. Symlink every config into place via stow (delegates to `stow-packages.sh`).
-7. Install tmux plugins through [tpm](https://github.com/tmux-plugins/tpm).
+9. Symlink every config into place via stow (delegates to `stow-packages.sh`).
+10. Install tmux plugins through [tpm](https://github.com/tmux-plugins/tpm).
 
 > The clone target and repo URL are overridable via the `DOTFILES_DIR` and
 > `DOTFILES_REPO` environment variables.
