@@ -25,5 +25,7 @@ jobs:
           set -o pipefail
           brew tap hashicorp/tap
           brew tap terraform-linters/tap
+          brew trust --tap hashicorp/tap
+          brew trust --tap terraform-linters/tap
           brew bundle list --file=Brewfile --formula | xargs -n1 brew info --formula >/dev/null
           brew bundle list --file=Brewfile --cask    | xargs -n1 brew info --cask    >/dev/null
