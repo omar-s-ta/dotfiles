@@ -1,0 +1,68 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ENV_HINTS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install shellcheck
+      - run: shellcheck pde_init.sh stow-packages.sh
+
+  stow:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ENV_HINTS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install stow
+      - name: stow-packages.sh package list matches the dirs on disk
+        run: |
+          set -o pipefail
+          packages=()
+          while IFS= read -r pkg; do packages+=("$pkg"); done < <(
+            sed -n '/^packages=(/,/^)/p' stow-packages.sh | sed '1d;$d' | awk '{print $1}'
+          )
+          # Top-level dirs that are deliberately NOT stow packages:
+          #   zed — config tracked for later, intentionally not deployed
+          excluded=(zed)
+          status=0
+          while IFS= read -r dir; do
+            skip=0
+            for ex in "${excluded[@]}"; do
+              [[ "$dir" == "$ex" ]] && skip=1
+            done
+            (( skip )) && continue
+            if ! printf '%s\n' "${packages[@]}" | grep -qx "$dir"; then
+              echo "::error::directory '$dir' is not in the stow-packages.sh packages list"
+              status=1
+            fi
+          done < <(find . -maxdepth 1 -type d -not -name '.*' | sed 's|^\./||')
+          for pkg in "${packages[@]}"; do
+            if [[ ! -d "$pkg" ]]; then
+              echo "::error::stow package '$pkg' has no matching directory"
+              status=1
+            fi
+          done
+          exit "$status"
+      - name: stow --simulate every package against an empty HOME
+        run: |
+          set -o pipefail
+          fake_home="$RUNNER_TEMP/home"
+          mkdir -p "$fake_home"
+          packages=()
+          while IFS= read -r pkg; do packages+=("$pkg"); done < <(
+            sed -n '/^packages=(/,/^)/p' stow-packages.sh | sed '1d;$d' | awk '{print $1}'
+          )
+          for pkg in "${packages[@]}"; do
+            echo "== $pkg"
+            stow --simulate --dotfiles --target="$fake_home" "$pkg"
+          done

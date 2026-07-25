@@ -1,0 +1,28 @@
+name: brewfile
+
+on:
+  push:
+    branches: [main]
+    paths: [Brewfile, .github/workflows/brewfile.yml]
+  pull_request:
+    paths: [Brewfile, .github/workflows/brewfile.yml]
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ENV_HINTS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      # Catches formulae/casks renamed or removed from Homebrew before they
+      # break a fresh-machine bootstrap. `brew bundle check` can't be used
+      # here: it reports "not installed" for valid entries too, so it always
+      # fails on a clean runner. `brew info` distinguishes: it exits non-zero
+      # only when the name doesn't exist at all.
+      - name: validate every Brewfile entry still exists
+        run: |
+          set -o pipefail
+          brew tap hashicorp/tap
+          brew bundle list --file=Brewfile --formula | xargs -n1 brew info --formula >/dev/null
+          brew bundle list --file=Brewfile --cask    | xargs -n1 brew info --cask    >/dev/null
