@@ -125,12 +125,16 @@ setup_dotfiles_repo() {
 install_brew_packages() {
   [[ -f "$BREWFILE" ]] || die "Brewfile not found at $BREWFILE"
 
-  # hashicorp/tap is a third-party tap (provides terraform-ls). With
-  # HOMEBREW_REQUIRE_TAP_TRUST set (as on this setup), brew refuses its formulae
-  # until the tap is trusted, so tap + trust it before bundling so `brew bundle`
-  # installs non-interactively. Both are idempotent / harmless if already done.
-  brew tap hashicorp/tap                || warn "could not tap hashicorp/tap"
-  brew trust --tap hashicorp/tap        || warn "could not trust hashicorp/tap"
+  # hashicorp/tap (terraform-ls) and terraform-linters/tap (tflint — removed
+  # from homebrew-core over its BUSL license) are third-party taps. With
+  # HOMEBREW_REQUIRE_TAP_TRUST set (as on this setup), brew refuses their
+  # packages until the taps are trusted, so tap + trust them before bundling
+  # so `brew bundle` installs non-interactively. All idempotent / harmless if
+  # already done.
+  brew tap hashicorp/tap                  || warn "could not tap hashicorp/tap"
+  brew trust --tap hashicorp/tap          || warn "could not trust hashicorp/tap"
+  brew tap terraform-linters/tap          || warn "could not tap terraform-linters/tap"
+  brew trust --tap terraform-linters/tap  || warn "could not trust terraform-linters/tap"
 
   log "installing packages from Brewfile"
   brew bundle install --file="$BREWFILE"

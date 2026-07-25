@@ -2,13 +2,16 @@
 # Prune/regenerate as the environment changes. Each line is annotated with
 # its `brew desc`; adjust when adding packages.
 #
-# One third-party tap (hashicorp/tap) is used, for terraform-ls. With
-# $HOMEBREW_REQUIRE_TAP_TRUST set, brew refuses its formulae until the tap is
-# trusted, so pde_init.sh runs `brew trust --tap hashicorp/tap` before bundling.
-# The formula sourced from it is flagged "[UNTRUSTED TAP: ...]" below.
+# Two third-party taps are used: hashicorp/tap (terraform-ls) and
+# terraform-linters/tap (tflint — removed from homebrew-core over its BUSL
+# license). With $HOMEBREW_REQUIRE_TAP_TRUST set, brew refuses their packages
+# until the taps are trusted, so pde_init.sh runs `brew trust --tap ...` on
+# both before bundling. Entries sourced from them are flagged
+# "[UNTRUSTED TAP: ...]" below.
 
 # ---- Third-party taps ----
 tap "hashicorp/tap"          # HashiCorp tools — provides terraform-ls (Terraform LSP)
+tap "terraform-linters/tap"  # tflint (dropped from homebrew-core: BUSL license)
 
 # ---- Formulae (CLI tools), grouped by purpose ----
 #
@@ -190,7 +193,8 @@ brew "kubectx"                             # Tool that can switch between kubect
 # helix → terraform-ls
 brew "hashicorp/tap/terraform-ls"          # Terraform language server [UNTRUSTED TAP: hashicorp/tap — trusted by pde_init.sh]
 # standalone (Terraform linter)
-brew "tflint"                              # Linter for Terraform files
+# Removed from homebrew-core (BUSL license); upstream tap ships it as a cask.
+cask "terraform-linters/tap/tflint"        # Linter for Terraform files [UNTRUSTED TAP: terraform-linters/tap — trusted by pde_init.sh]
 
 # -- Media, graphics & documents
 # NOTE: ffmpeg-full / imagemagick-full share files with the plain ffmpeg /
