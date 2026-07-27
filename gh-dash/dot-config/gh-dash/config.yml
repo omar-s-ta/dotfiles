@@ -46,7 +46,8 @@ keybindings:
               "gh pr checks {{.PrNumber}} --repo {{.RepoName}} --watch --interval 10"
         # Jump into gh-review for deep code review. gh-dash suspends while
         # gh-review takes over the terminal; quit gh-review ('q') to return.
-        - key: R
+        # 'ctrl+r' — 'R' is left to the built-in refreshAll.
+        - key: ctrl+r
           name: review (gh-review)
           command: gh-review {{.RepoName}} {{.PrNumber}}
         # Side-by-side diff. The built-in 'd' key uses pager.diff (unified);
