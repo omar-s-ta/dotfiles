@@ -2,12 +2,29 @@
 -- vim.pack.add clones missing plugins on first launch, adds them to the
 -- runtimepath, and sources their plugin/ files synchronously.
 
+-- nvim-treesitter pins parsers to specific revisions, so the parsers must be
+-- re-synced whenever the plugin itself changes. Registered before vim.pack.add
+-- so it also fires on a fresh install.
+vim.api.nvim_create_autocmd("PackChanged", {
+  group = vim.api.nvim_create_augroup("myconfig_pack_hooks", { clear = true }),
+  callback = function(event)
+    local data = event.data
+    if data.spec.name == "nvim-treesitter" and (data.kind == "install" or data.kind == "update") then
+      if not data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+      require("nvim-treesitter").update()
+    end
+  end,
+})
+
 vim.pack.add({
   -- colorscheme
   { src = "https://github.com/arcticicestudio/nord-vim" },
 
-  -- treesitter
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+  -- treesitter (`main` branch: parsers + queries only, no modules -- see
+  -- plugins/treesitter.lua. `master` is frozen at Neovim 0.11.)
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 
   -- shared lua library (used by nvim-metals, etc.)
