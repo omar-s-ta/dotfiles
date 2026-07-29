@@ -7,12 +7,15 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
+  -- Nerd-font glyphs (codicons: U+EA87 error, U+EA6C warning, U+EA74 info,
+  -- U+EA61 lightbulb). Written as escapes so they survive tooling that
+  -- mangles private-use-area codepoints.
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.INFO] = " ",
-      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.ERROR] = "\u{ea87} ",
+      [vim.diagnostic.severity.WARN] = "\u{ea6c} ",
+      [vim.diagnostic.severity.INFO] = "\u{ea74} ",
+      [vim.diagnostic.severity.HINT] = "\u{ea61} ",
     },
   },
   float = { border = "rounded", source = true },
