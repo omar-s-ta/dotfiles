@@ -33,3 +33,5 @@ AGENTS.md
 **/.docs/
 **/.claude
 .mcp.json
+# Restore context files (skills use these to resume workflows after /clear and /compact)
+.agent-restore-context-*
