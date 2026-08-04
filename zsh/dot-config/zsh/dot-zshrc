@@ -46,6 +46,31 @@ export ZSH_SCRIPTS_DIR="$XDG_DATA_HOME/scripts"
 FPATH="$BREW_PREFIX/share/zsh/site-functions:${FPATH}"
 FPATH="$BREW_PREFIX/share/zsh-completions:${FPATH}"
 
+# ---- fzf source commands — must be set BEFORE the oh-my-zsh fzf plugin -----
+# CTRL-T and ALT-C are the point of this block. fzf's key-bindings.zsh:74,106
+# runs them with `FZF_DEFAULT_COMMAND=${FZF_CTRL_T_COMMAND:-}` — it *overwrites*
+# the default with the empty string — so oh-my-zsh's FZF_DEFAULT_COMMAND never
+# reaches them and they fall through to fzf's built-in walker, whose
+# --walker-skip is only `.git,node_modules`: no .gitignore, no
+# ~/.config/git/ignore. Naming them explicitly gives every fzf entry point the
+# same ignore rules fd and rg already share.
+# FZF_DEFAULT_COMMAND itself is only re-declared to add --follow (oh-my-zsh's
+# copy at plugins/fzf/fzf.plugin.zsh:268 lacks it) and to keep the value in
+# this repo rather than depending on the plugin's silent fd/rg/ag detection.
+# It is set here, above the oh-my-zsh source line, so the plugin's
+# `[[ -z ... ]]` guard no-ops rather than us fighting it afterwards.
+# --follow: stow folds whole dirs into symlinks (~/.config/nvim ->
+# ~/dotfiles/nvim/...), so a walk of ~/.config stops dead at them — 0 nvim files
+# without it, 45 with. Cost: from ~, stowed files list under both their
+# ~/.config/... and ~/dotfiles/... paths. The walker defaults to follow too.
+# No --type on CTRL-T: the walker it replaces lists `file,dir`, and dropping
+# directories from the picker would be a regression.
+if (( $+commands[fd] )); then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+fi
+
 source "$ZSH/oh-my-zsh.sh"
 
 # ---- zoxide — smarter `cd` (replaces the old `z` plugin) -------------------
