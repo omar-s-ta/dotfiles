@@ -61,6 +61,29 @@ opt.winminwidth = 5
 opt.wrap = false
 opt.winborder = "rounded"
 
+-- Don't use synchronized output (DECSET 2026) inside tmux.
+--
+-- tmux 3.7 added pane-side DECSET 2026 handling (tmux issue 4744): it now
+-- defers flushing a pane's output until the app sends ESU. Neovim probes for
+-- the mode at startup, tmux answers "supported", and every frame gets wrapped.
+-- 3.7b is the newest release (2026-07-01) and it predates the fixes for that
+-- new code path -- tmux 5340 ("content written after ED inside a sync block is
+-- not flushed", closed 2026-07-08) leaves float regions half-erased on screen,
+-- and 5419 ("synchronized client redraw toggles an otherwise-visible cursor",
+-- closed 2026-07-22) makes the cursor flash at stale positions. Both land in
+-- 3.7c; 5403 (flicker in copy mode) is still open. Floats take the worst of it,
+-- so blink's menu, mini.files and the lazygit terminal are where it shows.
+--
+-- Turning this off restores the pre-3.7 behaviour, which cost nothing visible:
+-- tmux still wraps its *own* client output for kitty (kitty's DCS `ESC P=1s`
+-- form), so the tmux -> kitty boundary stays tear-free either way.
+--
+-- Only inside tmux. Bare kitty has had a correct mode 2026 for years.
+-- Revisit once tmux > 3.7b is in Homebrew.
+if vim.env.TMUX then
+  opt.termsync = false
+end
+
 -- Built-in treesitter folding (open by default).
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
