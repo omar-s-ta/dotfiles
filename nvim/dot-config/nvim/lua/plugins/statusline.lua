@@ -47,6 +47,18 @@ require("lualine").setup({
       },
     },
     lualine_x = {
+      -- Metals build-server state. nvim-metals defaults bspStatusBarProvider to
+      -- "on", so it already writes g:metals_bsp_status on every BSP transition;
+      -- without this component a dead build server is invisible and the LSP
+      -- component below still cheerfully reports "metals" as attached.
+      {
+        function()
+          return vim.g.metals_bsp_status or ""
+        end,
+        cond = function()
+          return (vim.g.metals_bsp_status or "") ~= ""
+        end,
+      },
       -- attached LSP clients
       {
         function()
@@ -54,7 +66,9 @@ require("lualine").setup({
           for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
             names[#names + 1] = client.name
           end
-          return #names > 0 and ("  " .. table.concat(names, ", ")) or ""
+          -- No leading padding here: lualine already applies padding = 1 per
+          -- component, so a prefix adds a second gap after the separator.
+          return #names > 0 and table.concat(names, ", ") or ""
         end,
       },
       "encoding", -- file encoding (utf-8, latin1, …)
