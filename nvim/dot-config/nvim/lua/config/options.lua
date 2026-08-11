@@ -4,6 +4,7 @@ vim.g.have_nerd_font = true
 local opt = vim.opt
 
 opt.autowrite = true -- save file when switching buffers
+opt.breakindent = true -- keep wrapped lines visually indented (lists, quotes)
 opt.clipboard = "unnamedplus" -- sync with system clipboard
 opt.completeopt = "menu,menuone,noselect,noinsert"
 opt.conceallevel = 2

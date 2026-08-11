@@ -63,13 +63,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Wrap and spellcheck in prose filetypes.
+-- Wrap and spellcheck in prose filetypes. Markdown wraps but is not spellchecked:
+-- it is mostly technical writing, so the squiggles are almost all identifiers,
+-- product names and jargon rather than real typos.
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.wrap = true
-    vim.opt_local.spell = true
+    vim.opt_local.spell = vim.bo.filetype ~= "markdown"
   end,
 })
 
