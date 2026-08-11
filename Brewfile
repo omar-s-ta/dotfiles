@@ -63,6 +63,8 @@ brew "sevenzip"                            # 7-Zip is a file archiver with a hig
 brew "urlview"                             # URL extractor/launcher
 # standalone
 brew "wget"                                # Internet file retriever
+# standalone
+brew "yq"                                  # Process YAML, JSON, XML, CSV and properties documents from the CLI
 
 # -- Editors
 # helix → helix (the editor)
