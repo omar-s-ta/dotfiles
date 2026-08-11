@@ -5,7 +5,7 @@ local opt = vim.opt
 
 opt.autowrite = true -- save file when switching buffers
 opt.clipboard = "unnamedplus" -- sync with system clipboard
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "menu,menuone,noselect,noinsert"
 opt.conceallevel = 2
 opt.confirm = true -- ask to save instead of failing a command
 opt.cursorline = true
