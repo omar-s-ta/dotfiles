@@ -18,7 +18,7 @@
       "src": "https://github.com/xeluxee/competitest.nvim"
     },
     "conform.nvim": {
-      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
+      "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -26,11 +26,11 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "28440c741e927592877514fba3db21eb188caec8",
+      "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "31d6fb2d618bca1482b9f274751ead5f03461408",
+      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
@@ -42,7 +42,7 @@
       "src": "git@github.com:omar-s-ta/md-present.nvim.git"
     },
     "mini.nvim": {
-      "rev": "946ae64e0ee807ae3c41f382f0114b4ed4915b2c",
+      "rev": "629bf6792187e11b4829411c1648f86f28df3963",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neotest": {
@@ -50,7 +50,7 @@
       "src": "https://github.com/nvim-neotest/neotest"
     },
     "neotest-golang": {
-      "rev": "61726ad54b6b94c73d130b65c33575d13a61fc11",
+      "rev": "65b2be63c3de00e6f15c05388ebdc8d603dbd727",
       "src": "https://github.com/fredrikaverpil/neotest-golang"
     },
     "neotest-python": {
@@ -86,7 +86,7 @@
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
     "nvim-lsp-endhints": {
-      "rev": "cc11482c988ba0e394b3426ae13d0b97e81a508d",
+      "rev": "3224a1c1b2fe1b067049764a154d4d727425fa6d",
       "src": "https://github.com/chrisgrieser/nvim-lsp-endhints"
     },
     "nvim-metals": {
@@ -98,12 +98,12 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "61df84986b4b4ec469ee745a182e433d49f8c27e",
+      "rev": "a1bcffc8095c142ad1f7a9671a4ae180333f9209",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-context": {
-      "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
+      "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "plenary.nvim": {
@@ -111,11 +111,11 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
+      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
-      "rev": "ae030cf5f8ab6aea56e03fa7e55b063111c0b833",
+      "rev": "0c720d1632e36dd8bcc3c72730e752e001b22be2",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "trouble.nvim": {
