@@ -178,12 +178,15 @@ brew "shfmt"                               # Autoformat shell script source code
 brew "stylua"                              # Opinionated Lua code formatter
 
 # -- Containers, Kubernetes & virtualization
+# NOTE: no `docker` formula here — the docker CLI (and compose) comes from
+# Docker Desktop, which is installed outside Homebrew (/Applications/Docker.app,
+# symlinks in /usr/local/bin). The formula is client-only anyway and would just
+# shadow/duplicate those. colima stays as an alternative daemon; it drives
+# Docker Desktop's CLI via the `colima` docker context.
 # standalone (container runtime)
 brew "colima"                              # Container runtimes on MacOS (and Linux) with minimal setup
 # standalone
 brew "dive"                                # Tool for exploring each layer in a docker image
-# standalone
-brew "docker"                              # Pack, ship and run any application as a lightweight container
 # standalone (Kubernetes)
 brew "helm"                                # Kubernetes package manager
 # standalone
