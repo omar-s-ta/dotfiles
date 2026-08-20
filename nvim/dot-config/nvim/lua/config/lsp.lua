@@ -27,8 +27,9 @@ if ok then
   vim.lsp.config("*", { capabilities = blink.get_lsp_capabilities() })
 end
 
--- Buffer-local keymaps + inlay hints when a server attaches.
+-- Buffer-local keymaps when a server attaches.
 -- (Neovim already provides grn/gra/grr/gri/grt/gO/K by default.)
+-- Inlay hints stay off; <leader>uh toggles them per buffer (see config/keymaps.lua).
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("myconfig_lsp_attach", { clear = true }),
   callback = function(event)
@@ -47,10 +48,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>ss", fzf.lsp_document_symbols, "Document Symbols")
     map("<leader>sS", fzf.lsp_live_workspace_symbols, "Workspace Symbols")
 
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method("textDocument/inlayHint") then
-      vim.lsp.inlay_hint.enable(true, { bufnr = buf })
-    end
+    -- Inlay hints on attach. Disabled: they are off by default now, toggled
+    -- per buffer with <leader>uh. Re-enable by uncommenting.
+    -- local client = vim.lsp.get_client_by_id(event.data.client_id)
+    -- if client and client:supports_method("textDocument/inlayHint") then
+    --   vim.lsp.inlay_hint.enable(true, { bufnr = buf })
+    -- end
   end,
 })
 
