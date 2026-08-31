@@ -42,7 +42,7 @@
       "src": "git@github.com:omar-s-ta/md-present.nvim.git"
     },
     "mini.nvim": {
-      "rev": "0caecdd7408bc0a77697a83b931c742fcc5b0349",
+      "rev": "a311ed247d527db9592bb434356badc705363746",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neotest": {
@@ -98,7 +98,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "8b98b4470eb326f1c7b50dae79f8c963568e5720",
+      "rev": "857651fce37eba032ebe28f3a206283cdc65c45a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -115,7 +115,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
-      "rev": "40b50ae2335faa2a4e136a196908b4700014f0b0",
+      "rev": "c221b712315c5072fe246124603b2733408a5efa",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "trouble.nvim": {
