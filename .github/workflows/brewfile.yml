@@ -23,6 +23,12 @@ jobs:
       - name: validate every Brewfile entry still exists
         run: |
           set -o pipefail
+          # HOMEBREW_NO_AUTO_UPDATE pins the formula index to the one baked into
+          # the runner image, so any formula newer than that image looks like it
+          # doesn't exist (api.rb `fetch_api_files!` never refreshes when
+          # no_auto_update is set). An explicit `brew update` still fetches the
+          # JSON API files, so it must run before any lookup.
+          brew update --quiet
           brew tap hashicorp/tap
           brew tap terraform-linters/tap
           brew trust --tap hashicorp/tap
