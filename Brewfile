@@ -105,9 +105,12 @@ brew "yarn"                                # JavaScript package manager
 # -- Build tools & compilers
 # standalone (build tool; also aids cmake-language-server)
 brew "cmake"                               # Cross-platform make
-# helix → clangd → llvm; also provides lldb-dap, the Rust debug adapter used by
-# both nvim (rustaceanvim) and helix's bundled rust debugger.
+# helix → clangd → llvm
 brew "llvm"                                # Next-gen compiler infrastructure
+# nvim (rustaceanvim) → lldb-dap; also helix's bundled rust debugger. Split out
+# of the llvm formula in 23.x — llvm no longer ships any lldb binaries. Keg-only
+# (provided_by_macos), so zshrc.local prepends /opt/homebrew/opt/lldb/bin.
+brew "lldb"                                # Next generation, high-performance debugger
 
 # -- Language servers (LSP)
 # helix → bash-language-server

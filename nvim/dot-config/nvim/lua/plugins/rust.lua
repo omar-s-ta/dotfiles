@@ -41,7 +41,8 @@ vim.g.rustaceanvim = {
 if lldb == "" then
   vim.schedule(function()
     vim.notify(
-      "lldb-dap not found on $PATH - Rust debugging disabled. Install via `brew install llvm`.",
+      "lldb-dap not found on $PATH - Rust debugging disabled. Install via `brew install lldb`\n"
+        .. "(keg-only: add /opt/homebrew/opt/lldb/bin to $PATH).",
       vim.log.levels.WARN,
       { title = "rustaceanvim" }
     )

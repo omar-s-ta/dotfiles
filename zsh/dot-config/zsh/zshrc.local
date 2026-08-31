@@ -18,6 +18,7 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/terraform-ls/bin:$PATH"
 export PATH="/opt/homebrew/opt/tflint/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/lldb/bin:$PATH"  # keg-only; split out of llvm in 23.x
 # Coursier PATH is set in ~/.zprofile (login shells) — removed the duplicate here.
 export GOPATH="$HOME/go"                  # Go default; defined here beside its use
 export PATH="$PATH:$GOPATH/bin"
