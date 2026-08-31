@@ -14,7 +14,7 @@ jobs:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ENV_HINTS: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # Catches formulae/casks renamed or removed from Homebrew before they
       # break a fresh-machine bootstrap. `brew bundle check` can't be used
       # here: it reports "not installed" for valid entries too, so it always
