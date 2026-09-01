@@ -1,0 +1,12 @@
+-- Statusline theme for the `nord-omar` colorscheme (colors/nord-omar.lua).
+--
+-- lualine's `theme = "auto"` resolves by g:colors_name through the runtimepath
+-- (lualine/utils/loader.lua:214, nvim_get_runtime_file), so a name lualine has
+-- no theme for silently falls through to its *generated* theme -- which for
+-- nord-omar differed from the bundled nord theme in 44 of 49 keys, in colours
+-- outside the Nord palette. nord-omar is nord plus @-group overrides, so it
+-- wants nord's statusline theme verbatim; this file is that answer.
+--
+-- deepcopy because lualine mutates the theme table it is handed, and `require`
+-- would otherwise return the very table stock nord's theme is cached as.
+return vim.deepcopy(require("lualine.themes.nord"))
