@@ -29,9 +29,7 @@ local function lazygit()
     return
   end
   -- Open in the git root of the current file (fallback to cwd).
-  local file = vim.api.nvim_buf_get_name(0)
-  local start = file ~= "" and vim.fs.dirname(file) or vim.fn.getcwd()
-  local root = vim.fs.root(start, ".git") or vim.fn.getcwd()
+  local root = require("util.root")()
 
   local width = math.floor(vim.o.columns * 0.9)
   local height = math.floor(vim.o.lines * 0.9)

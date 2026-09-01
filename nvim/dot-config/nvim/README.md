@@ -80,8 +80,10 @@ Leader is `<Space>`; local leader is `,`.
 
 | Key                              | Action                                     |
 | -------------------------------- | ------------------------------------------ |
-| `<leader>ff` / `<leader><space>` | find files                                 |
-| `<leader>/` / `<leader>sg`       | live grep                                  |
+| `<leader>ff` / `<leader><space>` | find files (git root)                      |
+| `<leader>fF`                     | find files (cwd)                           |
+| `<leader>/` / `<leader>sg`       | live grep (git root)                       |
+| `<leader>sG`                     | live grep (cwd)                            |
 | `\`                              | file explorer at current file (mini.files) |
 | `<S-h>` / `<S-l>`                | prev / next buffer                         |
 | `<leader>bd`                     | delete buffer                              |

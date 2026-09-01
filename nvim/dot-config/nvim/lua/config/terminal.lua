@@ -6,12 +6,7 @@
 -- presentation; the process keeps running across toggles and moves.
 local state = { buf = -1, win = -1, kind = nil }
 
--- git root of the current file (fallback to cwd)
-local function git_root()
-  local file = vim.api.nvim_buf_get_name(0)
-  local start = file ~= "" and vim.fs.dirname(file) or vim.fn.getcwd()
-  return vim.fs.root(start, ".git") or vim.fn.getcwd()
-end
+local git_root = require("util.root")
 
 -- put `buf` on screen as `kind` and return the new window
 local function show(buf, kind)
