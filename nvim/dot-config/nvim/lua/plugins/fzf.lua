@@ -6,6 +6,13 @@ local map = vim.keymap.set
 
 fzf.setup({
   winopts = { border = "rounded" },
+  -- Take over vim.ui.select. Neovim's built-in backend is inputlist(): it echoes
+  -- every entry into the message area, pages through `-- More --`, then asks for
+  -- an index -- there is no way to type a name and no way to scroll back. That
+  -- makes any large picker unusable, e.g. nvim-metals' select_test_suite /
+  -- select_test_case (<leader>mt / <leader>mc), which hand it every test suite
+  -- in the build. `{}` rather than `true`: the boolean form is deprecated.
+  ui_select = {},
 })
 
 -- Scope a picker to the git root of the current file. Wrapped in a closure so
