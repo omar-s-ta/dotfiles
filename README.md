@@ -62,22 +62,23 @@ dotfiles win — see the comments in the script.
 
 ## Layout
 
-| Package          | What it configures                                        |
-| ---------------- | --------------------------------------------------------- |
-| `zsh`            | `~/.zshenv` (sets `ZDOTDIR`) + `~/.config/zsh/*` (`.zshrc`, `.zprofile`; oh-my-zsh, powerlevel10k) |
-| `git`            | `~/.config/git/{config,ignore}` (delta with a Dayfox theme) |
-| `bat`            | `~/.config/bat/{config,themes/}` (Dayfox; needs `bat cache --build`) |
-| `gh`             | `~/.config/gh/config.yml`                                 |
-| `gh-dash`        | `~/.config/gh-dash/config.yml`                            |
-| `tmux`           | `~/.config/tmux/tmux.conf` (+ tpm-managed plugins)        |
-| `idea`           | `~/.config/ideavim/ideavimrc`                             |
-| `helix`          | `~/.config/helix/*`                                       |
-| `nvim`           | `~/.config/nvim/*` (Neovim 0.12, native `vim.pack`/LSP)   |
-| `yazi`           | `~/.config/yazi/*`                                        |
-| `kitty`          | `~/.config/kitty/*`                                       |
-| `lazygit`        | `~/.config/lazygit/config.yml` (Dayfox theme)             |
-| `k9s`            | `~/.config/k9s/{config,aliases}.yaml` + `skins/` (Dayfox skin) |
-| `efm-langserver` | `~/.config/efm-langserver/config.yaml`                    |
+| Package           | What it configures                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| `zsh`             | `~/.zshenv` (sets `ZDOTDIR`) + `~/.config/zsh/*` (`.zshrc`, `.zprofile`; oh-my-zsh, powerlevel10k) |
+| `git`             | `~/.config/git/{config,ignore}` (delta with a Dayfox theme)                                        |
+| `bat`             | `~/.config/bat/{config,themes/}` (Dayfox; needs `bat cache --build`)                               |
+| `gh`              | `~/.config/gh/config.yml`                                                                          |
+| `gh-dash`         | `~/.config/gh-dash/config.yml`                                                                     |
+| `tmux`            | `~/.config/tmux/tmux.conf` (+ tpm-managed plugins)                                                 |
+| `idea`            | `~/.config/ideavim/ideavimrc`                                                                      |
+| `helix`           | `~/.config/helix/*`                                                                                |
+| `nvim`            | `~/.config/nvim/*` (Neovim 0.12, native `vim.pack`/LSP)                                            |
+| `yazi`            | `~/.config/yazi/*`                                                                                 |
+| `kitty`           | `~/.config/kitty/*`                                                                                |
+| `lazygit`         | `~/.config/lazygit/config.yml` (Dayfox theme)                                                      |
+| `k9s`             | `~/.config/k9s/{config,aliases}.yaml` + `skins/` (Dayfox skin)                                     |
+| `process-compose` | `~/.config/process-compose/{theme,settings}.yaml` (Dayfox TUI theme)                               |
+| `efm-langserver`  | `~/.config/efm-langserver/config.yaml`                                                             |
 
 Other top-level files:
 

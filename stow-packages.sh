@@ -38,6 +38,7 @@ packages=(
   kitty          # ~/.config/kitty/*
   lazygit        # ~/.config/lazygit/config.yml
   k9s            # ~/.config/k9s/{config,aliases}.yaml + skins/ (cluster state stays in ~/.local/share/k9s)
+  process-compose # ~/.config/process-compose/{theme,settings}.yaml (Dayfox TUI theme)
   efm-langserver # ~/.config/efm-langserver/config.yaml
 )
 

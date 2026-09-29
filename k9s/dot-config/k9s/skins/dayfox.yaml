@@ -29,6 +29,15 @@ magenta: &magenta "#6e33ce"  # magenta
 blue: &blue "#2848a9"  # blue
 # (nightfox) red: &red "#c94f6d"
 red: &red "#a5222f"  # red
+# Not in the nightfox skin. It draws frame borders and the title/crumb strips
+# with sel0, which on a light background is a pale pink 1.3:1 line -- nearly
+# invisible. Borders follow kitty's Dayfox convention instead (inactive bg4,
+# active blue), and the strips sit on bg0, nightfox's status-line/float bg.
+border: &border "#aab0ad"  # bg4
+surface: &surface "#e4dcd4"  # bg0
+# Active breadcrumb chip: sel1, dayfox's popup-selection/search bg (dark text on
+# it is 6.5:1), instead of the same pale pink.
+active: &active "#a4c1c2"  # sel1
 
 # Skin...
 k9s:
@@ -46,7 +55,10 @@ k9s:
   dialog:
     fgColor: *foreground
     bgColor: *background
-    buttonFgColor: *foreground
+    # (nightfox) buttonFgColor: *foreground
+    # Light text on the button, as nightfox has it: after the palette swap
+    # *foreground is dark, and dark-on-magenta is 1.8:1. *background is 6.2:1.
+    buttonFgColor: *background
     buttonBgColor: *magenta
     buttonFocusFgColor: white
     buttonFocusBgColor: *cyan
@@ -54,16 +66,20 @@ k9s:
     fieldFgColor: *foreground
   frame:
     border:
-      fgColor: *selection
-      focusColor: *current_line
+      # (nightfox) fgColor: *selection
+      # (nightfox) focusColor: *current_line
+      fgColor: *border
+      focusColor: *blue
     menu:
       fgColor: *foreground
       keyColor: *magenta
       numKeyColor: *magenta
     crumbs:
       fgColor: *foreground
-      bgColor: *current_line
-      activeColor: *current_line
+      # (nightfox) bgColor: *current_line
+      bgColor: *surface
+      # (nightfox) activeColor: *current_line
+      activeColor: *active
     status:
       newColor: *cyan
       modifyColor: *blue
@@ -74,7 +90,8 @@ k9s:
       completedColor: *comment
     title:
       fgColor: *foreground
-      bgColor: *current_line
+      # (nightfox) bgColor: *current_line
+      bgColor: *surface
       highlightColor: *orange
       counterColor: *blue
       filterColor: *magenta
