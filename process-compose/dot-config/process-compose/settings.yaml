@@ -1,4 +1,4 @@
-# Selects theme.yaml (Dayfox). process-compose auto-saves this file when the
+# Selects theme.yaml (Dawnfox). process-compose auto-saves this file when the
 # theme or sort order is changed in the TUI (www/docs/tui.md, "TUI State
 # Settings"), so those changes show up here as a dirty repo; `--read-only`
 # disables the auto-save.

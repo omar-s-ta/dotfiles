@@ -1,0 +1,243 @@
+# Dawnfox flavor, matching nvim/kitty/tmux. Generated from ../nord.yazi/flavor.toml
+# by swapping each Nord colour for its Dawnfox role (nightfox.nvim palette, rev
+# 4dacd3f): nord0 bg1, nord1 bg3, nord2 sel0, nord3 bg4, nord4-6 fg1/fg0, nord8 blue,
+# nord7 cyan, nord9 blue.bright, nord10 blue.dim, nord11-15 red/orange/yellow/green/magenta.
+# Structure untouched. tmtheme.xml is nightfox's extra/dawnfox/dawnfox.tmTheme.
+
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# Nord Color Palette Reference:
+# Polar Night:
+#   nord0: #2E3440
+#   nord1: #3B4252
+#   nord2: #434C5E
+#   nord3: #4C566A
+# Snow Storm:
+#   nord4: #D8DEE9
+#   nord5: #E5E9F0
+#   nord6: #ECEFF4
+# Frost:
+#   nord7: #8FBCBB (Minty Green/Cyan)
+#   nord8: #88C0D0 (Light Blue)
+#   nord9: #81A1C1 (Medium Blue)
+#   nord10: #5E81AC (Darker Blue)
+# Aurora:
+#   nord11: #BF616A (Red)
+#   nord12: #D08770 (Orange)
+#   nord13: #EBCB8B (Yellow)
+#   nord14: #A3BE8C (Green)
+#   nord15: #B48EAD (Purple)
+
+
+# : Manager {{{
+
+[mgr]
+
+# Current working directory - Use a prominent Frost color
+cwd = { fg = "#286983" } # nord8
+
+# Deprecated: Hovered item - Simple reverse video often works best
+hovered = { reversed = true }
+preview_hovered = { underline = true }
+
+# Find results - Use Aurora colors for highlighting
+find_keyword = { fg = "#ea9d34", bold = true, italic = true, underline = true } # nord13 (Yellow)
+find_position = { fg = "#907aa9", bg = "reset", bold = true, italic = true }    # nord15 (Purple)
+
+# Marker - Use Aurora colors, mimicking common diff/status colors
+marker_copied = { fg = "#618774", bg = "#618774" }   # nord14 (Green)
+marker_cut = { fg = "#b4637a", bg = "#b4637a" }      # nord11 (Red)
+marker_marked = { fg = "#56949f", bg = "#56949f" }   # nord7 (Frost Mint)
+marker_selected = { fg = "#ea9d34", bg = "#ea9d34" } # nord13 (Yellow)
+
+# Deprecated Tab - Active tab reversed, inacvtive slightly muted
+tab_active = { reversed = true }
+tab_inactive = { fg = "#bdbfc9" } # nord3
+tab_width = 1
+
+# Count badges - Use marker background colors with dark text for contrast
+count_copied = { fg = "#faf4ed", bg = "#618774" }   # nord0 on nord14
+count_cut = { fg = "#faf4ed", bg = "#b4637a" }      # nord0 on nord11
+count_selected = { fg = "#faf4ed", bg = "#ea9d34" } # nord0 on nord13
+
+# Border - Use a subtle Polar Night color
+border_symbol = "│"
+border_style = { fg = "#bdbfc9" } # nord3
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+
+# Tabs Active/Inactive - Use Frost Mint for active, Polar Night for inactive
+active = { fg = "#faf4ed", bg = "#56949f", bold = true } # nord0 on nord7 (Teal/Mint)
+inactive = { fg = "#56949f", bg = "#ebdfe4" }            # nord7 on nord1
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+# Use distinct Frost/Aurora colors for mode backgrounds, dark text
+# Changed normal mode background to nord7 (Teal/Mint)
+normal_main = { fg = "#faf4ed", bg = "#56949f", bold = true } # nord0 on nord7 (Teal/Mint)
+normal_alt = { fg = "#56949f", bg = "#ebdfe4" }               # nord7 on nord1
+
+# Select mode remains nord7 (Teal/Mint)
+select_main = { fg = "#faf4ed", bg = "#56949f", bold = true } # nord0 on nord7 (Teal/Mint)
+select_alt = { fg = "#56949f", bg = "#ebdfe4" }               # nord7 on nord1
+
+# Unset mode remains nord11 (Red)
+unset_main = { fg = "#faf4ed", bg = "#b4637a", bold = true } # nord0 on nord11 (Red)
+unset_alt = { fg = "#b4637a", bg = "#ebdfe4" }               # nord11 on nord1
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+# Permissions - Use Aurora colors semantically
+perm_sep = { fg = "#bdbfc9" }   # nord3
+perm_type = { fg = "#2d81a3" }  # nord9 (Blue) - Directory/type indicator
+perm_read = { fg = "#ea9d34" }  # nord13 (Yellow) - Read permission
+perm_write = { fg = "#b4637a" } # nord11 (Red) - Write permission (often more restricted)
+perm_exec = { fg = "#618774" }  # nord14 (Green) - Execute permission
+
+# Progress bar - Use a Frost blue for normal, Aurora red for error
+progress_label = { fg = "#4c4769", bold = true }     # nord6
+progress_normal = { fg = "#286983", bg = "#d0d8d8" } # nord8 on nord2
+progress_error = { fg = "#b4637a", bg = "#d0d8d8" }  # nord11 on nord2
+
+# : }}}
+
+
+# : Pick {{{
+
+[pick]
+# File picker - Use a Frost blue for border, Aurora purple for active item
+border = { fg = "#2d81a3" }              # nord9
+active = { fg = "#907aa9", bold = true } # nord15 (Purple)
+inactive = { fg = "#575279" }            # nord4 - Default text color
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+# Input prompts - Frost blue border, default text, reverse selection
+border = { fg = "#2d81a3" }    # nord9
+title = { fg = "#575279" }     # nord4
+value = { fg = "#4c4769" }     # nord6 - Slightly brighter for input value
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+# Completion menu - Frost blue border
+border = { fg = "#2d81a3" } # nord9
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+# Tasks window - Frost blue border, Aurora purple for hovered task
+border = { fg = "#2d81a3" }                    # nord9
+title = { fg = "#4c4769" }                     # nord6
+hovered = { fg = "#907aa9", underline = true } # nord15 (Purple)
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+# Keybinding helper (which-key style)
+mask = { bg = "#ebdfe4" }            # nord1 - Slightly lighter background for overlay
+cand = { fg = "#56949f" }            # nord7 (Frost Mint) - Candidate keys
+rest = { fg = "#bdbfc9" }            # nord3 - Remaining keys in sequence (muted)
+desc = { fg = "#907aa9" }            # nord15 (Purple) - Command description
+separator = "  "                    # Or " > " or " :: "
+separator_style = { fg = "#d0d8d8" } # nord2 - Darker separator
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+# Help screen
+on = { fg = "#56949f" }                     # nord7 (Frost Mint) - Keybinding section label
+run = { fg = "#907aa9" }                    # nord15 (Purple) - Command section label
+hovered = { reversed = true, bold = true }  # Hovered key/command
+footer = { fg = "#faf4ed", bg = "#4c4769" } # nord0 on nord6 - High contrast footer
+
+# : }}}
+
+
+# : Notify {{{
+
+[notify]
+# Notification popups - Use Aurora colors for severity levels
+title_info = { fg = "#618774" }  # nord14 (Green)
+title_warn = { fg = "#ea9d34" }  # nord13 (Yellow)
+title_error = { fg = "#b4637a" } # nord11 (Red)
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+# Images - Frost Mint/Cyan
+{ mime = "image/*", fg = "#56949f" }, # nord7
+
+# Media (Audio/Video) - Aurora Yellow
+{ mime = "{audio,video}/*", fg = "#ea9d34" }, # nord13
+
+# Archives - Aurora Purple
+{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#907aa9" }, # nord15
+
+# Documents - Aurora Green
+{ mime = "application/{pdf,doc,rtf,odt,docx,xlsx,pptx}", fg = "#618774" }, # nord14
+
+# For symlinks - Purple
+{ url = "*", is="link", fg = "#907aa9" }, # nord15
+
+# Fallback file - Default Snow Storm text color
+{ url = "*", fg = "#575279" }, # nord4
+
+# Fallback directory - Frost Blue
+{ url = "*/", fg = "#2d81a3", bold = true }, # nord9
+]
+
+ # : }}}
+
+
+# : Icon colors {{{
+
+[icon]
+# Override specific hidden directory icons to match nord9
+prepend_dirs = [
+    { name = ".config", text = "\ue5fc", fg = "#2d81a3" },
+    { name = ".git", text = "\ue5fb", fg = "#2d81a3" },
+    { name = ".github", text = "\ue5fd", fg = "#2d81a3" },
+    { name = ".npm", text = "\ue5fa", fg = "#2d81a3" },
+]
+# Generic fallback for non-hidden directories
+prepend_conds = [
+    { if = "dir & !hidden", text = "\ue5ff", fg = "#2d81a3" }, # nord9
+]
+
+ # : }}}

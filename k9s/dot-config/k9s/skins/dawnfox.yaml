@@ -1,0 +1,133 @@
+# -----------------------------------------------------------------------------
+# K9s Dawnfox skin, matching nvim/kitty/tmux. Generated from k9s's own
+# skins/nightfox.yaml (derailed/k9s) by swapping the nightfox palette for the
+# dawnfox one -- nightfox.nvim lua/nightfox/palette/dawnfox.lua at the rev pinned
+# in nvim/dot-config/nvim/nvim-pack-lock.json (4dacd3f). Layout untouched; the
+# nightfox values are kept commented as `# (nightfox)`.
+# -----------------------------------------------------------------------------
+
+# Styles...
+# (nightfox) foreground: &foreground "#cdcecf"
+foreground: &foreground "#575279"  # fg1
+# (nightfox) background: &background "#192330"
+background: &background "#faf4ed"  # bg1
+# (nightfox) current_line: &current_line "#2b3b51"
+current_line: &current_line "#d0d8d8"  # sel0
+# (nightfox) selection: &selection "#2b3b51"
+selection: &selection "#d0d8d8"  # sel0
+# (nightfox) comment: &comment "#738091"
+comment: &comment "#9893a5"  # comment
+# (nightfox) cyan: &cyan "#63cdcf"
+cyan: &cyan "#56949f"  # cyan
+# (nightfox) green: &green "#81b29a"
+green: &green "#618774"  # green
+# (nightfox) orange: &orange "#f4a261"
+orange: &orange "#d7827e"  # orange
+# (nightfox) magenta: &magenta "#9d79d6"
+magenta: &magenta "#907aa9"  # magenta
+# (nightfox) blue: &blue "#719cd6"
+blue: &blue "#286983"  # blue
+# (nightfox) red: &red "#c94f6d"
+red: &red "#b4637a"  # red
+# Not in the nightfox skin. It draws frame borders and the title/crumb strips
+# with sel0, which on a light background is a pale grey-green 1.3:1 line -- nearly
+# invisible. Borders follow kitty's Dawnfox convention instead (inactive bg4,
+# active blue), and the strips sit on bg0, nightfox's status-line/float bg.
+border: &border "#bdbfc9"  # bg4
+surface: &surface "#ebe5df"  # bg0
+# Active breadcrumb chip: sel1, dawnfox's popup-selection/search bg (dark text on
+# it is 4.4:1), instead of the same pale sel0.
+active: &active "#b8cece"  # sel1
+
+# Skin...
+k9s:
+  body:
+    fgColor: *foreground
+    bgColor: *background
+    logoColor: *blue
+  prompt:
+    fgColor: *foreground
+    bgColor: *background
+    suggestColor: *orange
+  info:
+    fgColor: *magenta
+    sectionColor: *foreground
+  dialog:
+    fgColor: *foreground
+    bgColor: *background
+    # (nightfox) buttonFgColor: *foreground
+    # Light text on the button, as nightfox has it: after the palette swap
+    # *foreground is dark, and dark-on-magenta is 1.9:1. *background is 3.5:1.
+    buttonFgColor: *background
+    buttonBgColor: *magenta
+    buttonFocusFgColor: white
+    buttonFocusBgColor: *cyan
+    labelFgColor: *orange
+    fieldFgColor: *foreground
+  frame:
+    border:
+      # (nightfox) fgColor: *selection
+      # (nightfox) focusColor: *current_line
+      fgColor: *border
+      focusColor: *blue
+    menu:
+      fgColor: *foreground
+      keyColor: *magenta
+      numKeyColor: *magenta
+    crumbs:
+      fgColor: *foreground
+      # (nightfox) bgColor: *current_line
+      bgColor: *surface
+      # (nightfox) activeColor: *current_line
+      activeColor: *active
+    status:
+      newColor: *cyan
+      modifyColor: *blue
+      addColor: *green
+      errorColor: *red
+      highlightColor: *orange
+      killColor: *comment
+      completedColor: *comment
+    title:
+      fgColor: *foreground
+      # (nightfox) bgColor: *current_line
+      bgColor: *surface
+      highlightColor: *orange
+      counterColor: *blue
+      filterColor: *magenta
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
+    table:
+      fgColor: *foreground
+      bgColor: *background
+      cursorFgColor: *selection
+      cursorBgColor: *current_line
+      header:
+        fgColor: *foreground
+        bgColor: *background
+        sorterColor: *cyan
+    xray:
+      fgColor: *foreground
+      bgColor: *background
+      cursorColor: *current_line
+      graphicColor: *blue
+      showIcons: false
+    yaml:
+      keyColor: *magenta
+      colonColor: *blue
+      valueColor: *foreground
+    logs:
+      fgColor: *foreground
+      bgColor: *background
+      indicator:
+        fgColor: *foreground
+        bgColor: *selection
+        toggleOnColor: *magenta
+        toggleOffColor: *blue

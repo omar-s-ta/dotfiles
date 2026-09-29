@@ -280,7 +280,7 @@ stow_configs() {
   log "symlinking configs via stow"
   "$DOTFILES_DIR/stow-packages.sh"
   # bat -- and delta's syntax-theme, which reads the same cache -- only load
-  # custom themes (bat/dot-config/bat/themes/dayfox.tmTheme) from bat's cache.
+  # custom themes (bat/dot-config/bat/themes/{dawnfox,dayfox}.tmTheme) from bat's cache.
   if have bat; then
     log "building bat theme cache"
     bat cache --build >/dev/null || warn "bat cache --build failed"

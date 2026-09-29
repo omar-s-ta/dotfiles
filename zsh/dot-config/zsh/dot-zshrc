@@ -123,8 +123,11 @@ fi
 # #4c566a, 1.7:1 on the background, clearly fainter than typed text -- but under
 # kitty's Dayfox palette 8 is #534c45 (7.6:1 vs typed text's 11.2:1), so
 # suggestions look typed. Dayfox's comment colour restores the faint role (3.8:1).
+# Same story under Dawnfox: 8 is #5f5695, 5.9:1 vs typed text's 6.7:1; its
+# comment colour #9893a5 is 2.7:1.
 # (Nord) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'   # the plugin default
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#837a72'
+# (Dayfox) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#837a72'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9893a5'
 [[ -r "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
   source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [[ -r "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&

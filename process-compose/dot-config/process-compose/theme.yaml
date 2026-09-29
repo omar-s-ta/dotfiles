@@ -1,43 +1,45 @@
-# process-compose "Custom Style" theme: Dayfox, matching nvim/kitty/tmux/k9s.
-# Colours are nightfox.nvim's dayfox palette (rev pinned in
+# process-compose "Custom Style" theme: Dawnfox, matching nvim/kitty/tmux/k9s.
+# (theme.dayfox.yaml is the previous Dayfox version, kept but not loaded --
+# process-compose only reads theme.yaml.)
+# Colours are nightfox.nvim's dawnfox palette (rev pinned in
 # nvim/dot-config/nvim/nvim-pack-lock.json, 4dacd3f), assigned by the same roles
-# as k9s/dot-config/k9s/skins/dayfox.yaml so the two TUIs read alike. Key set from
+# as k9s/dot-config/k9s/skins/dawnfox.yaml so the two TUIs read alike. Key set from
 # process-compose's own light theme (src/config/themes/catppuccin-latte-theme.yaml).
 # Hex, not names: names defer to the terminal palette (see www/docs/tui.md).
 style:
-  name: 'Dayfox'
+  name: 'Dawnfox'
   body:
-    fgColor: '#3d2b5a'            # fg1
-    bgColor: '#f6f2ee'            # bg1
-    secondaryTextColor: '#6e33ce' # magenta (k9s info)
-    tertiaryTextColor: '#2848a9'  # blue
-    borderColor: '#aab0ad'        # bg4, nightfox's border fg
+    fgColor: '#575279'            # fg1
+    bgColor: '#faf4ed'            # bg1
+    secondaryTextColor: '#907aa9' # magenta (k9s info)
+    tertiaryTextColor: '#286983'  # blue
+    borderColor: '#bdbfc9'        # bg4, nightfox's border fg
   stat_table:
-    keyFgColor: '#6e33ce'         # magenta
-    valueFgColor: '#3d2b5a'       # fg1
-    logoColor: '#2848a9'          # blue (k9s logo)
+    keyFgColor: '#907aa9'         # magenta
+    valueFgColor: '#575279'       # fg1
+    logoColor: '#286983'          # blue (k9s logo)
   proc_table:
-    fgColor: '#3d2b5a'            # fg1
-    fgWarning: '#ac5402'          # yellow
-    fgPending: '#837a72'          # comment
-    fgCompleted: '#396847'        # green
-    fgError: '#a5222f'            # red
-    headerFgColor: '#2848a9'      # blue
+    fgColor: '#575279'            # fg1
+    fgWarning: '#ea9d34'          # yellow
+    fgPending: '#9893a5'          # comment
+    fgCompleted: '#618774'        # green
+    fgError: '#b4637a'            # red
+    headerFgColor: '#286983'      # blue
   help:
-    fgColor: '#3d2b5a'            # fg1
-    keyColor: '#6e33ce'           # magenta (k9s menu keys)
-    hlColor: '#e7d2be'            # sel0
-    categoryFgColor: '#2848a9'    # blue
-    linkDonateColor: '#ac5402'    # yellow
-    linkAskColor: '#955f61'       # orange
+    fgColor: '#575279'            # fg1
+    keyColor: '#907aa9'           # magenta (k9s menu keys)
+    hlColor: '#d0d8d8'            # sel0
+    categoryFgColor: '#286983'    # blue
+    linkDonateColor: '#ea9d34'    # yellow
+    linkAskColor: '#d7827e'       # orange
   dialog:
-    fgColor: '#3d2b5a'            # fg1
-    bgColor: '#e4dcd4'            # bg0, nightfox's float bg
-    attentionBgColor: '#a5222f'   # red
-    buttonFgColor: '#f6f2ee'      # bg1 (light text on the button)
-    buttonBgColor: '#6e33ce'      # magenta
-    buttonFocusFgColor: '#f6f2ee' # bg1
-    buttonFocusBgColor: '#287980' # cyan (k9s focused button)
-    labelFgColor: '#955f61'       # orange
-    fieldFgColor: '#3d2b5a'       # fg1
-    fieldBgColor: '#e7d2be'       # sel0
+    fgColor: '#575279'            # fg1
+    bgColor: '#ebe5df'            # bg0, nightfox's float bg
+    attentionBgColor: '#b4637a'   # red
+    buttonFgColor: '#faf4ed'      # bg1 (light text on the button)
+    buttonBgColor: '#907aa9'      # magenta
+    buttonFocusFgColor: '#faf4ed' # bg1
+    buttonFocusBgColor: '#56949f' # cyan (k9s focused button)
+    labelFgColor: '#d7827e'       # orange
+    fieldFgColor: '#575279'       # fg1
+    fieldBgColor: '#d0d8d8'       # sel0

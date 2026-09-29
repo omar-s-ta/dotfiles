@@ -44,19 +44,37 @@
   # `bat cache --build`). Same roles as the Nord block above, nightfox palette.
   # -/+ backgrounds are nightfox's own diff.delete/diff.add (bg1 blended 20%
   # with red/green); the emph variants are the same blend at 35%.
+  # light = true
+  # syntax-theme = dayfox
+  # file-style = "#2848a9" bold
+  # file-decoration-style = "#aab0ad" ul
+  # hunk-header-style = "#4863b6"
+  # hunk-header-decoration-style = "#aab0ad" box
+  # line-numbers-minus-style = "#a5222f"
+  # line-numbers-plus-style = "#396847"
+  # line-numbers-zero-style = "#aab0ad"
+  # minus-style = syntax "#e6c8c8"
+  # minus-emph-style = syntax "#daa9ab"
+  # plus-style = syntax "#d0d6cd"
+  # plus-emph-style = syntax "#b4c2b4"
+
+  # Dawnfox theme, matching nvim/kitty/tmux. Same construction as the Dayfox
+  # block above: `dawnfox` comes from bat's theme cache
+  # (bat/dot-config/bat/themes/dawnfox.tmTheme), -/+ backgrounds are nightfox's
+  # dawnfox diff.delete/diff.add (bg1 blended 20%), emph variants at 35%.
   light = true
-  syntax-theme = dayfox
-  file-style = "#2848a9" bold
-  file-decoration-style = "#aab0ad" ul
-  hunk-header-style = "#4863b6"
-  hunk-header-decoration-style = "#aab0ad" box
-  line-numbers-minus-style = "#a5222f"
-  line-numbers-plus-style = "#396847"
-  line-numbers-zero-style = "#aab0ad"
-  minus-style = syntax "#e6c8c8"
-  minus-emph-style = syntax "#daa9ab"
-  plus-style = syntax "#d0d6cd"
-  plus-emph-style = syntax "#b4c2b4"
+  syntax-theme = dawnfox
+  file-style = "#286983" bold
+  file-decoration-style = "#bdbfc9" ul
+  hunk-header-style = "#2d81a3"
+  hunk-header-decoration-style = "#bdbfc9" box
+  line-numbers-minus-style = "#b4637a"
+  line-numbers-plus-style = "#618774"
+  line-numbers-zero-style = "#bdbfc9"
+  minus-style = syntax "#ecd7d6"
+  minus-emph-style = syntax "#e2c1c5"
+  plus-style = syntax "#dbded5"
+  plus-emph-style = syntax "#c4cec3"
 
 [interactive]
   diffFilter = delta --color-only

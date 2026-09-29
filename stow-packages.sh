@@ -27,7 +27,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 packages=(
   zsh            # ~/.zshenv (ZDOTDIR) + ~/.config/zsh/{.zshrc,.zprofile}
   git            # ~/.config/git/{config,ignore} (+ config-work on the work branch)
-  bat            # ~/.config/bat/{config,themes/} (dayfox; also delta's syntax-theme)
+  bat            # ~/.config/bat/{config,themes/} (dawnfox; also delta's syntax-theme)
   gh             # ~/.config/gh/config.yml (hosts.yml with auth tokens is untracked)
   gh-dash        # ~/.config/gh-dash/config.yml (gh extension; installed by pde_init.sh)
   tmux           # ~/.config/tmux/tmux.conf (+ tpm-managed plugins/)
@@ -38,7 +38,7 @@ packages=(
   kitty          # ~/.config/kitty/*
   lazygit        # ~/.config/lazygit/config.yml
   k9s            # ~/.config/k9s/{config,aliases}.yaml + skins/ (cluster state stays in ~/.local/share/k9s)
-  process-compose # ~/.config/process-compose/{theme,settings}.yaml (Dayfox TUI theme)
+  process-compose # ~/.config/process-compose/{theme,settings}.yaml (Dawnfox TUI theme)
   efm-langserver # ~/.config/efm-langserver/config.yaml
 )
 

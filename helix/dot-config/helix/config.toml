@@ -2,8 +2,9 @@
 # See languages.toml for LSP/formatter config.
 
 # theme = "nord-custom"
-# Dayfox, matching nvim/kitty/tmux (themes/dayfox.toml, on top of built-in nightfox).
-theme = "dayfox"
+# theme = "dayfox"   # (Dayfox) themes/dayfox.toml
+# Dawnfox, matching nvim/kitty/tmux (themes/dawnfox.toml, on top of built-in nightfox).
+theme = "dawnfox"
 
 [editor]
 scrolloff = 10
