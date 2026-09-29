@@ -26,7 +26,8 @@
 #   6. Install cargo tools (e.g. gh-review) — needs the toolchain from step 5.
 #   7. Install oh-my-zsh under XDG data ($ZSH is set by dot-zshrc).
 #   8. Clone the companion `scripts` repo and symlink it into $HOME.
-#   9. Symlink every config into place via stow (delegates to stow-packages.sh).
+#   9. Symlink every config into place via stow (delegates to stow-packages.sh),
+#      then build bat's theme cache (custom themes load only from it).
 #  10. Install tmux plugins through tpm.
 #
 # Note: the Homebrew and oh-my-zsh installers may prompt for input (e.g. sudo),
@@ -278,6 +279,12 @@ stow_configs() {
   clean_gitconfig_shadow
   log "symlinking configs via stow"
   "$DOTFILES_DIR/stow-packages.sh"
+  # bat -- and delta's syntax-theme, which reads the same cache -- only load
+  # custom themes (bat/dot-config/bat/themes/dayfox.tmTheme) from bat's cache.
+  if have bat; then
+    log "building bat theme cache"
+    bat cache --build >/dev/null || warn "bat cache --build failed"
+  fi
 }
 
 # ---- 10. tmux plugins -------------------------------------------------------

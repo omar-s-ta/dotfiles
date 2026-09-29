@@ -1,0 +1,48 @@
+# Dayfox, matching nvim/kitty/tmux. Helix ships nightfox and carbonfox but not
+# dayfox, so this inherits the built-in `nightfox` (same author's scope layout)
+# and swaps in the dayfox palette -- nightfox.nvim lua/nightfox/palette/dayfox.lua
+# at the rev pinned in nvim/dot-config/nvim/nvim-pack-lock.json (4dacd3f).
+inherits = "nightfox"
+
+# nightfox colours variables with palette `white` and indent guides with `black`,
+# which is right on a dark background only. nightfox.nvim flips it for dayfox
+# (spec.syntax.variable = black #352c24), so follow that here; the indent guide
+# takes bg3, about as faint against bg1 as nightfox's guide is against its bg.
+"variable" = { fg = "black" }
+"ui.virtual.indent-guide" = { fg = "bg3" }
+
+[palette]
+black          = "#352c24"
+red            = "#a5222f"
+green          = "#396847"
+yellow         = "#ac5402"
+yellow-bright  = "#b86e28"
+blue           = "#2848a9"
+blue-bright    = "#4863b6"
+magenta        = "#6e33ce"
+magenta-bright = "#8452d5"
+cyan           = "#287980"
+cyan-bright    = "#488d93"
+white          = "#f2e9e1"
+orange         = "#955f61"
+orange-bright  = "#a57779"
+pink           = "#a440b5"
+pink-bright    = "#b25dc0"
+comment        = "#837a72"
+# diff backgrounds: nightfox.nvim's dayfox spec.diff (delete/add/change/text)
+red-dim        = "#e6c8c8"
+green-dim      = "#d0d6cd"
+blue-dim       = "#cdd0e0"
+cyan-dim       = "#a4aed2"
+# spec
+bg0            = "#e4dcd4" # Dark bg (status line and float)
+bg1            = "#f6f2ee" # Default bg
+bg2            = "#dbd1dd" # Lighter bg (colorcolm folds)
+bg3            = "#d3c7bb" # Lighter bg (cursor line)
+bg4            = "#aab0ad" # Conceal, border fg
+fg0            = "#302b5d" # Lighter fg
+fg1            = "#3d2b5a" # Default fg
+fg2            = "#643f61" # Darker fg (status line)
+fg3            = "#824d5b" # Darker fg (line numbers, fold columns)
+sel0           = "#e7d2be" # Popup bg, visual selection bg
+sel1           = "#a4c1c2" # Popup sel bg, search bg

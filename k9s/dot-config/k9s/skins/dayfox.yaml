@@ -1,0 +1,116 @@
+# -----------------------------------------------------------------------------
+# K9s Dayfox skin, matching nvim/kitty/tmux. Generated from k9s's own
+# skins/nightfox.yaml (derailed/k9s) by swapping the nightfox palette for the
+# dayfox one -- nightfox.nvim lua/nightfox/palette/dayfox.lua at the rev pinned
+# in nvim/dot-config/nvim/nvim-pack-lock.json (4dacd3f). Layout untouched; the
+# nightfox values are kept commented as `# (nightfox)`.
+# -----------------------------------------------------------------------------
+
+# Styles...
+# (nightfox) foreground: &foreground "#cdcecf"
+foreground: &foreground "#3d2b5a"  # fg1
+# (nightfox) background: &background "#192330"
+background: &background "#f6f2ee"  # bg1
+# (nightfox) current_line: &current_line "#2b3b51"
+current_line: &current_line "#e7d2be"  # sel0
+# (nightfox) selection: &selection "#2b3b51"
+selection: &selection "#e7d2be"  # sel0
+# (nightfox) comment: &comment "#738091"
+comment: &comment "#837a72"  # comment
+# (nightfox) cyan: &cyan "#63cdcf"
+cyan: &cyan "#287980"  # cyan
+# (nightfox) green: &green "#81b29a"
+green: &green "#396847"  # green
+# (nightfox) orange: &orange "#f4a261"
+orange: &orange "#955f61"  # orange
+# (nightfox) magenta: &magenta "#9d79d6"
+magenta: &magenta "#6e33ce"  # magenta
+# (nightfox) blue: &blue "#719cd6"
+blue: &blue "#2848a9"  # blue
+# (nightfox) red: &red "#c94f6d"
+red: &red "#a5222f"  # red
+
+# Skin...
+k9s:
+  body:
+    fgColor: *foreground
+    bgColor: *background
+    logoColor: *blue
+  prompt:
+    fgColor: *foreground
+    bgColor: *background
+    suggestColor: *orange
+  info:
+    fgColor: *magenta
+    sectionColor: *foreground
+  dialog:
+    fgColor: *foreground
+    bgColor: *background
+    buttonFgColor: *foreground
+    buttonBgColor: *magenta
+    buttonFocusFgColor: white
+    buttonFocusBgColor: *cyan
+    labelFgColor: *orange
+    fieldFgColor: *foreground
+  frame:
+    border:
+      fgColor: *selection
+      focusColor: *current_line
+    menu:
+      fgColor: *foreground
+      keyColor: *magenta
+      numKeyColor: *magenta
+    crumbs:
+      fgColor: *foreground
+      bgColor: *current_line
+      activeColor: *current_line
+    status:
+      newColor: *cyan
+      modifyColor: *blue
+      addColor: *green
+      errorColor: *red
+      highlightColor: *orange
+      killColor: *comment
+      completedColor: *comment
+    title:
+      fgColor: *foreground
+      bgColor: *current_line
+      highlightColor: *orange
+      counterColor: *blue
+      filterColor: *magenta
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
+    table:
+      fgColor: *foreground
+      bgColor: *background
+      cursorFgColor: *selection
+      cursorBgColor: *current_line
+      header:
+        fgColor: *foreground
+        bgColor: *background
+        sorterColor: *cyan
+    xray:
+      fgColor: *foreground
+      bgColor: *background
+      cursorColor: *current_line
+      graphicColor: *blue
+      showIcons: false
+    yaml:
+      keyColor: *magenta
+      colonColor: *blue
+      valueColor: *foreground
+    logs:
+      fgColor: *foreground
+      bgColor: *background
+      indicator:
+        fgColor: *foreground
+        bgColor: *selection
+        toggleOnColor: *magenta
+        toggleOffColor: *blue

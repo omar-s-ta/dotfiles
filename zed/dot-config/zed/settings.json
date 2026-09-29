@@ -50,7 +50,9 @@
   "buffer_font_size": 14,
   "theme": {
     "mode": "light",
-    "light": "Catppuccin Latte - No Italics",
+    // "light": "Catppuccin Latte - No Italics",
+    // Dayfox, matching nvim/kitty/tmux (nvim-nightfox extension, already installed).
+    "light": "Dayfox - blurred",
     "dark": "Nordfox - blurred",
   },
   // Syntax color overrides approximating lua/plugins/colorscheme.lua (Nord palette).

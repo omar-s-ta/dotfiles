@@ -21,6 +21,8 @@ vim.api.nvim_create_autocmd("PackChanged", {
 vim.pack.add({
   -- colorscheme
   { src = "https://github.com/arcticicestudio/nord-vim" },
+  -- nightfox family (dayfox, dawnfox, nordfox, ...), picked by hand via :colorscheme
+  { src = "https://github.com/EdenEast/nightfox.nvim" },
 
   -- treesitter (`main` branch: parsers + queries only, no modules -- see
   -- plugins/treesitter.lua. `master` is frozen at Neovim 0.11.)

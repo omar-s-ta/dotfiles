@@ -119,6 +119,12 @@ fi
 
 # ---- Line-editor enhancements — MUST stay last, in this order --------------
 #   1) autosuggestions  2) syntax-highlighting  3) history-substring-search
+# Suggestion colour. The default `fg=8` (ANSI brightblack) was right for Nord --
+# #4c566a, 1.7:1 on the background, clearly fainter than typed text -- but under
+# kitty's Dayfox palette 8 is #534c45 (7.6:1 vs typed text's 11.2:1), so
+# suggestions look typed. Dayfox's comment colour restores the faint role (3.8:1).
+# (Nord) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'   # the plugin default
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#837a72'
 [[ -r "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
   source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [[ -r "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&

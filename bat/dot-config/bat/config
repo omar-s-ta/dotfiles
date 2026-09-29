@@ -1,0 +1,6 @@
+# bat config. Dayfox, matching nvim/kitty/tmux. themes/dayfox.tmTheme is
+# nightfox.nvim's extra/dayfox/dayfox.tmTheme verbatim at the rev pinned in
+# nvim/dot-config/nvim/nvim-pack-lock.json (4dacd3f). Custom themes only load
+# from bat's cache: run `bat cache --build` after changing themes/ (pde_init.sh
+# does it on a fresh machine). delta's `syntax-theme` reads the same cache.
+--theme="dayfox"

@@ -117,20 +117,31 @@ theme:
         table:
             showSeparator: true
             compact: false
+    # Dayfox (nightfox.nvim, same palette as nvim/kitty/tmux); Nord kept as `# (Nord)`.
     colors:
       text:
-          primary: "#D8DEE9"     # nord4
-          secondary: "#81A1C1"   # nord9
-          faint: "#4C566A"       # nord3
-          inverted: "#2E3440"    # nord0
-          warning: "#BF616A"     # nord11 (red)
-          success: "#A3BE8C"     # nord14 (green)
+          # (Nord) primary: "#D8DEE9"     # nord4
+          primary: "#3d2b5a"        # fg1
+          # (Nord) secondary: "#81A1C1"   # nord9
+          secondary: "#4863b6"      # blue.bright
+          # (Nord) faint: "#4C566A"       # nord3
+          faint: "#837a72"          # comment (faint text, not a border grey)
+          # (Nord) inverted: "#2E3440"    # nord0
+          inverted: "#f6f2ee"       # bg1
+          # (Nord) warning: "#BF616A"     # nord11 (red)
+          warning: "#a5222f"        # red
+          # (Nord) success: "#A3BE8C"     # nord14 (green)
+          success: "#396847"        # green
       background:
-          selected: "#3B4252"    # nord1
+          # (Nord) selected: "#3B4252"    # nord1
+          selected: "#d3c7bb"       # bg3
       border:
-          primary: "#4C566A"     # nord3
-          secondary: "#434C5E"   # nord2
-          faint: "#2E3440"       # nord0
+          # (Nord) primary: "#4C566A"     # nord3
+          primary: "#aab0ad"        # bg4
+          # (Nord) secondary: "#434C5E"   # nord2
+          secondary: "#e7d2be"      # sel0
+          # (Nord) faint: "#2E3440"       # nord0
+          faint: "#f6f2ee"          # bg1
 pager:
     diff: delta --line-numbers --paging=always
 confirmQuit: false

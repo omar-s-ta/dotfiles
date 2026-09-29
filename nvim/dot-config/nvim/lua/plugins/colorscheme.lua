@@ -1,3 +1,6 @@
 -- Colorscheme. The overrides live in `colors/nord-omar.lua`, which is a real
 -- colorscheme, so `:colorscheme nord` gets stock Nord back at any time.
-vim.cmd.colorscheme("nord-omar")
+-- vim.cmd.colorscheme("nord-omar")
+-- Dayfox (nightfox.nvim) for now, matching kitty's light theme
+-- (kitty/light-theme.auto.conf). nord-omar's overrides do not apply under it.
+vim.cmd.colorscheme("dayfox")

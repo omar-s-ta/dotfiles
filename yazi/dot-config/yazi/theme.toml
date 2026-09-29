@@ -1,3 +1,7 @@
 [flavor]
-dark = "nord"
-light = "nord"
+# dark = "nord"
+# light = "nord"
+# Dayfox, matching nvim/kitty/tmux (flavors/dayfox.yazi, local -- not a ya pkg
+# dep). Both slots, so it no longer follows the OS appearance.
+dark = "dayfox"
+light = "dayfox"

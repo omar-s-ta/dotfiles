@@ -1,7 +1,9 @@
 # Helix config aimed at matching my LazyVim/nvim setup as closely as Helix allows.
 # See languages.toml for LSP/formatter config.
 
-theme = "nord-custom"
+# theme = "nord-custom"
+# Dayfox, matching nvim/kitty/tmux (themes/dayfox.toml, on top of built-in nightfox).
+theme = "dayfox"
 
 [editor]
 scrolloff = 10

@@ -25,19 +25,38 @@
 
   # Nord theme. `Nord` is a bundled delta syntax theme; the rest are Nord
   # palette accents (frost for decorations, aurora red/green for -/+ lines).
-  dark = true
-  syntax-theme = Nord
-  file-style = "#88C0D0" bold
-  file-decoration-style = "#4C566A" ul
-  hunk-header-style = "#81A1C1"
-  hunk-header-decoration-style = "#4C566A" box
-  line-numbers-minus-style = "#BF616A"
-  line-numbers-plus-style = "#A3BE8C"
-  line-numbers-zero-style = "#4C566A"
-  minus-style = syntax "#432c33"
-  minus-emph-style = syntax "#6d3d47"
-  plus-style = syntax "#2e4034"
-  plus-emph-style = syntax "#3f5a49"
+  # dark = true
+  # syntax-theme = Nord
+  # file-style = "#88C0D0" bold
+  # file-decoration-style = "#4C566A" ul
+  # hunk-header-style = "#81A1C1"
+  # hunk-header-decoration-style = "#4C566A" box
+  # line-numbers-minus-style = "#BF616A"
+  # line-numbers-plus-style = "#A3BE8C"
+  # line-numbers-zero-style = "#4C566A"
+  # minus-style = syntax "#432c33"
+  # minus-emph-style = syntax "#6d3d47"
+  # plus-style = syntax "#2e4034"
+  # plus-emph-style = syntax "#3f5a49"
+
+  # Dayfox theme, matching nvim/kitty/tmux. `dayfox` is not bundled: it comes
+  # from bat's theme cache (bat/dot-config/bat/themes/dayfox.tmTheme, built by
+  # `bat cache --build`). Same roles as the Nord block above, nightfox palette.
+  # -/+ backgrounds are nightfox's own diff.delete/diff.add (bg1 blended 20%
+  # with red/green); the emph variants are the same blend at 35%.
+  light = true
+  syntax-theme = dayfox
+  file-style = "#2848a9" bold
+  file-decoration-style = "#aab0ad" ul
+  hunk-header-style = "#4863b6"
+  hunk-header-decoration-style = "#aab0ad" box
+  line-numbers-minus-style = "#a5222f"
+  line-numbers-plus-style = "#396847"
+  line-numbers-zero-style = "#aab0ad"
+  minus-style = syntax "#e6c8c8"
+  minus-emph-style = syntax "#daa9ab"
+  plus-style = syntax "#d0d6cd"
+  plus-emph-style = syntax "#b4c2b4"
 
 [interactive]
   diffFilter = delta --color-only

@@ -61,6 +61,10 @@
       "rev": "685f0fac6196862b47025c6b91513af6a406501a",
       "src": "https://github.com/stevanmilic/neotest-scala"
     },
+    "nightfox.nvim": {
+      "rev": "4dacd3f0185a2227bdf3b6c0975a8f0bf87cac9a",
+      "src": "https://github.com/EdenEast/nightfox.nvim"
+    },
     "nord-vim": {
       "rev": "f13f5dfbb784deddbc1d8195f34dfd9ec73e2295",
       "src": "https://github.com/arcticicestudio/nord-vim"
