@@ -1,0 +1,54 @@
+# Nord light, matching nvim/kitty/tmux. Helix's built-in `nord_light` is the
+# reference the nvim colorscheme (nvim/dot-config/nvim/colors/nord-light.lua)
+# was mirrored from, so this inherits it and changes only what nvim changed:
+# Nord accents used as *text* darkened to 3.5:1 on nord6 (comments 3.0:1),
+# hue and saturation kept. The palette's nord7..nord15 stay pastel because
+# nord_light also uses them as backgrounds (statusline modes, cursor match),
+# so the darkened colours are new names and the text scopes are re-pointed.
+inherits = "nord_light"
+
+"string" = "green"
+"comment" = "comment"
+"constant.numeric" = "magenta"
+"constant.builtin" = "magenta"
+"markup.link.text" = "orange"
+"diff.plus" = "green"
+"diff.delta" = "yellow"
+"diff.minus" = "nord11"
+# nord_light: nord7 bg with nord6 text, 1.8:1 -- selected text washed out.
+"ui.selection" = { bg = "visual" }
+"ui.virtual.inlay-hint" = { fg = "inlay" }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.info" = { underline = { color = "nord10", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "teal", style = "curl" } }
+"warning" = "yellow"
+"error" = "nord11"
+"info" = "nord10"
+"hint" = "teal"
+
+[palette]
+nord0  = "#2E3440"
+nord1  = "#3B4252"
+nord2  = "#434C5E"
+nord3  = "#4C566A"
+nord4  = "#D8DEE9"
+nord5  = "#E5E9F0"
+nord6  = "#ECEFF4"
+nord7  = "#8FBCBB"
+nord8  = "#88C0D0"
+nord9  = "#81A1C1"
+nord10 = "#5E81AC"
+nord11 = "#BF616A"
+nord12 = "#D08770"
+nord13 = "#EBCB8B"
+nord14 = "#A3BE8C"
+nord15 = "#B48EAD"
+# darkened text accents (original contrast on nord6 -> 3.5:1)
+teal    = "#518786" # nord7  1.8
+green   = "#67874C" # nord14 1.8
+yellow  = "#A3761C" # nord13 1.4
+orange  = "#C26446" # nord12 2.5
+magenta = "#9F6F96" # nord15 2.5
+comment = "#589492" # nord7, 3.0:1
+inlay   = "#8C93A1" # nord3 at 60% over nord6
+visual  = "#C4DCE6" # nord8 at 40% over nord6

@@ -1,0 +1,45 @@
+# Previous process-compose theme: Dawnfox. Kept but not loaded -- process-compose
+# only reads theme.yaml, which is now Nord light. To switch back, copy this over
+# theme.yaml. (theme.dayfox.yaml is the Dayfox one before it.)
+# Colours are nightfox.nvim's dawnfox palette (rev pinned in
+# nvim/dot-config/nvim/nvim-pack-lock.json, 4dacd3f), assigned by the same roles
+# as k9s/dot-config/k9s/skins/dawnfox.yaml so the two TUIs read alike. Key set from
+# process-compose's own light theme (src/config/themes/catppuccin-latte-theme.yaml).
+# Hex, not names: names defer to the terminal palette (see www/docs/tui.md).
+style:
+  name: 'Dawnfox'
+  body:
+    fgColor: '#575279'            # fg1
+    bgColor: '#faf4ed'            # bg1
+    secondaryTextColor: '#907aa9' # magenta (k9s info)
+    tertiaryTextColor: '#286983'  # blue
+    borderColor: '#bdbfc9'        # bg4, nightfox's border fg
+  stat_table:
+    keyFgColor: '#907aa9'         # magenta
+    valueFgColor: '#575279'       # fg1
+    logoColor: '#286983'          # blue (k9s logo)
+  proc_table:
+    fgColor: '#575279'            # fg1
+    fgWarning: '#ea9d34'          # yellow
+    fgPending: '#9893a5'          # comment
+    fgCompleted: '#618774'        # green
+    fgError: '#b4637a'            # red
+    headerFgColor: '#286983'      # blue
+  help:
+    fgColor: '#575279'            # fg1
+    keyColor: '#907aa9'           # magenta (k9s menu keys)
+    hlColor: '#d0d8d8'            # sel0
+    categoryFgColor: '#286983'    # blue
+    linkDonateColor: '#ea9d34'    # yellow
+    linkAskColor: '#d7827e'       # orange
+  dialog:
+    fgColor: '#575279'            # fg1
+    bgColor: '#ebe5df'            # bg0, nightfox's float bg
+    attentionBgColor: '#b4637a'   # red
+    buttonFgColor: '#faf4ed'      # bg1 (light text on the button)
+    buttonBgColor: '#907aa9'      # magenta
+    buttonFocusFgColor: '#faf4ed' # bg1
+    buttonFocusBgColor: '#56949f' # cyan (k9s focused button)
+    labelFgColor: '#d7827e'       # orange
+    fieldFgColor: '#575279'       # fg1
+    fieldBgColor: '#d0d8d8'       # sel0
