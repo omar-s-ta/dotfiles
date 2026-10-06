@@ -83,6 +83,13 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+# k9s inside tmux: its tcell has a built-in tmux-256color entry without RGB and
+# ignores COLORTERM for it, so it falls back to 256 colours and rounds the skin
+# (k9s/.../skins/nord-light.yaml) to the nearest xterm grey -- bg #eceff4 shows as
+# a neutral #eeeeee. Under TERM=xterm-256color it honours COLORTERM=truecolor
+# and draws the skin's hex. Scoped to tmux; outside it TERM is xterm-kitty.
+[[ -n $TMUX ]] && k9s() { TERM=xterm-256color command k9s "$@"; }
+
 # ---- Powerlevel10k prompt --------------------------------------------------
 # Prompt config under XDG config. p10k honors POWERLEVEL9K_CONFIG_FILE, so
 # `p10k configure` writes here too (not to ~/.p10k.zsh).
