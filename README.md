@@ -65,8 +65,8 @@ dotfiles win — see the comments in the script.
 | Package           | What it configures                                                                                 |
 | ----------------- | -------------------------------------------------------------------------------------------------- |
 | `zsh`             | `~/.zshenv` (sets `ZDOTDIR`) + `~/.config/zsh/*` (`.zshrc`, `.zprofile`; oh-my-zsh, powerlevel10k) |
-| `git`             | `~/.config/git/{config,ignore}` (delta with a Dawnfox theme)                                       |
-| `bat`             | `~/.config/bat/{config,themes/}` (Dawnfox; needs `bat cache --build`)                              |
+| `git`             | `~/.config/git/{config,ignore}` (delta with a Nord light theme)                                    |
+| `bat`             | `~/.config/bat/{config,themes/}` (Nord light; needs `bat cache --build`)                           |
 | `gh`              | `~/.config/gh/config.yml`                                                                          |
 | `gh-dash`         | `~/.config/gh-dash/config.yml`                                                                     |
 | `tmux`            | `~/.config/tmux/tmux.conf` (+ tpm-managed plugins)                                                 |
@@ -75,9 +75,9 @@ dotfiles win — see the comments in the script.
 | `nvim`            | `~/.config/nvim/*` (Neovim 0.12, native `vim.pack`/LSP)                                            |
 | `yazi`            | `~/.config/yazi/*`                                                                                 |
 | `kitty`           | `~/.config/kitty/*`                                                                                |
-| `lazygit`         | `~/.config/lazygit/config.yml` (Dawnfox theme)                                                     |
-| `k9s`             | `~/.config/k9s/{config,aliases}.yaml` + `skins/` (Dawnfox skin)                                    |
-| `process-compose` | `~/.config/process-compose/{theme,settings}.yaml` (Dawnfox TUI theme)                              |
+| `lazygit`         | `~/.config/lazygit/config.yml` (Nord light theme)                                                  |
+| `k9s`             | `~/.config/k9s/{config,aliases}.yaml` + `skins/` (Nord light skin)                                 |
+| `process-compose` | `~/.config/process-compose/{theme,settings}.yaml` (Nord light TUI theme)                           |
 | `efm-langserver`  | `~/.config/efm-langserver/config.yaml`                                                             |
 
 Other top-level files:

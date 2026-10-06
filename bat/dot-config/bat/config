@@ -1,7 +1,10 @@
-# bat config. Dawnfox, matching nvim/kitty/tmux. themes/dawnfox.tmTheme is
+# bat config. Nord light, matching nvim/kitty/tmux: themes/nord-light.tmTheme is
+# written for these dotfiles (Helix nord_light's mapping, nvim's colors/nord-light.lua
+# palette). themes/dawnfox.tmTheme is
 # nightfox.nvim's extra/dawnfox/dawnfox.tmTheme (and dayfox.tmTheme likewise) verbatim at the rev pinned in
 # nvim/dot-config/nvim/nvim-pack-lock.json (4dacd3f). Custom themes only load
 # from bat's cache: run `bat cache --build` after changing themes/ (pde_init.sh
 # does it on a fresh machine). delta's `syntax-theme` reads the same cache.
 # --theme="dayfox"   # (Dayfox)
---theme="dawnfox"
+# --theme="dawnfox"  # (Dawnfox)
+--theme="nord-light"

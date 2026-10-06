@@ -1,4 +1,4 @@
--- Statusline (lualine). Global (matches laststatus=3); theme follows Nord via
+-- Statusline (lualine). Global (matches laststatus=3); theme follows the colorscheme via
 -- "auto". Git branch/diff come from gitsigns; icons from the mini.icons shim.
 require("lualine").setup({
   options = {

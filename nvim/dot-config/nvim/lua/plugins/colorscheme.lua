@@ -6,4 +6,7 @@
 -- vim.cmd.colorscheme("dayfox")
 -- Dawnfox (nightfox.nvim), matching kitty (kitty/themes/dawnfox.conf) and the
 -- rest of the dotfiles. nord-omar's overrides do not apply under it either.
-vim.cmd.colorscheme("dawnfox")
+-- vim.cmd.colorscheme("dawnfox")
+-- Nord light (colors/nord-light.lua), Helix's nord_light mirrored, matching
+-- kitty (kitty/themes/nord-light.conf) and the rest of the dotfiles.
+vim.cmd.colorscheme("nord-light")

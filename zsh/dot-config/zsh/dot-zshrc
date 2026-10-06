@@ -125,9 +125,12 @@ fi
 # suggestions look typed. Dayfox's comment colour restores the faint role (3.8:1).
 # Same story under Dawnfox: 8 is #5f5695, 5.9:1 vs typed text's 6.7:1; its
 # comment colour #9893a5 is 2.7:1.
+# Under Nord light, 8 is nord3 #4c566a, 6.4:1 vs typed text's 10.8:1; the muted
+# grey #828a99 (nvim colors/nord-light.lua's inlay grey darkened to 3.0:1) is faint.
 # (Nord) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'   # the plugin default
 # (Dayfox) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#837a72'
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9893a5'
+# (Dawnfox) ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9893a5'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#828a99'
 [[ -r "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
   source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [[ -r "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&

@@ -10,8 +10,9 @@ k9s:
   portForwardAddress: localhost
   ui:
     # (Dayfox) skin: dayfox   # skins/dayfox.yaml
-    # Dawnfox (skins/dawnfox.yaml), matching nvim/kitty/tmux.
-    skin: dawnfox
+    # (Dawnfox) skin: dawnfox   # skins/dawnfox.yaml
+    # Nord light (skins/nord-light.yaml), matching nvim/kitty/tmux.
+    skin: nord-light
     enableMouse: false
     headless: false
     logoless: false

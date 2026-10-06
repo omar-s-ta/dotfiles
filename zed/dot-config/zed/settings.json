@@ -52,8 +52,11 @@
     "mode": "light",
     // "light": "Catppuccin Latte - No Italics",
     // (Dayfox) "light": "Dayfox - blurred",
-    // Dawnfox, matching nvim/kitty/tmux (nvim-nightfox extension, already installed).
-    "light": "Dawnfox - blurred",
+    // (Dawnfox) "light": "Dawnfox - blurred",  // nvim-nightfox extension
+    // Nord light, matching nvim/kitty/tmux. The nord extension's "Nord Light"
+    // only borrows Nord's backgrounds -- its syntax colours are GitHub Light's --
+    // so the syntax is overridden below to nvim's colors/nord-light.lua.
+    "light": "Nord Light - No Italics",
     "dark": "Nordfox - blurred",
   },
   // Syntax color overrides approximating lua/plugins/colorscheme.lua (Nord palette).
@@ -61,6 +64,41 @@
   // per-language LSP semantic tokens (@lsp.type.macro.rust, modifier.scala,
   // the custom @scala.matcharm query, etc.) — those have no Zed equivalent.
   "experimental.theme_overrides": {
+    // Helix nord_light's mapping with accents darkened to 3.5:1 on nord6
+    // (comments 3.0:1), same as nvim/dot-config/nvim/colors/nord-light.lua.
+    "Nord Light - No Italics": {
+      "syntax": {
+        "comment": { "color": "#589492" },
+        "comment.doc": { "color": "#589492" },
+        "string": { "color": "#67874C" },
+        "string.escape": { "color": "#C26446" },
+        "string.regex": { "color": "#C26446" },
+        "string.special": { "color": "#C26446" },
+        "string.special.symbol": { "color": "#9F6F96" },
+        "text.literal": { "color": "#5E81AC" },
+        "number": { "color": "#9F6F96" },
+        "boolean": { "color": "#9F6F96" },
+        "constant": { "color": "#9F6F96" },
+        "keyword": { "color": "#434C5E" },
+        "function": { "color": "#4C566A" },
+        "type": { "color": "#5E81AC" },
+        "constructor": { "color": "#5E81AC" },
+        "attribute": { "color": "#5E81AC" },
+        "tag": { "color": "#5E81AC" },
+        "namespace": { "color": "#5E81AC" },
+        "variant": { "color": "#9F6F96" },
+        "variable": { "color": "#2E3440" },
+        "variable.special": { "color": "#4C566A" },
+        "property": { "color": "#4C566A" },
+        "operator": { "color": "#2E3440" },
+        "punctuation": { "color": "#2E3440" },
+        "title": { "color": "#2E3440", "font_weight": 700 },
+        "label": { "color": "#5E81AC" },
+        "link_text": { "color": "#C26446" },
+        "link_uri": { "color": "#4C566A" },
+        "hint": { "color": "#8C93A1" },
+      },
+    },
     "Nord Dark - No Italics": {
       "syntax": {
         "number": { "color": "#D08770" }, // numbers orange

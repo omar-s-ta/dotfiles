@@ -3,8 +3,9 @@
 
 # theme = "nord-custom"
 # theme = "dayfox"   # (Dayfox) themes/dayfox.toml
-# Dawnfox, matching nvim/kitty/tmux (themes/dawnfox.toml, on top of built-in nightfox).
-theme = "dawnfox"
+# theme = "dawnfox"  # (Dawnfox) themes/dawnfox.toml, on top of built-in nightfox
+# Nord light, matching nvim/kitty/tmux (themes/nord-light.toml, on top of built-in nord_light).
+theme = "nord-light"
 
 [editor]
 scrolloff = 10

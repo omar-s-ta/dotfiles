@@ -1,4 +1,5 @@
-# lazygit config — Dawnfox theme. Previous values kept commented: `# (Dayfox)`, and before that `# (Nord)`.
+# lazygit config — Nord light theme. Previous values kept commented: `# (Dawnfox)`, before
+# that `# (Dayfox)`, and before that `# (Nord)`.
 # Palette: https://www.nordtheme.com/docs/colors-and-palette
 #   Polar Night  nord0 #2E3440  nord1 #3B4252  nord2 #434C5E  nord3 #4C566A
 #   Snow Storm   nord4 #D8DEE9  nord5 #E5E9F0  nord6 #ECEFF4
@@ -7,59 +8,75 @@
 # Dawnfox (nightfox.nvim, same palette as nvim/kitty/tmux):
 #   bg1 #faf4ed  bg3 #ebdfe4  sel0 #d0d8d8  bg4 #bdbfc9  fg1 #575279
 #   blue #286983  blue.bright #2d81a3  yellow #ea9d34  red #b4637a  magenta #907aa9
+# Nord light (nvim/dot-config/nvim/colors/nord-light.lua): Nord, text accents darkened
+# to 3.5:1 on nord6 -- blue #5e81ac  blue.bright #5782ac  yellow #a3761c  red #bf616a
+# magenta #9f6f96; border #a4aab6, selection #c4dce6.
 gui:
   theme:
     activeBorderColor:
       # (Nord) - '#88C0D0' # nord8 (frost, bright)
       # (Dayfox) - '#2848a9' # blue
-      - '#286983' # blue
+      # (Dawnfox) - '#286983' # blue
+      - '#5e81ac' # blue
       - bold
     inactiveBorderColor:
       # (Nord) - '#4C566A' # nord3
       # (Dayfox) - '#aab0ad' # bg4
-      - '#bdbfc9' # bg4
+      # (Dawnfox) - '#bdbfc9' # bg4
+      - '#a4aab6' # border
     searchingActiveBorderColor:
       # (Nord) - '#EBCB8B' # nord13 (yellow)
       # (Dayfox) - '#ac5402' # yellow
-      - '#ea9d34' # yellow
+      # (Dawnfox) - '#ea9d34' # yellow
+      - '#a3761c' # yellow
       - bold
     optionsTextColor:
       # (Nord) - '#81A1C1' # nord9
       # (Dayfox) - '#4863b6' # blue.bright
-      - '#2d81a3' # blue.bright
+      # (Dawnfox) - '#2d81a3' # blue.bright
+      - '#5782ac' # blue.bright
     selectedLineBgColor:
       # (Nord) - '#3B4252' # nord1
       # (Dayfox) - '#d3c7bb' # bg3
-      - '#ebdfe4' # bg3
+      # (Dawnfox) - '#ebdfe4' # bg3
+      - '#e5e9f0' # nord5
     inactiveViewSelectedLineBgColor:
       # (Nord) - '#434C5E' # nord2
       # (Dayfox) - '#e7d2be' # sel0
-      - '#d0d8d8' # sel0
+      # (Dawnfox) - '#d0d8d8' # sel0
+      - '#c4dce6' # visual
     defaultFgColor:
       # (Nord) - '#D8DEE9' # nord4
       # (Dayfox) - '#3d2b5a' # fg1
-      - '#575279' # fg1
+      # (Dawnfox) - '#575279' # fg1
+      - '#2e3440' # nord0
     cherryPickedCommitBgColor:
       # (Nord) - '#434C5E' # nord2
       # (Dayfox) - '#e7d2be' # sel0
-      - '#d0d8d8' # sel0
+      # (Dawnfox) - '#d0d8d8' # sel0
+      - '#c4dce6' # visual
     cherryPickedCommitFgColor:
       # (Nord) - '#88C0D0' # nord8
       # (Dayfox) - '#2848a9' # blue
-      - '#286983' # blue
+      # (Dawnfox) - '#286983' # blue
+      - '#5e81ac' # blue
     markedBaseCommitBgColor:
       # (Nord) - '#434C5E' # nord2
       # (Dayfox) - '#e7d2be' # sel0
-      - '#d0d8d8' # sel0
+      # (Dawnfox) - '#d0d8d8' # sel0
+      - '#c4dce6' # visual
     markedBaseCommitFgColor:
       # (Nord) - '#EBCB8B' # nord13
       # (Dayfox) - '#ac5402' # yellow
-      - '#ea9d34' # yellow
+      # (Dawnfox) - '#ea9d34' # yellow
+      - '#a3761c' # yellow
     unstagedChangesColor:
       # (Nord) - '#BF616A' # nord11 (red)
       # (Dayfox) - '#a5222f' # red
-      - '#b4637a' # red
-  authorColors:
-    # (Nord) '*': '#B48EAD' # nord15 (purple)
-    # (Dayfox) '*': '#6e33ce' # magenta
-    '*': '#907aa9' # magenta
+      # (Dawnfox) - '#b4637a' # red
+      - '#bf616a' # red
+    authorColors:
+      # (Nord) '*': '#B48EAD' # nord15 (purple)
+      # (Dayfox) '*': '#6e33ce' # magenta
+      # (Dawnfox) '*': '#907aa9' # magenta
+      '*': '#9f6f96' # magenta

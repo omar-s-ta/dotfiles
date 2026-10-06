@@ -62,19 +62,34 @@
   # block above: `dawnfox` comes from bat's theme cache
   # (bat/dot-config/bat/themes/dawnfox.tmTheme), -/+ backgrounds are nightfox's
   # dawnfox diff.delete/diff.add (bg1 blended 20%), emph variants at 35%.
+  # Now Nord light: `nord-light` is bat/dot-config/bat/themes/nord-light.tmTheme, the
+  # colours nvim's colors/nord-light.lua palette, and the -/+ backgrounds nord11 18% /
+  # nord14 25% over nord6 (emph 35% / 45%). The Dawnfox values are kept as `# (Dawnfox)`.
   light = true
-  syntax-theme = dawnfox
-  file-style = "#286983" bold
-  file-decoration-style = "#bdbfc9" ul
-  hunk-header-style = "#2d81a3"
-  hunk-header-decoration-style = "#bdbfc9" box
-  line-numbers-minus-style = "#b4637a"
-  line-numbers-plus-style = "#618774"
-  line-numbers-zero-style = "#bdbfc9"
-  minus-style = syntax "#ecd7d6"
-  minus-emph-style = syntax "#e2c1c5"
-  plus-style = syntax "#dbded5"
-  plus-emph-style = syntax "#c4cec3"
+  # (Dawnfox) syntax-theme = dawnfox
+  syntax-theme = nord-light
+  # (Dawnfox) file-style = "#286983" bold
+  file-style = "#5e81ac" bold
+  # (Dawnfox) file-decoration-style = "#bdbfc9" ul
+  file-decoration-style = "#a4aab6" ul
+  # (Dawnfox) hunk-header-style = "#2d81a3"
+  hunk-header-style = "#5782ac"
+  # (Dawnfox) hunk-header-decoration-style = "#bdbfc9" box
+  hunk-header-decoration-style = "#a4aab6" box
+  # (Dawnfox) line-numbers-minus-style = "#b4637a"
+  line-numbers-minus-style = "#bf616a"
+  # (Dawnfox) line-numbers-plus-style = "#618774"
+  line-numbers-plus-style = "#67874c"
+  # (Dawnfox) line-numbers-zero-style = "#bdbfc9"
+  line-numbers-zero-style = "#a4aab6"
+  # (Dawnfox) minus-style = syntax "#ecd7d6"
+  minus-style = syntax "#e4d5db"
+  # (Dawnfox) minus-emph-style = syntax "#e2c1c5"
+  minus-emph-style = syntax "#dcbdc4"
+  # (Dawnfox) plus-style = syntax "#dbded5"
+  plus-style = syntax "#dae3da"
+  # (Dawnfox) plus-emph-style = syntax "#c4cec3"
+  plus-emph-style = syntax "#cbd9c5"
 
 [interactive]
   diffFilter = delta --color-only

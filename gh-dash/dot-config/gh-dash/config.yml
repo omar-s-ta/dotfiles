@@ -117,41 +117,52 @@ theme:
         table:
             showSeparator: true
             compact: false
-    # Dawnfox (nightfox.nvim, same palette as nvim/kitty/tmux); previous values kept as `# (Dayfox)` and `# (Nord)`.
+    # Nord light (nvim/dot-config/nvim/colors/nord-light.lua, same palette as kitty/tmux);
+    # previous values kept as `# (Dawnfox)` (nightfox.nvim), `# (Dayfox)` and `# (Nord)`.
     colors:
       text:
           # (Nord) primary: "#D8DEE9"     # nord4
           # (Dayfox) primary: "#3d2b5a"        # fg1
-          primary: "#575279"        # fg1
+          # (Dawnfox) primary: "#575279"        # fg1
+          primary: "#2e3440"        # nord0
           # (Nord) secondary: "#81A1C1"   # nord9
           # (Dayfox) secondary: "#4863b6"      # blue.bright
-          secondary: "#2d81a3"      # blue.bright
+          # (Dawnfox) secondary: "#2d81a3"      # blue.bright
+          secondary: "#5782ac"      # blue.bright
           # (Nord) faint: "#4C566A"       # nord3
           # (Dayfox) faint: "#837a72"          # comment (faint text, not a border grey)
-          faint: "#9893a5"          # comment (faint text, not a border grey)
+          # (Dawnfox) faint: "#9893a5"          # comment (faint text, not a border grey)
+          faint: "#828a99"          # comment (faint text, not a border grey)
           # (Nord) inverted: "#2E3440"    # nord0
           # (Dayfox) inverted: "#f6f2ee"       # bg1
-          inverted: "#faf4ed"       # bg1
+          # (Dawnfox) inverted: "#faf4ed"       # bg1
+          inverted: "#eceff4"       # nord6
           # (Nord) warning: "#BF616A"     # nord11 (red)
           # (Dayfox) warning: "#a5222f"        # red
-          warning: "#b4637a"        # red
+          # (Dawnfox) warning: "#b4637a"        # red
+          warning: "#bf616a"        # red
           # (Nord) success: "#A3BE8C"     # nord14 (green)
           # (Dayfox) success: "#396847"        # green
-          success: "#618774"        # green
+          # (Dawnfox) success: "#618774"        # green
+          success: "#67874c"        # green
       background:
           # (Nord) selected: "#3B4252"    # nord1
           # (Dayfox) selected: "#d3c7bb"       # bg3
-          selected: "#ebdfe4"       # bg3
+          # (Dawnfox) selected: "#ebdfe4"       # bg3
+          selected: "#e5e9f0"       # nord5
       border:
           # (Nord) primary: "#4C566A"     # nord3
           # (Dayfox) primary: "#aab0ad"        # bg4
-          primary: "#bdbfc9"        # bg4
+          # (Dawnfox) primary: "#bdbfc9"        # bg4
+          primary: "#a4aab6"        # border
           # (Nord) secondary: "#434C5E"   # nord2
           # (Dayfox) secondary: "#e7d2be"      # sel0
-          secondary: "#d0d8d8"      # sel0
+          # (Dawnfox) secondary: "#d0d8d8"      # sel0
+          secondary: "#c4dce6"      # visual
           # (Nord) faint: "#2E3440"       # nord0
           # (Dayfox) faint: "#f6f2ee"          # bg1
-          faint: "#faf4ed"          # bg1
+          # (Dawnfox) faint: "#faf4ed"          # bg1
+          faint: "#eceff4"          # nord6
 pager:
     diff: delta --line-numbers --paging=always
 confirmQuit: false
