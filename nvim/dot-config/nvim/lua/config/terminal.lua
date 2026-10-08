@@ -30,6 +30,13 @@ local function show(buf, kind)
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
   vim.api.nvim_win_set_height(win, math.floor(vim.o.lines * 0.3))
+  -- match the float's style = "minimal": no gutter or line highlights
+  local wo = vim.wo[win]
+  wo.number, wo.relativenumber = false, false
+  wo.cursorline, wo.cursorcolumn = false, false
+  wo.foldcolumn, wo.colorcolumn, wo.statuscolumn = "0", "", ""
+  wo.signcolumn = "no"
+  wo.spell, wo.list = false, false
   return win
 end
 
