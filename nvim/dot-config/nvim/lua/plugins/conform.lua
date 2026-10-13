@@ -15,6 +15,7 @@ require("conform").setup({
     html = { "prettier" },
     css = { "prettier" },
     sh = { "shfmt" },
+    zig = { "zigfmt" },
   },
   format_on_save = function(bufnr)
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

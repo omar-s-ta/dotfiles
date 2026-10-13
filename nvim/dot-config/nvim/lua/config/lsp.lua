@@ -87,4 +87,5 @@ vim.lsp.enable({
   "jsonls",
   "yamlls",
   "helm_ls",
+  "zls",
 })

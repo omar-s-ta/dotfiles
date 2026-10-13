@@ -155,8 +155,10 @@ brew "typescript-language-server"          # Language Server Protocol implementa
 brew "vscode-langservers-extracted"        # Language servers for HTML, CSS, JavaScript, and JSON extracted from vscode
 # helix → yaml-language-server
 brew "yaml-language-server"                # Language Server for Yaml Files
+# helix → zls, nvim → zls + zigfmt (zig fmt)
+brew "zig"                                 # Programming language designed for robustness, optimality, and clarity
 # helix → zls
-brew "zls"                                 # Language Server for Zig
+brew "zls"                                # Language Server for Zig
 
 # -- Linters, formatters & code tools
 # standalone (code search/rewrite)
