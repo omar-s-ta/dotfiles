@@ -12,33 +12,34 @@ export CPPFLAGS="-I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/node/inclu
 
 # ---- PATH (order = precedence; each prepend beats the ones above it) ----
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"          # Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH" # Windsurf
 export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/terraform-ls/bin:$PATH"
 export PATH="/opt/homebrew/opt/tflint/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/lldb/bin:$PATH"  # keg-only; split out of llvm in 23.x
+export PATH="/opt/homebrew/opt/lldb/bin:$PATH" # keg-only; split out of llvm in 23.x
+export PATH="/Applications/Rocq-Platform-9.1-2026.07.app/Contents/Resources/bin:$PATH"
 # Coursier PATH is set in ~/.zprofile (login shells) — removed the duplicate here.
-export GOPATH="$HOME/go"                  # Go default; defined here beside its use
+export GOPATH="$HOME/go" # Go default; defined here beside its use
 export PATH="$PATH:$GOPATH/bin"
 
 # ---- Tool initialization ----
 # cargo is sourced in ~/.zshenv (all shells); coursier PATH in ~/.zprofile (login).
 
 # opam — init.zsh sets up PATH + completion.
-[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2>&1
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>&1
 
 # (${VAR:-default}) keep this file safe to source even if XDG_* are unset.
 # Existing data was migrated with `mv` when these were added.
-export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"               # was ~/.ipython
-export MPLCONFIGDIR="${XDG_CACHE_HOME:-$HOME/.cache}/matplotlib"            # was ~/.matplotlib
-export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"             # was ~/.docker (client cfg only; daemon unaffected)
-export AWS_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aws/config"       # was ~/.aws/config
+export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"         # was ~/.ipython
+export MPLCONFIGDIR="${XDG_CACHE_HOME:-$HOME/.cache}/matplotlib"      # was ~/.matplotlib
+export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"       # was ~/.docker (client cfg only; daemon unaffected)
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aws/config" # was ~/.aws/config
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/aws/credentials"
-export AZURE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/azure"           # was ~/.azure
-export ANSIBLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/ansible"         # was ~/.ansible
-export PIXI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pixi"               # was ~/.pixi (add $PIXI_HOME/bin to PATH if you install global tools)
+export AZURE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/azure"  # was ~/.azure
+export ANSIBLE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/ansible" # was ~/.ansible
+export PIXI_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pixi"       # was ~/.pixi (add $PIXI_HOME/bin to PATH if you install global tools)
 
 # Terraform: disable checkpoint telemetry (stops ~/.terraform.d/checkpoint_* regenerating)
 export CHECKPOINT_DISABLE=1
@@ -46,14 +47,14 @@ export TF_CLI_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/terraform/terraform
 export TF_PLUGIN_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/terraform/plugins"
 
 # History files -> XDG state
-export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/history"       # was ~/.lesshst
-export PSQL_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/psql/history"       # was ~/.psql_history
-export PYTHON_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/python/history"   # was ~/.python_history (Python >=3.13)
+export LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/history"     # was ~/.lesshst
+export PSQL_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/psql/history"     # was ~/.psql_history
+export PYTHON_HISTORY="${XDG_STATE_HOME:-$HOME/.local/state}/python/history" # was ~/.python_history (Python >=3.13)
 # Note: ~/.vimrc + ~/.viminfo removed (plain vim unused; nvim uses ~/.config/nvim).
 # Backups in ~/.local/state/stray-log-backup/ if plain vim is ever needed again.
-export TFLINT_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tflint/tflint.hcl"  # was ~/.tflint.hcl
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"                    # wgetrc relocates HSTS db out of ~/.wget-hsts
-export BOTO_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/gsutil/boto"  # was ~/.boto (gsutil defaults; no live creds)
+export TFLINT_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tflint/tflint.hcl" # was ~/.tflint.hcl
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"                   # wgetrc relocates HSTS db out of ~/.wget-hsts
+export BOTO_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/gsutil/boto"              # was ~/.boto (gsutil defaults; no live creds)
 # ~/.ocamlinit -> $XDG_CONFIG_HOME/ocaml/init.ml (OCaml >=4.08 finds it natively; no env needed).
 
 # ---- Work helpers + hooks (work-specific) ----

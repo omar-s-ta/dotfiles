@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "Coqtail": {
+      "rev": "93deeb6dd0ef30c67574f68a657786e90e806f76",
+      "src": "https://github.com/whonore/Coqtail"
+    },
     "baleia.nvim": {
       "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
       "src": "https://github.com/m00qek/baleia.nvim"
@@ -26,11 +30,11 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "ed0e0ead1789ee349cbf025900931fb402b1e05e",
+      "rev": "3868dcc78d2c2766c9510ab18b6d3815071b389e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "851a051e2bd2caba97e23314c68d69f1b1cf5d19",
+      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
@@ -42,7 +46,7 @@
       "src": "git@github.com:omar-s-ta/md-present.nvim.git"
     },
     "mini.nvim": {
-      "rev": "6f0cd5049f414932ba55a5d6f3282a59d55c71a3",
+      "rev": "8831fa150fa26492cfe135801fa498132f1491d2",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neotest": {
@@ -102,12 +106,12 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "e289100ff98969e118c702199d88b764ce9e7fdf",
+      "rev": "ca581c3436fc2b236847f5b739ebc263739e5ca6",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-context": {
-      "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
+      "rev": "8decd73460d26ef0a0befb745d022dd1fc2c38b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "plenary.nvim": {
@@ -115,7 +119,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "640a3ec6d538bad17c328be373c7cad0293d9589",
+      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
@@ -129,6 +133,10 @@
     "vim-tmux-navigator": {
       "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
       "src": "https://github.com/christoomey/vim-tmux-navigator"
+    },
+    "vsrocq.nvim": {
+      "rev": "dfa0e5a9e6b9fbd065fc6d9e1ec53e28f3dc11c5",
+      "src": "https://github.com/tomtomjhj/vsrocq.nvim"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

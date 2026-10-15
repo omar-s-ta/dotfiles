@@ -18,6 +18,11 @@ vim.api.nvim_create_autocmd("PackChanged", {
   end,
 })
 
+-- Coqtail supplies only ftdetect/syntax for Rocq; vsrocq.nvim is the client.
+-- Must be set before Coqtail's plugin/ is sourced by vim.pack.add below.
+vim.g.loaded_coqtail = 1
+vim.g.coqtail_supported = 0
+
 vim.pack.add({
   -- colorscheme
   { src = "https://github.com/arcticicestudio/nord-vim" },
@@ -85,6 +90,8 @@ vim.pack.add({
   { src = "https://github.com/scalameta/nvim-metals" },
   { src = "https://github.com/xeluxee/competitest.nvim" },
   { src = "https://github.com/MunifTanjim/nui.nvim" },
+  { src = "https://github.com/whonore/Coqtail" },
+  { src = "https://github.com/tomtomjhj/vsrocq.nvim" },
 
   -- tmux integration
   { src = "https://github.com/christoomey/vim-tmux-navigator" },
@@ -117,3 +124,4 @@ require("plugins.neotest")
 require("plugins.rust")
 require("plugins.scala")
 require("plugins.competitive")
+require("plugins.rocq")
