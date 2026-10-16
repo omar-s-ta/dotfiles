@@ -2,8 +2,6 @@
 # See languages.toml for LSP/formatter config.
 
 # theme = "nord-custom"
-# theme = "dayfox"   # (Dayfox) themes/dayfox.toml
-# theme = "dawnfox"  # (Dawnfox) themes/dawnfox.toml, on top of built-in nightfox
 # Nord light, matching nvim/kitty/tmux (themes/nord-light.toml, on top of built-in nord_light).
 theme = "nord-light"
 

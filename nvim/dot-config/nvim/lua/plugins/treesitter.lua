@@ -28,6 +28,7 @@ local parsers = {
   "markdown_inline",
   "python",
   "rust",
+  "zig",
   "scala",
   "ocaml",
   "ocaml_interface",

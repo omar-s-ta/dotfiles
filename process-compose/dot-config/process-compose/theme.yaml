@@ -1,45 +1,39 @@
 # process-compose "Custom Style" theme: Nord light, matching nvim/kitty/tmux/k9s.
-# (theme.dawnfox.yaml and theme.dayfox.yaml are the previous versions, kept but
-# not loaded -- process-compose only reads theme.yaml.)
-# A copy of theme.dawnfox.yaml with each Dawnfox role swapped for its Nord light
-# colour (nvim/dot-config/nvim/colors/nord-light.lua), by the same roles as
-# k9s/dot-config/k9s/skins/nord-light.yaml so the two TUIs read alike. Key set from
-# process-compose's own light theme (src/config/themes/catppuccin-latte-theme.yaml).
 # Hex, not names: names defer to the terminal palette (see www/docs/tui.md).
 style:
-  name: 'Nord Light'
+  name: "Nord Light"
   body:
-    fgColor: '#2e3440'            # nord0
-    bgColor: '#eceff4'            # nord6
-    secondaryTextColor: '#9f6f96' # magenta (k9s info)
-    tertiaryTextColor: '#5e81ac'  # blue
-    borderColor: '#a4aab6'        # border, nightfox's border fg
+    fgColor: "#2e3440" # nord0
+    bgColor: "#eceff4" # nord6
+    secondaryTextColor: "#9f6f96" # magenta (k9s info)
+    tertiaryTextColor: "#5e81ac" # blue
+    borderColor: "#a4aab6" # border, nightfox's border fg
   stat_table:
-    keyFgColor: '#9f6f96'         # magenta
-    valueFgColor: '#2e3440'       # nord0
-    logoColor: '#5e81ac'          # blue (k9s logo)
+    keyFgColor: "#9f6f96" # magenta
+    valueFgColor: "#2e3440" # nord0
+    logoColor: "#5e81ac" # blue (k9s logo)
   proc_table:
-    fgColor: '#2e3440'            # nord0
-    fgWarning: '#a3761c'          # yellow
-    fgPending: '#828a99'          # comment
-    fgCompleted: '#67874c'        # green
-    fgError: '#bf616a'            # red
-    headerFgColor: '#5e81ac'      # blue
+    fgColor: "#2e3440" # nord0
+    fgWarning: "#a3761c" # yellow
+    fgPending: "#828a99" # comment
+    fgCompleted: "#67874c" # green
+    fgError: "#bf616a" # red
+    headerFgColor: "#5e81ac" # blue
   help:
-    fgColor: '#2e3440'            # nord0
-    keyColor: '#9f6f96'           # magenta (k9s menu keys)
-    hlColor: '#c4dce6'            # visual
-    categoryFgColor: '#5e81ac'    # blue
-    linkDonateColor: '#a3761c'    # yellow
-    linkAskColor: '#c26446'       # orange
+    fgColor: "#2e3440" # nord0
+    keyColor: "#9f6f96" # magenta (k9s menu keys)
+    hlColor: "#c4dce6" # visual
+    categoryFgColor: "#5e81ac" # blue
+    linkDonateColor: "#a3761c" # yellow
+    linkAskColor: "#c26446" # orange
   dialog:
-    fgColor: '#2e3440'            # nord0
-    bgColor: '#e5e9f0'            # nord5, nightfox's float bg
-    attentionBgColor: '#bf616a'   # red
-    buttonFgColor: '#eceff4'      # nord6 (light text on the button)
-    buttonBgColor: '#9f6f96'      # magenta
-    buttonFocusFgColor: '#eceff4' # nord6
-    buttonFocusBgColor: '#3e879c' # cyan (k9s focused button)
-    labelFgColor: '#c26446'       # orange
-    fieldFgColor: '#2e3440'       # nord0
-    fieldBgColor: '#c4dce6'       # visual
+    fgColor: "#2e3440" # nord0
+    bgColor: "#e5e9f0" # nord5, nightfox's float bg
+    attentionBgColor: "#bf616a" # red
+    buttonFgColor: "#eceff4" # nord6 (light text on the button)
+    buttonBgColor: "#9f6f96" # magenta
+    buttonFocusFgColor: "#eceff4" # nord6
+    buttonFocusBgColor: "#3e879c" # cyan (k9s focused button)
+    labelFgColor: "#c26446" # orange
+    fieldFgColor: "#2e3440" # nord0
+    fieldBgColor: "#c4dce6" # visual
