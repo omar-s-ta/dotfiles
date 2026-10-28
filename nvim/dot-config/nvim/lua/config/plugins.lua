@@ -53,8 +53,10 @@ vim.pack.add({
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1") },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
 
-  -- git signs
+  -- git signs, diff/history view, permalinks
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
+  { src = "https://github.com/sindrets/diffview.nvim" },
+  { src = "https://github.com/linrongbin16/gitlinker.nvim" },
 
   -- keymap discoverability
   { src = "https://github.com/folke/which-key.nvim" },

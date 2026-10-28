@@ -49,3 +49,5 @@ map("n", '<leader>s"', fzf.registers, { desc = "Registers" })
 -- git
 map("n", "<leader>gc", fzf.git_commits, { desc = "Git Commits" })
 map("n", "<leader>gs", fzf.git_status, { desc = "Git Status" })
+map("n", "<leader>gC", fzf.git_bcommits, { desc = "Buffer Commits" })
+map("n", "<leader>gB", fzf.git_blame, { desc = "Buffer Blame (picker)" })

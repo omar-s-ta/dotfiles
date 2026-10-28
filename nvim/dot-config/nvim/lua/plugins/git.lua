@@ -1,5 +1,7 @@
 -- Git gutter signs + hunk actions.
 require("gitsigns").setup({
+  current_line_blame = false, -- toggle with <leader>ghB
+  current_line_blame_opts = { delay = 500, virt_text_pos = "eol" },
   signs = {
     add = { text = "+" },
     change = { text = "~" },
@@ -19,6 +21,8 @@ require("gitsigns").setup({
     m("<leader>ghp", gs.preview_hunk, "Preview Hunk")
     m("<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
     m("<leader>ghd", gs.diffthis, "Diff This")
+    m("<leader>ghB", gs.toggle_current_line_blame, "Toggle Inline Blame")
+    m("<leader>gb", gs.blame, "Blame Buffer (window)")
   end,
 })
 
@@ -70,3 +74,15 @@ end
 
 vim.keymap.set("n", "<leader>gg", lazygit, { desc = "Lazygit (root dir)" })
 vim.api.nvim_create_user_command("Lazygit", lazygit, { desc = "Open lazygit (root dir)" })
+
+-- Diffview: multi-file diff, file history, 3-way merge tool.
+require("diffview").setup()
+vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Diffview (working tree)" })
+vim.keymap.set("n", "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", { desc = "File History" })
+vim.keymap.set("n", "<leader>gq", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
+vim.keymap.set("x", "<leader>gl", ":DiffviewFileHistory<cr>", { desc = "Line History (git log -L)" })
+
+-- gitlinker: permalink (commit-pinned) to the current line / visual range.
+require("gitlinker").setup()
+vim.keymap.set({ "n", "v" }, "<leader>gy", "<cmd>GitLink<cr>", { desc = "Copy Git Permalink" })
+vim.keymap.set({ "n", "v" }, "<leader>gY", "<cmd>GitLink!<cr>", { desc = "Open Git Permalink" })

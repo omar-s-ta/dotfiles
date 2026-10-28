@@ -5,7 +5,7 @@
       "src": "https://github.com/whonore/Coqtail"
     },
     "baleia.nvim": {
-      "rev": "710537ff5cd669c5a76c5f5b6a9169fd9b913d18",
+      "rev": "14c279cc7241d97585f8000dfd7dcdbca9fb4458",
       "src": "https://github.com/m00qek/baleia.nvim"
     },
     "blink.cmp": {
@@ -25,16 +25,24 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
     "friendly-snippets": {
-      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
+      "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "3868dcc78d2c2766c9510ab18b6d3815071b389e",
+      "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "gitlinker.nvim": {
+      "rev": "b710fe0e0c997236104f43db49905ab67f8d1f64",
+      "src": "https://github.com/linrongbin16/gitlinker.nvim"
+    },
     "gitsigns.nvim": {
-      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
+      "rev": "d4854fa9a94b5c8b37dd209fb4a19e98e764186f",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lualine.nvim": {
@@ -46,7 +54,7 @@
       "src": "git@github.com:omar-s-ta/md-present.nvim.git"
     },
     "mini.nvim": {
-      "rev": "8831fa150fa26492cfe135801fa498132f1491d2",
+      "rev": "a03ad899bda446b5a81cfa99d8aeeb92241522f3",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neotest": {
@@ -106,7 +114,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "ca581c3436fc2b236847f5b739ebc263739e5ca6",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -123,7 +131,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
-      "rev": "a968f5133b8b24f481de12f08cd79420d1ace559",
+      "rev": "39d19e3cbd0f98083eae2e70e43c90ec56d85376",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "trouble.nvim": {
